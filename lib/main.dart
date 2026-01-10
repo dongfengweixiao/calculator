@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:window_manager/window_manager.dart';
-import 'providers/theme_provider.dart';
-import 'views/calculator_view.dart';
+import 'shared/theme/theme_provider.dart';
+import 'features/calculator/calculator_view.dart';
 
 void main() async {
   // Initialize window manager

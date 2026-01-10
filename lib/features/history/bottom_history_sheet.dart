@@ -1,102 +1,237 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/calculator_provider.dart';
-import '../providers/theme_provider.dart';
-import '../theme/calculator_theme.dart';
-import '../theme/calculator_icons.dart';
+import '../calculator/calculator_provider.dart';
+import '../../shared/theme/theme_provider.dart';
+import '../../core/theme/app_theme.dart';
+import '../../core/theme/app_icons.dart';
 
-/// History and memory panel tabs
-enum HistoryPanelTab { history, memory }
+/// Bottom history sheet widget
+class BottomHistorySheet extends ConsumerStatefulWidget {
+  const BottomHistorySheet({super.key});
 
-/// History panel state provider
-final historyPanelTabProvider =
-    NotifierProvider<HistoryPanelNotifier, HistoryPanelTab>(() {
-      return HistoryPanelNotifier();
-    });
-
-/// Notifier for history panel tab state
-class HistoryPanelNotifier extends Notifier<HistoryPanelTab> {
   @override
-  HistoryPanelTab build() => HistoryPanelTab.history;
-
-  void setTab(HistoryPanelTab tab) {
-    state = tab;
-  }
+  ConsumerState<BottomHistorySheet> createState() => _BottomHistorySheetState();
 }
 
-/// History and memory panel widget
-class HistoryMemoryPanel extends ConsumerWidget {
-  const HistoryMemoryPanel({super.key});
+class _BottomHistorySheetState extends ConsumerState<BottomHistorySheet>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  bool _isHistoryTab = true;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOutCubic,
+    );
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = ref.watch(calculatorThemeProvider);
-    final currentTab = ref.watch(historyPanelTabProvider);
+    final historyItems = ref.watch(calculatorProvider).historyItems;
+    final memoryItems = ref.watch(calculatorProvider).memoryItems;
 
-    return Container(
-      width: 320,
-      color: theme.background,
-      child: Column(
-        children: [
-          // Tab bar
-          _buildTabBar(ref, theme, currentTab),
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return FractionalTranslation(
+          translation: Offset(0, 1 - _animation.value),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            decoration: BoxDecoration(
+              color: theme.background,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                // Handle bar
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: theme.textSecondary.withValues(alpha: 0.4),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
 
-          // Tab content
-          Expanded(
-            child: currentTab == HistoryPanelTab.history
-                ? const _HistoryList()
-                : const _MemoryList(),
+                // Tab bar
+                _buildTabBar(theme),
+
+                // Content area
+                Expanded(
+                  child: _isHistoryTab
+                      ? _buildHistoryList(historyItems, theme)
+                      : _buildMemoryList(memoryItems, theme),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildTabBar(
-    WidgetRef ref,
-    CalculatorTheme theme,
-    HistoryPanelTab currentTab,
-  ) {
+  Widget _buildTabBar(CalculatorTheme theme) {
     return Container(
       height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
+          // History tab
           _TabButton(
             icon: CalculatorIcons.history,
             label: '历史记录',
-            isSelected: currentTab == HistoryPanelTab.history,
+            isSelected: _isHistoryTab,
             theme: theme,
-            onPressed: () => ref
-                .read(historyPanelTabProvider.notifier)
-                .setTab(HistoryPanelTab.history),
+            onPressed: () => setState(() => _isHistoryTab = true),
           ),
           const SizedBox(width: 8),
+          // Memory tab
           _TabButton(
             icon: CalculatorIcons.memory,
             label: '内存',
-            isSelected: currentTab == HistoryPanelTab.memory,
+            isSelected: !_isHistoryTab,
             theme: theme,
-            onPressed: () => ref
-                .read(historyPanelTabProvider.notifier)
-                .setTab(HistoryPanelTab.memory),
+            onPressed: () => setState(() => _isHistoryTab = false),
           ),
           const Spacer(),
-          // Delete button
+          // Close button
           _IconButton(
-            icon: Icons.delete_outline,
+            icon: Icons.close,
             theme: theme,
-            onPressed: () {
-              if (currentTab == HistoryPanelTab.history) {
-                ref.read(calculatorProvider.notifier).clearHistory();
-              } else {
-                ref.read(calculatorProvider.notifier).memoryClear();
-              }
-            },
+            onPressed: () => _closeSheet(),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildHistoryList(List historyItems, CalculatorTheme theme) {
+    if (historyItems.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.history,
+              size: 48,
+              color: theme.textSecondary.withValues(alpha: 0.5),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '还没有历史记录',
+              style: TextStyle(color: theme.textSecondary, fontSize: 14),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: historyItems.length,
+      itemBuilder: (context, index) {
+        final item = historyItems[historyItems.length - 1 - index];
+        return _HistoryItem(
+          expression: item.expression,
+          result: item.result,
+          theme: theme,
+          onTap: () {
+            ref
+                .read(calculatorProvider.notifier)
+                .recallHistory(historyItems.length - 1 - index);
+            _closeSheet();
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildMemoryList(List memoryItems, CalculatorTheme theme) {
+    if (memoryItems.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.save_outlined,
+              size: 48,
+              color: theme.textSecondary.withValues(alpha: 0.5),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '内存中没有数据',
+              style: TextStyle(color: theme.textSecondary, fontSize: 14),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '使用内存按钮存储数字',
+              style: TextStyle(
+                color: theme.textSecondary.withValues(alpha: 0.7),
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      itemCount: memoryItems.length,
+      itemBuilder: (context, index) {
+        return _MemoryItem(
+          value: memoryItems[index],
+          theme: theme,
+          onTap: () {
+            ref.read(calculatorProvider.notifier).memoryRecallAt(index);
+            _closeSheet();
+          },
+          onClear: () {
+            ref.read(calculatorProvider.notifier).memoryClearAt(index);
+          },
+          onAdd: () {
+            ref.read(calculatorProvider.notifier).memoryAddAt(index);
+          },
+          onSubtract: () {
+            ref.read(calculatorProvider.notifier).memorySubtractAt(index);
+          },
+        );
+      },
+    );
+  }
+
+  void _closeSheet() {
+    _animationController.reverse().then((_) {
+      if (mounted) {
+        Navigator.of(context).pop();
+      }
+    });
   }
 }
 
@@ -218,55 +353,6 @@ class _IconButtonState extends State<_IconButton> {
   }
 }
 
-/// History list widget
-class _HistoryList extends ConsumerWidget {
-  const _HistoryList();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(calculatorThemeProvider);
-    final historyItems = ref.watch(calculatorProvider).historyItems;
-
-    if (historyItems.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.history,
-              size: 48,
-              color: theme.textSecondary.withValues(alpha: 0.5),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '还没有历史记录',
-              style: TextStyle(color: theme.textSecondary, fontSize: 14),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      itemCount: historyItems.length,
-      itemBuilder: (context, index) {
-        final item = historyItems[historyItems.length - 1 - index];
-        return _HistoryItem(
-          expression: item.expression,
-          result: item.result,
-          theme: theme,
-          onTap: () {
-            ref
-                .read(calculatorProvider.notifier)
-                .recallHistory(historyItems.length - 1 - index);
-          },
-        );
-      },
-    );
-  }
-}
-
 /// Single history item widget
 class _HistoryItem extends StatefulWidget {
   final String expression;
@@ -329,68 +415,6 @@ class _HistoryItemState extends State<_HistoryItem> {
           ),
         ),
       ),
-    );
-  }
-}
-
-/// Memory list widget
-class _MemoryList extends ConsumerWidget {
-  const _MemoryList();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = ref.watch(calculatorThemeProvider);
-    final memoryItems = ref.watch(calculatorProvider).memoryItems;
-
-    if (memoryItems.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.save_outlined,
-              size: 48,
-              color: theme.textSecondary.withValues(alpha: 0.5),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '内存中没有数据',
-              style: TextStyle(color: theme.textSecondary, fontSize: 14),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              '使用内存按钮存储数字',
-              style: TextStyle(
-                color: theme.textSecondary.withValues(alpha: 0.7),
-                fontSize: 12,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      itemCount: memoryItems.length,
-      itemBuilder: (context, index) {
-        return _MemoryItem(
-          value: memoryItems[index],
-          theme: theme,
-          onTap: () {
-            ref.read(calculatorProvider.notifier).memoryRecallAt(index);
-          },
-          onClear: () {
-            ref.read(calculatorProvider.notifier).memoryClearAt(index);
-          },
-          onAdd: () {
-            ref.read(calculatorProvider.notifier).memoryAddAt(index);
-          },
-          onSubtract: () {
-            ref.read(calculatorProvider.notifier).memorySubtractAt(index);
-          },
-        );
-      },
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/navigation_provider.dart';
-import '../providers/theme_provider.dart';
-import '../theme/calculator_theme.dart';
+import '../../shared/navigation/navigation_provider.dart';
+import '../../shared/theme/theme_provider.dart';
+import '../../core/theme/app_theme.dart';
 
 /// Navigation drawer for calculator mode selection
 class CalculatorNavigationDrawer extends ConsumerWidget {

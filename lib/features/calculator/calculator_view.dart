@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/theme_provider.dart';
-import '../providers/navigation_provider.dart';
-import '../providers/calculator_provider.dart';
-import '../services/calculator_service.dart';
-import '../widgets/display_panel.dart';
-import '../widgets/button_panel.dart';
-import '../widgets/scientific/scientific_button_panel.dart';
-import '../widgets/navigation_drawer.dart';
-import '../widgets/history_panel.dart';
-import '../widgets/bottom_history_sheet.dart';
+import '../../shared/theme/theme_provider.dart';
+import '../../shared/navigation/navigation_provider.dart';
+import 'calculator_provider.dart';
+import '../../core/services/calculator_service.dart';
+import 'display_panel.dart';
+import 'button_panel.dart';
+import '../scientific/button_panel.dart';
+import 'navigation_drawer.dart';
+import '../history/history_panel.dart';
+import '../history/bottom_history_sheet.dart';
 
 /// Main calculator view with responsive layout
 class CalculatorView extends ConsumerStatefulWidget {

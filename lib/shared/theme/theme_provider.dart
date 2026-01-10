@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../theme/calculator_theme.dart';
+import '../../core/theme/app_theme.dart';
 
 /// Theme mode (light, dark, system)
 enum ThemeMode { light, dark, system }

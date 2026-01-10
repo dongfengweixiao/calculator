@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/calculator_provider.dart';
-import '../providers/theme_provider.dart';
-import '../theme/calculator_font_sizes.dart';
-import '../theme/calculator_colors.dart';
+import 'calculator_provider.dart';
+import '../../shared/theme/theme_provider.dart';
+import '../../core/theme/app_font_sizes.dart';
+import '../../core/theme/app_colors.dart';
 
 /// Calculator display panel
 class DisplayPanel extends ConsumerWidget {

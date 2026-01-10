@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'calculator_colors.dart';
-import 'calculator_font_sizes.dart';
+import 'app_colors.dart';
+import 'app_font_sizes.dart';
 
 /// Calculator button state for styling
 enum CalcButtonState { normal, hover, pressed, disabled }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../theme/calculator_theme.dart';
-import '../theme/calculator_font_sizes.dart';
-import '../theme/calculator_dimensions.dart';
-import '../providers/theme_provider.dart';
+import '../../core/theme/app_theme.dart';
+import '../../core/theme/app_font_sizes.dart';
+import '../../core/theme/app_dimensions.dart';
+import '../../shared/theme/theme_provider.dart';
 
 /// Calculator button widget
 class CalculatorButton extends ConsumerStatefulWidget {

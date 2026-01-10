@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../providers/calculator_provider.dart';
-import '../../../providers/scientific_provider.dart';
-import '../../../theme/calculator_theme.dart';
-import '../../../theme/calculator_icons.dart';
+import '../../calculator/calculator_provider.dart';
+import '../scientific_provider.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../core/theme/app_icons.dart';
 import 'button_state.dart';
 import 'menu_buttons.dart';
 
