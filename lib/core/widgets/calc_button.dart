@@ -28,9 +28,6 @@ class CalcButton extends ConsumerStatefulWidget {
   /// Custom font size (optional, defaults based on button type)
   final double? fontSize;
 
-  /// Flex value for layout
-  final int flex;
-
   const CalcButton({
     super.key,
     this.text,
@@ -39,7 +36,6 @@ class CalcButton extends ConsumerStatefulWidget {
     this.onPressed,
     this.isDisabled = false,
     this.fontSize,
-    this.flex = 1,
   }) : assert(
          text != null || icon != null,
          'Either text or icon must be provided',
@@ -80,46 +76,43 @@ class _CalcButtonState extends ConsumerState<CalcButton> {
         ? SystemMouseCursors.forbidden
         : SystemMouseCursors.click;
 
-    return Expanded(
-      flex: widget.flex,
-      child: Padding(
-        padding: const EdgeInsets.all(CalculatorDimensions.buttonMargin),
-        child: MouseRegion(
-          cursor: cursor,
-          onEnter: widget.isDisabled
+    return Padding(
+      padding: const EdgeInsets.all(CalculatorDimensions.buttonMargin),
+      child: MouseRegion(
+        cursor: cursor,
+        onEnter: widget.isDisabled
+            ? null
+            : (_) => setState(() => _isHovered = true),
+        onExit: widget.isDisabled
+            ? null
+            : (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTapDown: widget.isDisabled
               ? null
-              : (_) => setState(() => _isHovered = true),
-          onExit: widget.isDisabled
+              : (_) => setState(() => _isPressed = true),
+          onTapUp: widget.isDisabled
               ? null
-              : (_) => setState(() => _isHovered = false),
-          child: GestureDetector(
-            onTapDown: widget.isDisabled
-                ? null
-                : (_) => setState(() => _isPressed = true),
-            onTapUp: widget.isDisabled
-                ? null
-                : (_) {
-                    setState(() => _isPressed = false);
-                    widget.onPressed?.call();
-                  },
-            onTapCancel: widget.isDisabled
-                ? null
-                : () => setState(() => _isPressed = false),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                borderRadius: BorderRadius.circular(
-                  CalculatorDimensions.controlCornerRadius,
-                ),
+              : (_) {
+                  setState(() => _isPressed = false);
+                  widget.onPressed?.call();
+                },
+          onTapCancel: widget.isDisabled
+              ? null
+              : () => setState(() => _isPressed = false),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 100),
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(
+                CalculatorDimensions.controlCornerRadius,
               ),
-              constraints: const BoxConstraints(
-                minWidth: CalculatorDimensions.buttonMinWidth,
-                minHeight: CalculatorDimensions.buttonMinHeight,
-              ),
-              child: Center(
-                child: _buildContent(foregroundColor, fontSize),
-              ),
+            ),
+            constraints: const BoxConstraints(
+              minWidth: CalculatorDimensions.buttonMinWidth,
+              minHeight: CalculatorDimensions.buttonMinHeight,
+            ),
+            child: Center(
+              child: _buildContent(foregroundColor, fontSize),
             ),
           ),
         ),
@@ -128,27 +121,32 @@ class _CalcButtonState extends ConsumerState<CalcButton> {
   }
 
   Widget _buildContent(Color foregroundColor, double fontSize) {
-    if (widget.icon != null) {
-      // Use icon font
-      return Text(
-        String.fromCharCode(widget.icon!.codePoint),
-        style: TextStyle(
-          fontFamily: widget.icon!.fontFamily,
-          fontSize: fontSize,
-          color: foregroundColor,
-        ),
-      );
-    } else {
-      // Use regular text
-      return Text(
-        widget.text!,
-        style: TextStyle(
-          color: foregroundColor,
-          fontSize: fontSize,
-          fontWeight: FontWeight.w400,
-        ),
-      );
-    }
+    final textStyle = widget.icon != null
+        ? TextStyle(
+            fontFamily: widget.icon!.fontFamily,
+            fontSize: fontSize,
+            color: foregroundColor,
+          )
+        : TextStyle(
+            color: foregroundColor,
+            fontSize: fontSize,
+            fontWeight: FontWeight.w400,
+          );
+
+    final textContent = widget.icon != null
+        ? Text(String.fromCharCode(widget.icon!.codePoint))
+        : Text(widget.text!);
+
+    // Use FittedBox to auto-scale text to fit within button
+    // This prevents text from being clipped when button is compressed
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.center,
+      child: DefaultTextStyle(
+        style: textStyle,
+        child: textContent,
+      ),
+    );
   }
 
   double _getDefaultFontSize(CalculatorTheme theme) {

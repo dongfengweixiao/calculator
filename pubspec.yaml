@@ -47,6 +47,7 @@ dependencies:
 
   # Internationalization
   intl: any
+  flutter_layout_grid: ^2.0.8
 
 dev_dependencies:
   flutter_test:

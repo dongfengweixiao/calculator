@@ -55,50 +55,44 @@ class _FuncFlyoutButtonState extends State<FuncFlyoutButton> {
       hoverColor: widget.theme.buttonSubtleHover,
     );
 
-    return Padding(
-      padding: const EdgeInsets.all(1),
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: GestureDetector(
-          onTap: () => _showFuncMenu(context),
-          child: Container(
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      String.fromCharCode(CalculatorIcons.funcButton.codePoint),
-                      style: TextStyle(
-                        fontFamily: CalculatorIcons.funcButton.fontFamily,
-                        fontSize: 14,
-                        color: widget.theme.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '函数',
-                      style: TextStyle(
-                        color: widget.theme.textPrimary,
-                        fontSize: 12,
-                      ),
-                    ),
-                    const SizedBox(width: 2),
-                    Icon(
-                      Icons.arrow_drop_down,
-                      color: widget.theme.textPrimary,
-                      size: 16,
-                    ),
-                  ],
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: () => _showFuncMenu(context),
+        child: Container(
+          height: 38,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                String.fromCharCode(CalculatorIcons.funcButton.codePoint),
+                style: TextStyle(
+                  fontFamily: CalculatorIcons.funcButton.fontFamily,
+                  fontSize: 14,
+                  color: widget.theme.textPrimary,
                 ),
               ),
-            ),
+              const SizedBox(width: 4),
+              Text(
+                '函数',
+                style: TextStyle(
+                  color: widget.theme.textPrimary,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Icon(
+                Icons.arrow_drop_down,
+                color: widget.theme.textPrimary,
+                size: 16,
+              ),
+            ],
           ),
         ),
       ),

@@ -45,30 +45,40 @@ class StandardButtonPanel extends ConsumerWidget {
       height: 40,
       child: Row(
         children: [
-          CalcButton(
-            text: 'MC',
-            type: CalcButtonType.memory,
-            onPressed: calculator.memoryClear,
+          Expanded(
+            child: CalcButton(
+              text: 'MC',
+              type: CalcButtonType.memory,
+              onPressed: calculator.memoryClear,
+            ),
           ),
-          CalcButton(
-            text: 'MR',
-            type: CalcButtonType.memory,
-            onPressed: calculator.memoryRecall,
+          Expanded(
+            child: CalcButton(
+              text: 'MR',
+              type: CalcButtonType.memory,
+              onPressed: calculator.memoryRecall,
+            ),
           ),
-          CalcButton(
-            text: 'M+',
-            type: CalcButtonType.memory,
-            onPressed: calculator.memoryAdd,
+          Expanded(
+            child: CalcButton(
+              text: 'M+',
+              type: CalcButtonType.memory,
+              onPressed: calculator.memoryAdd,
+            ),
           ),
-          CalcButton(
-            text: 'M-',
-            type: CalcButtonType.memory,
-            onPressed: calculator.memorySubtract,
+          Expanded(
+            child: CalcButton(
+              text: 'M-',
+              type: CalcButtonType.memory,
+              onPressed: calculator.memorySubtract,
+            ),
           ),
-          CalcButton(
-            text: 'MS',
-            type: CalcButtonType.memory,
-            onPressed: calculator.memoryStore,
+          Expanded(
+            child: CalcButton(
+              text: 'MS',
+              type: CalcButtonType.memory,
+              onPressed: calculator.memoryStore,
+            ),
           ),
         ],
       ),
@@ -79,27 +89,35 @@ class StandardButtonPanel extends ConsumerWidget {
     return Expanded(
       child: Row(
         children: [
-          CalcButton(
-            icon: CalculatorIcons.percent,
-            type: CalcButtonType.operator,
-            onPressed: calculator.percent,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.percent,
+              type: CalcButtonType.operator,
+              onPressed: calculator.percent,
+            ),
           ),
-          CalcButton(
-            text: 'CE',
-            type: CalcButtonType.operator,
-            fontSize: CalculatorFontSizes.numeric16,
-            onPressed: calculator.clearEntry,
+          Expanded(
+            child: CalcButton(
+              text: 'CE',
+              type: CalcButtonType.operator,
+              fontSize: CalculatorFontSizes.numeric16,
+              onPressed: calculator.clearEntry,
+            ),
           ),
-          CalcButton(
-            text: 'C',
-            type: CalcButtonType.operator,
-            fontSize: CalculatorFontSizes.numeric16,
-            onPressed: calculator.clear,
+          Expanded(
+            child: CalcButton(
+              text: 'C',
+              type: CalcButtonType.operator,
+              fontSize: CalculatorFontSizes.numeric16,
+              onPressed: calculator.clear,
+            ),
           ),
-          CalcButton(
-            icon: CalculatorIcons.backspace,
-            type: CalcButtonType.operator,
-            onPressed: calculator.backspace,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.backspace,
+              type: CalcButtonType.operator,
+              onPressed: calculator.backspace,
+            ),
           ),
         ],
       ),
@@ -110,25 +128,33 @@ class StandardButtonPanel extends ConsumerWidget {
     return Expanded(
       child: Row(
         children: [
-          CalcButton(
-            icon: CalculatorIcons.reciprocal,
-            type: CalcButtonType.operator,
-            onPressed: calculator.reciprocal,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.reciprocal,
+              type: CalcButtonType.operator,
+              onPressed: calculator.reciprocal,
+            ),
           ),
-          CalcButton(
-            icon: CalculatorIcons.square,
-            type: CalcButtonType.operator,
-            onPressed: calculator.square,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.square,
+              type: CalcButtonType.operator,
+              onPressed: calculator.square,
+            ),
           ),
-          CalcButton(
-            icon: CalculatorIcons.squareRoot,
-            type: CalcButtonType.operator,
-            onPressed: calculator.squareRoot,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.squareRoot,
+              type: CalcButtonType.operator,
+              onPressed: calculator.squareRoot,
+            ),
           ),
-          CalcButton(
-            icon: CalculatorIcons.divide,
-            type: CalcButtonType.operator,
-            onPressed: calculator.divide,
+          Expanded(
+            child: CalcButton(
+              icon: CalculatorIcons.divide,
+              type: CalcButtonType.operator,
+              onPressed: calculator.divide,
+            ),
           ),
         ],
       ),
@@ -138,25 +164,33 @@ class StandardButtonPanel extends ConsumerWidget {
   Widget _buildNumberRow7(CalculatorNotifier calculator) {
     return Row(
       children: [
-        CalcButton(
-          text: '7',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(7),
+        Expanded(
+          child: CalcButton(
+            text: '7',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(7),
+          ),
         ),
-        CalcButton(
-          text: '8',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(8),
+        Expanded(
+          child: CalcButton(
+            text: '8',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(8),
+          ),
         ),
-        CalcButton(
-          text: '9',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(9),
+        Expanded(
+          child: CalcButton(
+            text: '9',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(9),
+          ),
         ),
-        CalcButton(
-          icon: CalculatorIcons.multiply,
-          type: CalcButtonType.operator,
-          onPressed: calculator.multiply,
+        Expanded(
+          child: CalcButton(
+            icon: CalculatorIcons.multiply,
+            type: CalcButtonType.operator,
+            onPressed: calculator.multiply,
+          ),
         ),
       ],
     );
@@ -165,25 +199,33 @@ class StandardButtonPanel extends ConsumerWidget {
   Widget _buildNumberRow4(CalculatorNotifier calculator) {
     return Row(
       children: [
-        CalcButton(
-          text: '4',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(4),
+        Expanded(
+          child: CalcButton(
+            text: '4',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(4),
+          ),
         ),
-        CalcButton(
-          text: '5',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(5),
+        Expanded(
+          child: CalcButton(
+            text: '5',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(5),
+          ),
         ),
-        CalcButton(
-          text: '6',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(6),
+        Expanded(
+          child: CalcButton(
+            text: '6',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(6),
+          ),
         ),
-        CalcButton(
-          icon: CalculatorIcons.minus,
-          type: CalcButtonType.operator,
-          onPressed: calculator.subtract,
+        Expanded(
+          child: CalcButton(
+            icon: CalculatorIcons.minus,
+            type: CalcButtonType.operator,
+            onPressed: calculator.subtract,
+          ),
         ),
       ],
     );
@@ -192,25 +234,33 @@ class StandardButtonPanel extends ConsumerWidget {
   Widget _buildNumberRow1(CalculatorNotifier calculator) {
     return Row(
       children: [
-        CalcButton(
-          text: '1',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(1),
+        Expanded(
+          child: CalcButton(
+            text: '1',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(1),
+          ),
         ),
-        CalcButton(
-          text: '2',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(2),
+        Expanded(
+          child: CalcButton(
+            text: '2',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(2),
+          ),
         ),
-        CalcButton(
-          text: '3',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(3),
+        Expanded(
+          child: CalcButton(
+            text: '3',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(3),
+          ),
         ),
-        CalcButton(
-          icon: CalculatorIcons.plus,
-          type: CalcButtonType.operator,
-          onPressed: calculator.add,
+        Expanded(
+          child: CalcButton(
+            icon: CalculatorIcons.plus,
+            type: CalcButtonType.operator,
+            onPressed: calculator.add,
+          ),
         ),
       ],
     );
@@ -219,25 +269,33 @@ class StandardButtonPanel extends ConsumerWidget {
   Widget _buildLastRow(CalculatorNotifier calculator) {
     return Row(
       children: [
-        CalcButton(
-          icon: CalculatorIcons.negate,
-          type: CalcButtonType.number,
-          onPressed: calculator.inputNegate,
+        Expanded(
+          child: CalcButton(
+            icon: CalculatorIcons.negate,
+            type: CalcButtonType.number,
+            onPressed: calculator.inputNegate,
+          ),
         ),
-        CalcButton(
-          text: '0',
-          type: CalcButtonType.number,
-          onPressed: () => calculator.inputDigit(0),
+        Expanded(
+          child: CalcButton(
+            text: '0',
+            type: CalcButtonType.number,
+            onPressed: () => calculator.inputDigit(0),
+          ),
         ),
-        CalcButton(
-          text: '.',
-          type: CalcButtonType.number,
-          onPressed: calculator.inputDecimal,
+        Expanded(
+          child: CalcButton(
+            text: '.',
+            type: CalcButtonType.number,
+            onPressed: calculator.inputDecimal,
+          ),
         ),
-        CalcButton(
-          icon: CalculatorIcons.equals,
-          type: CalcButtonType.emphasized,
-          onPressed: calculator.equals,
+        Expanded(
+          child: CalcButton(
+            icon: CalculatorIcons.equals,
+            type: CalcButtonType.emphasized,
+            onPressed: calculator.equals,
+          ),
         ),
       ],
     );

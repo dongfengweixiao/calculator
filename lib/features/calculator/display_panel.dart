@@ -16,15 +16,16 @@ class DisplayPanel extends ConsumerWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
       color: theme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          // Expression display
-          if (calculatorState.expression.isNotEmpty)
-            Text(
+          // Expression display - use Flexible to adapt to available space
+          Flexible(
+            child: Text(
               calculatorState.expression,
               style: TextStyle(
                 fontSize: CalculatorFontSizes.numeric16,
@@ -34,24 +35,25 @@ class DisplayPanel extends ConsumerWidget {
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.right,
             ),
+          ),
 
-          const SizedBox(height: 4),
-
-          // Main result display
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerRight,
-            child: Text(
-              calculatorState.display,
-              style: TextStyle(
-                fontSize: CalculatorFontSizes.operatorCaptionExtraLarge,
-                fontWeight: FontWeight.w300,
-                color: calculatorState.hasError
-                    ? CalculatorDarkColors.textError
-                    : theme.textPrimary,
+          // Main result display - also use Flexible
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerRight,
+              child: Text(
+                calculatorState.display,
+                style: TextStyle(
+                  fontSize: CalculatorFontSizes.operatorCaptionExtraLarge,
+                  fontWeight: FontWeight.w300,
+                  color: calculatorState.hasError
+                      ? CalculatorDarkColors.textError
+                      : theme.textPrimary,
+                ),
+                maxLines: 1,
+                textAlign: TextAlign.right,
               ),
-              maxLines: 1,
-              textAlign: TextAlign.right,
             ),
           ),
         ],

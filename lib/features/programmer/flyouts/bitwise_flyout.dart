@@ -52,47 +52,44 @@ class _BitwiseFlyoutButtonState extends State<BitwiseFlyoutButton> {
         ? widget.theme.buttonSubtleHover
         : widget.theme.buttonSubtleDefault;
 
-    return Padding(
-      padding: const EdgeInsets.all(1),
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: GestureDetector(
-          onTap: () => _showBitwiseMenu(context),
-          child: Container(
-            height: 38,
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  String.fromCharCode(CalculatorIcons.bitwiseButton.codePoint),
-                  style: TextStyle(
-                    fontFamily: CalculatorIcons.bitwiseButton.fontFamily,
-                    fontSize: 14,
-                    color: widget.theme.textPrimary,
-                  ),
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  '按位',
-                  style: TextStyle(
-                    color: widget.theme.textPrimary,
-                    fontSize: 12,
-                  ),
-                ),
-                const SizedBox(width: 2),
-                Icon(
-                  Icons.arrow_drop_down,
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: () => _showBitwiseMenu(context),
+        child: Container(
+          height: 38,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                String.fromCharCode(CalculatorIcons.bitwiseButton.codePoint),
+                style: TextStyle(
+                  fontFamily: CalculatorIcons.bitwiseButton.fontFamily,
+                  fontSize: 14,
                   color: widget.theme.textPrimary,
-                  size: 16,
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                '按位',
+                style: TextStyle(
+                  color: widget.theme.textPrimary,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Icon(
+                Icons.arrow_drop_down,
+                color: widget.theme.textPrimary,
+                size: 16,
+              ),
+            ],
           ),
         ),
       ),

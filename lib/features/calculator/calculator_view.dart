@@ -10,7 +10,9 @@ import '../../core/services/layout/responsive_layout_service.dart';
 import 'display_panel.dart';
 import 'button_panel.dart';
 import '../scientific/button_panel.dart';
-import '../programmer/programmer_view.dart';
+import '../programmer/programmer_grid_body.dart';
+import 'standard_grid_body.dart';
+import '../scientific/scientific_grid_body.dart';
 import 'navigation_drawer.dart';
 import '../history/history_panel.dart';
 import '../history/bottom_history_sheet.dart';
@@ -90,12 +92,28 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
     calculatorTheme,
     ViewMode currentMode,
   ) {
-    // For programmer mode, use separate ProgrammerView
-    if (currentMode == ViewMode.programmer) {
-      return const ProgrammerView();
+    // For standard mode, use grid layout
+    if (currentMode == ViewMode.standard) {
+      return StandardGridBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
     }
 
-    // For standard and scientific modes, use column layout
+    // For scientific mode, use grid layout
+    if (currentMode == ViewMode.scientific) {
+      return ScientificGridBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For programmer mode, use grid layout
+    if (currentMode == ViewMode.programmer) {
+      return ProgrammerGridBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // Fallback to column layout (should not reach here)
     return Column(
       children: [
         // Header with hamburger button, mode name, and theme toggle

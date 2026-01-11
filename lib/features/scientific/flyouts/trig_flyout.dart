@@ -61,42 +61,44 @@ class _TrigFlyoutButtonState extends State<TrigFlyoutButton> {
       hoverColor: widget.theme.buttonSubtleHover,
     );
 
-    return Padding(
-      padding: const EdgeInsets.all(1),
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: GestureDetector(
-          onTap: () => _showTrigMenu(context),
-          child: Container(
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      String.fromCharCode(CalculatorIcons.trigButton.codePoint),
-                      style: TextStyle(
-                        fontFamily: CalculatorIcons.trigButton.fontFamily,
-                        fontSize: 14,
-                        color: widget.theme.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Icon(
-                      Icons.arrow_drop_down,
-                      size: 10,
-                      color: widget.theme.textPrimary,
-                    ),
-                  ],
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: GestureDetector(
+        onTap: () => _showTrigMenu(context),
+        child: Container(
+          height: 38,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                String.fromCharCode(CalculatorIcons.trigButton.codePoint),
+                style: TextStyle(
+                  fontFamily: CalculatorIcons.trigButton.fontFamily,
+                  fontSize: 14,
+                  color: widget.theme.textPrimary,
                 ),
               ),
-            ),
+              const SizedBox(width: 4),
+              Text(
+                '三角学',
+                style: TextStyle(
+                  color: widget.theme.textPrimary,
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Icon(
+                Icons.arrow_drop_down,
+                size: 16,
+                color: widget.theme.textPrimary,
+              ),
+            ],
           ),
         ),
       ),
