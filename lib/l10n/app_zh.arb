@@ -51,5 +51,69 @@
   "gradian": "梯度",
   "@gradian": {
     "description": "Gradian angle unit"
+  },
+  "shift": "位移位",
+  "@shift": {
+    "description": "Shift operation"
+  },
+  "bitwise": "按位",
+  "@bitwise": {
+    "description": "Bitwise operation"
+  },
+  "fullKeypad": "全键盘",
+  "@fullKeypad": {
+    "description": "Full keypad input mode"
+  },
+  "bitFlip": "位翻转",
+  "@bitFlip": {
+    "description": "Bit flip input mode"
+  },
+  "arithmeticShift": "算术移位",
+  "@arithmeticShift": {
+    "description": "Arithmetic shift mode"
+  },
+  "logicalShift": "逻辑移位",
+  "@logicalShift": {
+    "description": "Logical shift mode"
+  },
+  "rotateShift": "旋转循环移位",
+  "@rotateShift": {
+    "description": "Rotate shift mode"
+  },
+  "rotateCarryShift": "带进位旋转循环移位",
+  "@rotateCarryShift": {
+    "description": "Rotate through carry shift mode"
+  },
+  "hex": "HEX",
+  "@hex": {
+    "description": "Hexadecimal"
+  },
+  "dec": "DEC",
+  "@dec": {
+    "description": "Decimal"
+  },
+  "oct": "OCT",
+  "@oct": {
+    "description": "Octal"
+  },
+  "bin": "BIN",
+  "@bin": {
+    "description": "Binary"
+  },
+  "qword": "QWORD",
+  "@qword": {
+    "description": "Quadword"
+  },
+  "dword": "DWORD",
+  "@dword": {
+    "description": "Doubleword"
+  },
+  "word": "WORD",
+  "@word": {
+    "description": "Word"
+  },
+  "byte": "BYTE",
+  "@byte": {
+    "description": "Byte"
   }
 }

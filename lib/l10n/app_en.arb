@@ -51,5 +51,69 @@
   "gradian": "Grad",
   "@gradian": {
     "description": "Gradian angle unit"
+  },
+  "shift": "Shift",
+  "@shift": {
+    "description": "Shift operation"
+  },
+  "bitwise": "Bitwise",
+  "@bitwise": {
+    "description": "Bitwise operation"
+  },
+  "fullKeypad": "Full Keypad",
+  "@fullKeypad": {
+    "description": "Full keypad input mode"
+  },
+  "bitFlip": "Bit Flip",
+  "@bitFlip": {
+    "description": "Bit flip input mode"
+  },
+  "arithmeticShift": "Arithmetic Shift",
+  "@arithmeticShift": {
+    "description": "Arithmetic shift mode"
+  },
+  "logicalShift": "Logical Shift",
+  "@logicalShift": {
+    "description": "Logical shift mode"
+  },
+  "rotateShift": "Rotate Shift",
+  "@rotateShift": {
+    "description": "Rotate shift mode"
+  },
+  "rotateCarryShift": "Rotate Through Carry",
+  "@rotateCarryShift": {
+    "description": "Rotate through carry shift mode"
+  },
+  "hex": "HEX",
+  "@hex": {
+    "description": "Hexadecimal"
+  },
+  "dec": "DEC",
+  "@dec": {
+    "description": "Decimal"
+  },
+  "oct": "OCT",
+  "@oct": {
+    "description": "Octal"
+  },
+  "bin": "BIN",
+  "@bin": {
+    "description": "Binary"
+  },
+  "qword": "QWORD",
+  "@qword": {
+    "description": "Quadword"
+  },
+  "dword": "DWORD",
+  "@dword": {
+    "description": "Doubleword"
+  },
+  "word": "WORD",
+  "@word": {
+    "description": "Word"
+  },
+  "byte": "BYTE",
+  "@byte": {
+    "description": "Byte"
   }
 }

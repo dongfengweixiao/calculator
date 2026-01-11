@@ -20,6 +20,14 @@ class CalculatorCommands {
   static const int CMD_8 = 8;
   static const int CMD_9 = 9;
 
+  /// Hexadecimal digit commands (A-F)
+  static const int CMD_A = 10;
+  static const int CMD_B = 11;
+  static const int CMD_C = 12;
+  static const int CMD_D = 13;
+  static const int CMD_E = 14;
+  static const int CMD_F = 15;
+
   /// Basic operations
   static const int CMD_ADD = 100;
   static const int CMD_SUBTRACT = 101;
@@ -115,6 +123,29 @@ class CalculatorCommands {
   static const int CMD_DEG = 1300;
   static const int CMD_RAD = 1301;
   static const int CMD_GRAD = 1302;
+
+  /// Bitwise operations
+  static const int CMD_AND = 86;      // Bitwise AND
+  static const int CMD_OR = 87;       // Bitwise OR
+  static const int CMD_XOR = 82;      // Bitwise XOR
+  static const int CMD_NOT = 83;      // Bitwise NOT (complement)
+  static const int CMD_NAND = 501;    // Bitwise NAND (NOT of AND)
+  static const int CMD_NOR = 502;     // Bitwise NOR (NOT of OR)
+
+  /// Shift operations
+  static const int CMD_LSH = 89;      // Left Shift
+  static const int CMD_RSH = 90;      // Right Shift (Arithmetic)
+  static const int CMD_RSHL = 505;    // Right Shift (Logical)
+  static const int CMD_ROL = 99;      // Rotate Left
+  static const int CMD_ROR = 100;     // Rotate Right
+  static const int CMD_ROLC = 416;    // Rotate Left Through Carry
+  static const int CMD_RORC = 417;    // Rotate Right Through Carry
+
+  /// Word size operations (Programmer mode)
+  static const int CMD_QWORD = 317;   // 64-bit
+  static const int CMD_DWORD = 318;   // 32-bit
+  static const int CMD_WORD = 319;    // 16-bit
+  static const int CMD_BYTE = 320;    // 8-bit
 
   /// Map digit to command
   static int mapDigit(int digit) {

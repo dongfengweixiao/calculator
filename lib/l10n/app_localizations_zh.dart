@@ -46,4 +46,52 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get gradian => '梯度';
+
+  @override
+  String get shift => '位移位';
+
+  @override
+  String get bitwise => '按位';
+
+  @override
+  String get fullKeypad => '全键盘';
+
+  @override
+  String get bitFlip => '位翻转';
+
+  @override
+  String get arithmeticShift => '算术移位';
+
+  @override
+  String get logicalShift => '逻辑移位';
+
+  @override
+  String get rotateShift => '旋转循环移位';
+
+  @override
+  String get rotateCarryShift => '带进位旋转循环移位';
+
+  @override
+  String get hex => 'HEX';
+
+  @override
+  String get dec => 'DEC';
+
+  @override
+  String get oct => 'OCT';
+
+  @override
+  String get bin => 'BIN';
+
+  @override
+  String get qword => 'QWORD';
+
+  @override
+  String get dword => 'DWORD';
+
+  @override
+  String get word => 'WORD';
+
+  @override
+  String get byte => 'BYTE';
 }

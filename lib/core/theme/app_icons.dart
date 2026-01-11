@@ -86,8 +86,8 @@ class CalculatorIcons {
   /// Pi (π)
   static const IconData pi = IconData(0xF7CF, fontFamily: _fontFamily);
 
-  /// Euler's number (e)
-  static const IconData euler = IconData(0xF7D0, fontFamily: _fontFamily);
+  /// Bit flip
+  static const IconData bitFlip = IconData(0xF7D0, fontFamily: _fontFamily);
 
   /// Floor
   static const IconData floor = IconData(0xF885, fontFamily: _fontFamily);
@@ -109,6 +109,12 @@ class CalculatorIcons {
 
   /// Func button icon
   static const IconData funcButton = IconData(0xF893, fontFamily: _fontFamily);
+
+  /// Bitwise operations button icon
+  static const IconData bitwiseButton = IconData(0xF895, fontFamily: _fontFamily);
+
+  /// Bit shift button icon
+  static const IconData shiftButton = IconData(0xE301, fontFamily: _fontFamily);
 
   // ============================================================================
   // Memory Icons
@@ -216,6 +222,9 @@ class CalculatorIcons {
 
   /// Random
   static const IconData random = IconData(0xE970, fontFamily: _fontFamily);
+
+  /// Full keypad
+  static const IconData fullKeypad = IconData(0xE75F, fontFamily: _fontFamily);
 }
 
 /// Extension to create Text widget from IconData using calculator font

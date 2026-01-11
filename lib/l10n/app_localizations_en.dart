@@ -46,4 +46,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gradian => 'Grad';
+
+  @override
+  String get shift => 'Shift';
+
+  @override
+  String get bitwise => 'Bitwise';
+
+  @override
+  String get fullKeypad => 'Full Keypad';
+
+  @override
+  String get bitFlip => 'Bit Flip';
+
+  @override
+  String get arithmeticShift => 'Arithmetic Shift';
+
+  @override
+  String get logicalShift => 'Logical Shift';
+
+  @override
+  String get rotateShift => 'Rotate Shift';
+
+  @override
+  String get rotateCarryShift => 'Rotate Through Carry';
+
+  @override
+  String get hex => 'HEX';
+
+  @override
+  String get dec => 'DEC';
+
+  @override
+  String get oct => 'OCT';
+
+  @override
+  String get bin => 'BIN';
+
+  @override
+  String get qword => 'QWORD';
+
+  @override
+  String get dword => 'DWORD';
+
+  @override
+  String get word => 'WORD';
+
+  @override
+  String get byte => 'BYTE';
 }

@@ -129,6 +129,18 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
   void setMode(CalculatorMode mode) {
     _service.setMode(mode);
     state = state.copyWith(mode: mode);
+
+    // When entering programmer mode, default to QWORD (64-bit)
+    if (mode == CalculatorMode.programmer) {
+      _service.sendCommand(CMD_QWORD);
+      state = _updateState();
+    }
+  }
+
+  /// Set the radix (number base) for programmer mode
+  void setRadix(CalcRadixType radix) {
+    _service.setRadix(radix);
+    state = _updateState();
   }
 
   /// Clear the calculator
@@ -137,9 +149,17 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
     state = _updateState();
   }
 
-  /// Clear entry
+  /// Clear entry - smart C/CE behavior
+  /// When display != '0': shows CE, clears current input only (CMD_CENTR)
+  /// When display == '0': shows C, clears expression (CMD_CLEAR)
   void clearEntry() {
-    _service.sendCommand(CMD_CENTR);
+    // If display is not '0', clear the current input (CE behavior)
+    // If display is '0', clear everything including expression (C behavior)
+    if (state.display != '0') {
+      _service.sendCommand(CMD_CENTR);
+    } else {
+      _service.sendCommand(CMD_CLEAR);
+    }
     state = _updateState();
   }
 
@@ -171,8 +191,14 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
       CMD_7,
       CMD_8,
       CMD_9,
+      CMD_A,
+      CMD_B,
+      CMD_C,
+      CMD_D,
+      CMD_E,
+      CMD_F,
     ];
-    if (digit >= 0 && digit <= 9) {
+    if (digit >= 0 && digit <= 15) {
       sendCommand(commands[digit]);
     }
   }
@@ -283,6 +309,58 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
   }
 
   // ============================================================================
+  // Bitwise Operations
+  // ============================================================================
+
+  void bitwiseAnd() => sendCommand(CMD_AND);
+  void bitwiseOr() => sendCommand(CMD_OR);
+  void bitwiseXor() => sendCommand(CMD_XOR);
+  void bitwiseNot() => sendCommand(CMD_NOT);
+  void bitwiseNand() => sendCommand(CMD_NAND);
+  void bitwiseNor() => sendCommand(CMD_NOR);
+
+  // ============================================================================
+  // Shift Operations
+  // ============================================================================
+
+  /// Left shift (<<)
+  void leftShift() => sendCommand(CMD_LSH);
+
+  /// Right shift arithmetic (>>) - preserves sign bit
+  void rightShiftArithmetic() => sendCommand(CMD_RSH);
+
+  /// Right shift logical - fills MSB with 0
+  void rightShiftLogical() => sendCommand(CMD_RSHL);
+
+  /// Rotate left
+  void rotateLeft() => sendCommand(CMD_ROL);
+
+  /// Rotate right
+  void rotateRight() => sendCommand(CMD_ROR);
+
+  /// Rotate left through carry
+  void rotateLeftCarry() => sendCommand(CMD_ROLC);
+
+  /// Rotate right through carry
+  void rotateRightCarry() => sendCommand(CMD_RORC);
+
+  // ============================================================================
+  // Word Size Operations (Programmer Mode)
+  // ============================================================================
+
+  /// Set word size to QWORD (64-bit)
+  void setQword() => sendCommand(CMD_QWORD);
+
+  /// Set word size to DWORD (32-bit)
+  void setDword() => sendCommand(CMD_DWORD);
+
+  /// Set word size to WORD (16-bit)
+  void setWord() => sendCommand(CMD_WORD);
+
+  /// Set word size to BYTE (8-bit)
+  void setByte() => sendCommand(CMD_BYTE);
+
+  // ============================================================================
   // Memory Operations
   // ============================================================================
 
@@ -379,6 +457,22 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
     }
     state = _updateState();
   }
+
+  // ============================================================================
+  // Programmer Mode - Base Results
+  // ============================================================================
+
+  /// Get result in hexadecimal (for programmer mode)
+  String getResultHex() => _service.getResultHex();
+
+  /// Get result in decimal (for programmer mode)
+  String getResultDec() => _service.getResultDec();
+
+  /// Get result in octal (for programmer mode)
+  String getResultOct() => _service.getResultOct();
+
+  /// Get result in binary (for programmer mode)
+  String getResultBin() => _service.getResultBin();
 }
 
 /// Calculator provider

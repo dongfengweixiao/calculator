@@ -175,6 +175,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Grad'**
   String get gradian;
+
+  /// Shift operation
+  ///
+  /// In en, this message translates to:
+  /// **'Shift'**
+  String get shift;
+
+  /// Bitwise operation
+  ///
+  /// In en, this message translates to:
+  /// **'Bitwise'**
+  String get bitwise;
+
+  /// Full keypad input mode
+  ///
+  /// In en, this message translates to:
+  /// **'Full Keypad'**
+  String get fullKeypad;
+
+  /// Bit flip input mode
+  ///
+  /// In en, this message translates to:
+  /// **'Bit Flip'**
+  String get bitFlip;
+
+  /// Arithmetic shift mode
+  ///
+  /// In en, this message translates to:
+  /// **'Arithmetic Shift'**
+  String get arithmeticShift;
+
+  /// Logical shift mode
+  ///
+  /// In en, this message translates to:
+  /// **'Logical Shift'**
+  String get logicalShift;
+
+  /// Rotate shift mode
+  ///
+  /// In en, this message translates to:
+  /// **'Rotate Shift'**
+  String get rotateShift;
+
+  /// Rotate through carry shift mode
+  ///
+  /// In en, this message translates to:
+  /// **'Rotate Through Carry'**
+  String get rotateCarryShift;
+
+  /// Hexadecimal
+  ///
+  /// In en, this message translates to:
+  /// **'HEX'**
+  String get hex;
+
+  /// Decimal
+  ///
+  /// In en, this message translates to:
+  /// **'DEC'**
+  String get dec;
+
+  /// Octal
+  ///
+  /// In en, this message translates to:
+  /// **'OCT'**
+  String get oct;
+
+  /// Binary
+  ///
+  /// In en, this message translates to:
+  /// **'BIN'**
+  String get bin;
+
+  /// Quadword
+  ///
+  /// In en, this message translates to:
+  /// **'QWORD'**
+  String get qword;
+
+  /// Doubleword
+  ///
+  /// In en, this message translates to:
+  /// **'DWORD'**
+  String get dword;
+
+  /// Word
+  ///
+  /// In en, this message translates to:
+  /// **'WORD'**
+  String get word;
+
+  /// Byte
+  ///
+  /// In en, this message translates to:
+  /// **'BYTE'**
+  String get byte;
 }
 
 class _AppLocalizationsDelegate

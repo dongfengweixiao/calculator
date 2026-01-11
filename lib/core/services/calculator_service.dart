@@ -55,6 +55,18 @@ class CalculatorService {
     }
   }
 
+  /// Set the radix (number base) for programmer mode
+  void setRadix(CalcRadixType radix) {
+    if (!_isInitialized) return;
+    calculator_set_radix(_calculator!, radix);
+  }
+
+  /// Get the current radix
+  int getRadix() {
+    if (!_isInitialized) return CalcRadixType.CALC_RADIX_DECIMAL.value;
+    return calculator_get_radix(_calculator!);
+  }
+
   /// Send a command to the calculator
   void sendCommand(int command) {
     if (!_isInitialized) return;
@@ -95,6 +107,70 @@ class CalculatorService {
   bool hasError() {
     if (!_isInitialized) return false;
     return calculator_has_error(_calculator!) != 0;
+  }
+
+  // ============================================================================
+  // Programmer Mode - Base Conversions
+  // ============================================================================
+
+  /// Get result in hexadecimal (for programmer mode)
+  String getResultHex() {
+    if (!_isInitialized) return '0';
+    final buffer = calloc<Char>(1024);
+    try {
+      final length = calculator_get_result_hex(_calculator!, buffer, 1024);
+      if (length > 0) {
+        return buffer.cast<Utf8>().toDartString(length: length);
+      }
+      return '0';
+    } finally {
+      calloc.free(buffer);
+    }
+  }
+
+  /// Get result in decimal (for programmer mode)
+  String getResultDec() {
+    if (!_isInitialized) return '0';
+    final buffer = calloc<Char>(1024);
+    try {
+      final length = calculator_get_result_dec(_calculator!, buffer, 1024);
+      if (length > 0) {
+        return buffer.cast<Utf8>().toDartString(length: length);
+      }
+      return '0';
+    } finally {
+      calloc.free(buffer);
+    }
+  }
+
+  /// Get result in octal (for programmer mode)
+  String getResultOct() {
+    if (!_isInitialized) return '0';
+    final buffer = calloc<Char>(1024);
+    try {
+      final length = calculator_get_result_oct(_calculator!, buffer, 1024);
+      if (length > 0) {
+        return buffer.cast<Utf8>().toDartString(length: length);
+      }
+      return '0';
+    } finally {
+      calloc.free(buffer);
+    }
+  }
+
+  /// Get result in binary (for programmer mode)
+  String getResultBin() {
+    if (!_isInitialized) return '0';
+    final buffer = calloc<Char>(1024);
+    try {
+      final length = calculator_get_result_bin(_calculator!, buffer, 1024);
+      if (length > 0) {
+        return buffer.cast<Utf8>().toDartString(length: length);
+      }
+      return '0';
+    } finally {
+      calloc.free(buffer);
+    }
   }
 
   /// Reset the calculator

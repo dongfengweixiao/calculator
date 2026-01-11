@@ -10,6 +10,7 @@ import '../../core/services/layout/responsive_layout_service.dart';
 import 'display_panel.dart';
 import 'button_panel.dart';
 import '../scientific/button_panel.dart';
+import '../programmer/programmer_view.dart';
 import 'navigation_drawer.dart';
 import '../history/history_panel.dart';
 import '../history/bottom_history_sheet.dart';
@@ -89,6 +90,12 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
     calculatorTheme,
     ViewMode currentMode,
   ) {
+    // For programmer mode, use separate ProgrammerView
+    if (currentMode == ViewMode.programmer) {
+      return const ProgrammerView();
+    }
+
+    // For standard and scientific modes, use column layout
     return Column(
       children: [
         // Header with hamburger button, mode name, and theme toggle
@@ -116,8 +123,8 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
       case ViewMode.scientific:
         return const ScientificButtonPanel();
       case ViewMode.programmer:
-        // TODO: Implement programmer panel
-        return const StandardButtonPanel();
+        // Programmer mode uses ProgrammerView, not button panel
+        return const SizedBox.shrink();
     }
   }
 

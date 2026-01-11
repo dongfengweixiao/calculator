@@ -1,6 +1,5 @@
 import '../../services/calculator_service.dart';
 import '../../domain/entities/view_mode.dart';
-import '../../domain/entities/calculator_mode.dart';
 
 /// Mode conversion service
 /// Handles conversion between ViewMode and CalculatorMode
