@@ -67,17 +67,18 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
       _service.dispose();
     });
 
-    // Initial state - don't call _updateState here as state is not yet initialized
+    // Initial state - explicitly pass CalculatorMode.standard to avoid circular dependency
+    final initialMode = CalculatorMode.standard;
     return CalculatorState(
       display: _service.getPrimaryDisplay(),
       expression: _service.getExpression(),
       hasError: _service.hasError(),
-      mode: CalculatorMode.standard,
+      mode: initialMode,
       memoryCount: _service.getMemoryCount(),
-      historyCount: _service.getHistoryCount(),
+      historyCount: _service.getHistoryCountForMode(initialMode),
       parenthesisCount: _service.getParenthesisCount(),
       memoryItems: _getMemoryItems(),
-      historyItems: _getHistoryItems(),
+      historyItems: _getHistoryItems(initialMode),
     );
   }
 
@@ -94,12 +95,15 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
     return List<String>.unmodifiable(items);
   }
 
-  List<HistoryItem> _getHistoryItems() {
-    final count = _service.getHistoryCount();
+  List<HistoryItem> _getHistoryItems([CalculatorMode? mode]) {
+    // Get history items for the specified mode (or current state mode if not provided)
+    // This ensures that when switching modes, we show the correct history
+    final targetMode = mode ?? state.mode;
+    final count = _service.getHistoryCountForMode(targetMode);
     final items = <HistoryItem>[];
     for (var i = 0; i < count; i++) {
-      final expression = _service.getHistoryExpressionAt(i);
-      final result = _service.getHistoryResultAt(i);
+      final expression = _service.getHistoryExpressionAtForMode(targetMode, i);
+      final result = _service.getHistoryResultAtForMode(targetMode, i);
       if (expression != null && result != null) {
         items.add((expression: expression, result: result));
       }
@@ -113,10 +117,10 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
       expression: _service.getExpression(),
       hasError: _service.hasError(),
       memoryCount: _service.getMemoryCount(),
-      historyCount: _service.getHistoryCount(),
+      historyCount: _service.getHistoryCountForMode(state.mode),
       parenthesisCount: _service.getParenthesisCount(),
       memoryItems: _getMemoryItems(),
-      historyItems: _getHistoryItems(),
+      historyItems: _getHistoryItems(state.mode),
     );
   }
 
@@ -129,13 +133,15 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
   /// Set calculator mode
   void setMode(CalculatorMode mode) {
     _service.setMode(mode);
-    state = state.copyWith(mode: mode);
 
     // When entering programmer mode, default to QWORD (64-bit)
     if (mode == CalculatorMode.programmer) {
       _service.sendCommand(CMD_QWORD);
-      state = _updateState();
     }
+
+    // Update state with new mode and refresh history
+    state = state.copyWith(mode: mode);
+    state = _updateState();
   }
 
   /// Set the radix (number base) for programmer mode
