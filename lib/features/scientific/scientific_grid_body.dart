@@ -1,3 +1,4 @@
+import 'package:example/features/programmer/programmer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,8 +21,14 @@ import '../../l10n/l10n.dart';
 /// - Row 1: Display (spans all 5 columns)
 /// - Row 2: DEG, F-E buttons (2 columns, 3 empty)
 /// - Row 3: Memory buttons (MC, MR, M+, M-, MS) - spans all 5 columns
-/// - Row 4: Trig, Func flyout buttons (2 columns, 3 empty)
-/// - Row 5-11: Main button grid
+/// - Row 4: Trig, Func flyout buttons (horizontal layout)
+/// - Row 5: Shift, π, e, CE/C, ⌫
+/// - Row 6: x², 1/x, |x|, exp, mod
+/// - Row 7: √x, (, ), n!, ÷
+/// - Row 8: x^y, 7, 8, 9, ×
+/// - Row 9: 10^x, 4, 5, 6, -
+/// - Row 10: log, 1, 2, 3, +
+/// - Row 11: ln, ±, 0, ., =
 class ScientificGridBody extends ConsumerWidget {
   /// Callback when hamburger menu button is pressed
   final VoidCallback? onMenuPressed;
@@ -49,12 +56,12 @@ class ScientificGridBody extends ConsumerWidget {
         40.px,   // Row 3: Memory buttons
         40.px,   // Row 4: Trig and Func flyouts
         1.fr,    // Row 5: Shift, π, e, CE/C, ⌫
-        1.fr,    // Row 6: Scientific func row
-        1.fr,    // Row 7: (, ), n!, ÷
-        1.fr,    // Row 8: 7, 8, 9, ×
-        1.fr,    // Row 9: 4, 5, 6, -
-        1.fr,    // Row 10: 1, 2, 3, +
-        1.fr,    // Row 11: ±, 0, ., =
+        1.fr,    // Row 6: x², 1/x, |x|, exp, mod
+        1.fr,    // Row 7: √x, (, ), n!, ÷
+        1.fr,    // Row 8: x^y, 7, 8, 9, ×
+        1.fr,    // Row 9: 10^x, 4, 5, 6, -
+        1.fr,    // Row 10: log, 1, 2, 3, +
+        1.fr,    // Row 11: ln, ±, 0, ., =
       ],
 
       // Add gaps between columns and rows
@@ -165,109 +172,83 @@ class ScientificGridBody extends ConsumerWidget {
         _buildButton(theme, calculator, icon: CalculatorIcons.backspace, type: CalcButtonType.operator, onPressed: calculator.backspace)
             .withGridPlacement(columnStart: 4, rowStart: 5),
 
-        // Row 6: Scientific functions (x², √, ^, 10^x, log) OR (x³, ∛, ʸ√x, 2^x, logᵧ)
-        ..._buildScientificFunctionRow(calculator, theme, isShifted, rowStart: 6),
+        // Row 6: x², 1/x, |x|, exp, mod
+        _buildButton(theme, calculator, icon: !isShifted ? CalculatorIcons.square : CalculatorIcons.cube, type: CalcButtonType.operator, onPressed: !isShifted ? calculator.square : calculator.cube)
+            .withGridPlacement(columnStart: 0, rowStart: 6),
+        _buildButton(theme, calculator, icon: CalculatorIcons.reciprocal, type: CalcButtonType.operator, onPressed: calculator.reciprocal)
+            .withGridPlacement(columnStart: 1, rowStart: 6),
+        _buildButton(theme, calculator, icon: CalculatorIcons.absoluteValue, type: CalcButtonType.operator, onPressed: calculator.abs)
+            .withGridPlacement(columnStart: 2, rowStart: 6),
+        _buildButton(theme, calculator, text: 'exp', type: CalcButtonType.operator, onPressed: calculator.exp)
+            .withGridPlacement(columnStart: 3, rowStart: 6),
+        _buildButton(theme, calculator, text: 'mod', type: CalcButtonType.operator, onPressed: calculator.mod)
+            .withGridPlacement(columnStart: 4, rowStart: 6),
 
-        // Row 7: (, ), n!, ÷
-        _buildButton(theme, calculator, text: '(', type: CalcButtonType.operator, onPressed: calculator.openParen)
+        // Row 7: √x, (, ), n!, ÷
+        _buildButton(theme, calculator, icon: !isShifted ? CalculatorIcons.squareRoot : CalculatorIcons.cubeRoot, type: CalcButtonType.operator, onPressed: isShifted ? calculator.squareRoot : calculator.cubeRoot)
             .withGridPlacement(columnStart: 0, rowStart: 7),
-        _buildButton(theme, calculator, text: ')', type: CalcButtonType.operator, onPressed: calculator.closeParen)
+        _buildButton(theme, calculator, text: '(', type: CalcButtonType.operator, onPressed: calculator.openParen)
             .withGridPlacement(columnStart: 1, rowStart: 7),
-        _buildButton(theme, calculator, icon: CalculatorIcons.factorial, type: CalcButtonType.operator, onPressed: calculator.factorial)
+        _buildButton(theme, calculator, text: ')', type: CalcButtonType.operator, onPressed: calculator.closeParen)
             .withGridPlacement(columnStart: 2, rowStart: 7),
-        _buildButton(theme, calculator, icon: CalculatorIcons.divide, type: CalcButtonType.operator, onPressed: calculator.divide)
+        _buildButton(theme, calculator, icon: CalculatorIcons.factorial, type: CalcButtonType.operator, onPressed: calculator.factorial)
             .withGridPlacement(columnStart: 3, rowStart: 7),
-        _buildButton(theme, calculator, icon: CalculatorIcons.modulo, type: CalcButtonType.operator, onPressed: calculator.mod)
+        _buildButton(theme, calculator, icon: CalculatorIcons.divide, type: CalcButtonType.operator, onPressed: calculator.divide)
             .withGridPlacement(columnStart: 4, rowStart: 7),
 
-        // Row 8: 7, 8, 9, ×
-        _buildButton(theme, calculator, text: '7', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(7))
+
+
+        // Row 8: x^y, 7, 8, 9, ×
+        _buildButton(theme, calculator, icon: !isShifted ? CalculatorIcons.power : CalculatorIcons.yRoot, type: CalcButtonType.operator, onPressed: !isShifted ? calculator.power : calculator.yRoot)
             .withGridPlacement(columnStart: 0, rowStart: 8),
-        _buildButton(theme, calculator, text: '8', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(8))
+        _buildButton(theme, calculator, text: '7', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(7))
             .withGridPlacement(columnStart: 1, rowStart: 8),
-        _buildButton(theme, calculator, text: '9', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(9))
+        _buildButton(theme, calculator, text: '8', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(8))
             .withGridPlacement(columnStart: 2, rowStart: 8),
-        _buildButton(theme, calculator, icon: CalculatorIcons.multiply, type: CalcButtonType.operator, onPressed: calculator.multiply)
+        _buildButton(theme, calculator, text: '9', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(9))
             .withGridPlacement(columnStart: 3, rowStart: 8),
-        _buildButton(theme, calculator, text: 'ln', type: CalcButtonType.operator, onPressed: calculator.ln)
+        _buildButton(theme, calculator, icon: CalculatorIcons.multiply, type: CalcButtonType.operator, onPressed: calculator.multiply)
             .withGridPlacement(columnStart: 4, rowStart: 8),
 
-        // Row 9: 4, 5, 6, -
-        _buildButton(theme, calculator, text: '4', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(4))
+        // Row 9: 10^x, 4, 5, 6, -
+        _buildButton(theme, calculator, icon: !isShifted ? CalculatorIcons.powerOf10 : CalculatorIcons.powerOf2, type: CalcButtonType.operator, onPressed: !isShifted ? calculator.pow10 : calculator.pow2)
             .withGridPlacement(columnStart: 0, rowStart: 9),
-        _buildButton(theme, calculator, text: '5', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(5))
+        _buildButton(theme, calculator, text: '4', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(4))
             .withGridPlacement(columnStart: 1, rowStart: 9),
-        _buildButton(theme, calculator, text: '6', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(6))
+        _buildButton(theme, calculator, text: '5', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(5))
             .withGridPlacement(columnStart: 2, rowStart: 9),
-        _buildButton(theme, calculator, icon: CalculatorIcons.minus, type: CalcButtonType.operator, onPressed: calculator.subtract)
+        _buildButton(theme, calculator, text: '6', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(6))
             .withGridPlacement(columnStart: 3, rowStart: 9),
-        _buildButton(theme, calculator, icon: CalculatorIcons.powerOfE, type: CalcButtonType.operator, onPressed: calculator.powE)
+        _buildButton(theme, calculator, icon: CalculatorIcons.minus, type: CalcButtonType.operator, onPressed: calculator.subtract)
             .withGridPlacement(columnStart: 4, rowStart: 9),
 
-        // Row 10: 1, 2, 3, +
-        _buildButton(theme, calculator, text: '1', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(1))
+        // Row 10: log, 1, 2, 3, +
+        _buildButton(theme, calculator, text: !isShifted ? 'log' : '', icon: isShifted ? CalculatorIcons.logBaseY : null ,type: CalcButtonType.operator, onPressed: calculator.log)
             .withGridPlacement(columnStart: 0, rowStart: 10),
-        _buildButton(theme, calculator, text: '2', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(2))
+        _buildButton(theme, calculator, text: '1', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(1))
             .withGridPlacement(columnStart: 1, rowStart: 10),
-        _buildButton(theme, calculator, text: '3', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(3))
+        _buildButton(theme, calculator, text: '2', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(2))
             .withGridPlacement(columnStart: 2, rowStart: 10),
-        _buildButton(theme, calculator, icon: CalculatorIcons.plus, type: CalcButtonType.operator, onPressed: calculator.add)
+        _buildButton(theme, calculator, text: '3', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(3))
             .withGridPlacement(columnStart: 3, rowStart: 10),
-        _buildButton(theme, calculator, text: 'exp', type: CalcButtonType.operator, onPressed: calculator.exp)
+        _buildButton(theme, calculator, icon: CalculatorIcons.plus, type: CalcButtonType.operator, onPressed: calculator.add)
             .withGridPlacement(columnStart: 4, rowStart: 10),
 
-        // Row 11: ±, 0, ., =
-        _buildButton(theme, calculator, icon: CalculatorIcons.negate, type: CalcButtonType.number, onPressed: calculator.inputNegate)
+
+        // Row 11: ln, ±, 0, ., =
+        _buildButton(theme, calculator, text: !isShifted ? 'ln' : '', icon: isShifted ? CalculatorIcons.powerOfE : null, type: CalcButtonType.operator, onPressed: calculator.ln)
             .withGridPlacement(columnStart: 0, rowStart: 11),
-        _buildButton(theme, calculator, text: '0', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(0))
+        _buildButton(theme, calculator, icon: CalculatorIcons.negate, type: CalcButtonType.number, onPressed: calculator.inputNegate)
             .withGridPlacement(columnStart: 1, rowStart: 11),
-        _buildButton(theme, calculator, text: '.', type: CalcButtonType.number, onPressed: calculator.inputDecimal)
+        _buildButton(theme, calculator, text: '0', type: CalcButtonType.number, onPressed: () => calculator.inputDigit(0))
             .withGridPlacement(columnStart: 2, rowStart: 11),
-        _buildButton(theme, calculator, icon: CalculatorIcons.equals, type: CalcButtonType.emphasized, onPressed: calculator.equals)
+        _buildButton(theme, calculator, text: '.', type: CalcButtonType.number, onPressed: calculator.inputDecimal)
             .withGridPlacement(columnStart: 3, rowStart: 11),
-        _buildButton(theme, calculator, icon: CalculatorIcons.reciprocal, type: CalcButtonType.operator, onPressed: calculator.reciprocal)
+        _buildButton(theme, calculator, icon: CalculatorIcons.equals, type: CalcButtonType.emphasized, onPressed: calculator.equals)
             .withGridPlacement(columnStart: 4, rowStart: 11),
+        
       ],
     );
-  }
-
-  /// Build a list of widgets for scientific function row (5 buttons)
-  /// Returns widgets for column 0-4 at the specified row
-  List<Widget> _buildScientificFunctionRow(
-    CalculatorNotifier calculator,
-    CalculatorTheme theme,
-    bool isShifted, {
-    required int rowStart,
-  }) {
-    if (!isShifted) {
-      // Normal mode: x², √, ^, 10^x, log
-      return [
-        _buildButton(theme, calculator, icon: CalculatorIcons.square, type: CalcButtonType.operator, onPressed: calculator.square)
-            .withGridPlacement(columnStart: 0, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.squareRoot, type: CalcButtonType.operator, onPressed: calculator.squareRoot)
-            .withGridPlacement(columnStart: 1, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.power, type: CalcButtonType.operator, onPressed: calculator.power)
-            .withGridPlacement(columnStart: 2, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.powerOf10, type: CalcButtonType.operator, onPressed: calculator.pow10)
-            .withGridPlacement(columnStart: 3, rowStart: rowStart),
-        _buildButton(theme, calculator, text: 'log', type: CalcButtonType.operator, onPressed: calculator.log)
-            .withGridPlacement(columnStart: 4, rowStart: rowStart),
-      ];
-    } else {
-      // Shift mode: x³, ∛, ʸ√x, 2^x, logᵧ
-      return [
-        _buildButton(theme, calculator, icon: CalculatorIcons.cube, type: CalcButtonType.operator, onPressed: calculator.cube)
-            .withGridPlacement(columnStart: 0, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.cubeRoot, type: CalcButtonType.operator, onPressed: calculator.cubeRoot)
-            .withGridPlacement(columnStart: 1, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.yRoot, type: CalcButtonType.operator, onPressed: calculator.yRoot)
-            .withGridPlacement(columnStart: 2, rowStart: rowStart),
-        _buildButton(theme, calculator, icon: CalculatorIcons.powerOf2, type: CalcButtonType.operator, onPressed: calculator.pow2)
-            .withGridPlacement(columnStart: 3, rowStart: rowStart),
-        _buildButton(theme, calculator, text: 'logᵧ', type: CalcButtonType.operator, onPressed: calculator.logBaseY)
-            .withGridPlacement(columnStart: 4, rowStart: rowStart),
-      ];
-    }
   }
 
   /// Build DEG button
