@@ -3,19 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../shared/theme/theme_provider.dart';
 import '../../shared/navigation/navigation_provider.dart';
 import '../../core/domain/entities/view_mode.dart';
-import '../../l10n/l10n.dart';
 import 'calculator_provider.dart';
 import '../../core/services/mode/mode_converter.dart';
 import '../../core/services/layout/responsive_layout_service.dart';
-import 'display_panel.dart';
-import 'button_panel.dart';
-import '../scientific/button_panel.dart';
 import '../programmer/programmer_grid_body.dart';
 import 'standard_grid_body.dart';
 import '../scientific/scientific_grid_body.dart';
 import 'navigation_drawer.dart';
 import '../history/history_panel.dart';
-import '../history/bottom_history_sheet.dart';
 
 /// Main calculator view with responsive layout
 class CalculatorView extends ConsumerStatefulWidget {
@@ -77,14 +72,6 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
     );
   }
 
-  void _showBottomHistorySheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => const BottomHistorySheet(),
-    );
-  }
 
   Widget _buildCalculatorBody(
     BuildContext context,
@@ -113,135 +100,12 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
       );
     }
 
-    // Fallback to column layout (should not reach here)
-    return Column(
-      children: [
-        // Header with hamburger button, mode name, and theme toggle
-        _buildHeader(context, ref, calculatorTheme),
-
-        // Display area
-        const Expanded(flex: 2, child: DisplayPanel()),
-
-        // Divider
-        Divider(height: 1, color: calculatorTheme.divider),
-
-        // Button panel based on mode
-        Expanded(
-          flex: currentMode == ViewMode.scientific ? 7 : 5,
-          child: _buildButtonPanel(currentMode),
-        ),
-      ],
-    );
+    // Fallback (should never reach here as all modes are handled above)
+    return const SizedBox.shrink();
   }
 
-  Widget _buildButtonPanel(ViewMode mode) {
-    switch (mode) {
-      case ViewMode.standard:
-        return const StandardButtonPanel();
-      case ViewMode.scientific:
-        return const ScientificButtonPanel();
-      case ViewMode.programmer:
-        // Programmer mode uses ProgrammerView, not button panel
-        return const SizedBox.shrink();
-    }
-  }
 
-  Widget _buildHeader(BuildContext context, WidgetRef ref, calculatorTheme) {
-    final showHistoryPanel = ref.watch(showHistoryPanelProvider);
 
-    return SizedBox(
-      height: 48,
-      child: Row(
-        children: [
-          // Hamburger button and mode name
-          _buildHamburgerButton(ref, calculatorTheme),
-
-          const Spacer(),
-
-          // History button (only when panel is hidden)
-          if (!showHistoryPanel)
-            _HeaderButton(
-              icon: Icons.history,
-              theme: calculatorTheme,
-              onPressed: () {
-                _showBottomHistorySheet(context);
-              },
-            ),
-
-          // Theme toggle button
-          _HeaderButton(
-            icon: calculatorTheme.brightness == Brightness.dark
-                ? Icons.light_mode_outlined
-                : Icons.dark_mode_outlined,
-            theme: calculatorTheme,
-            onPressed: () {
-              ref.read(themeProvider.notifier).toggleTheme();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHamburgerButton(WidgetRef ref, calculatorTheme) {
-    final navState = ref.watch(navigationProvider);
-
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () {
-          _scaffoldKey.currentState?.openDrawer();
-        },
-        child: Container(
-          height: 48,
-          padding: const EdgeInsets.only(left: 8, right: 16),
-          color: calculatorTheme.background,
-          child: Row(
-            children: [
-              // Hamburger button
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.menu,
-                  color: calculatorTheme.textPrimary,
-                  size: 20,
-                ),
-              ),
-
-              // Mode name
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: Text(
-                  _getModeDisplayName(context, navState.currentMode),
-                  style: TextStyle(
-                    color: calculatorTheme.textPrimary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  String _getModeDisplayName(BuildContext context, ViewMode mode) {
-    final l10n = context.l10n;
-    switch (mode.localizationKey) {
-      case 'standardMode':
-        return l10n.standardMode;
-      case 'scientificMode':
-        return l10n.scientificMode;
-      case 'programmerMode':
-        return l10n.programmerMode;
-      default:
-        return mode.localizationKey;
-    }
-  }
 }
 
 /// Header button widget

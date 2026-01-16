@@ -359,8 +359,7 @@ class ProgrammerGridBody extends ConsumerWidget {
     String displayLabel = label;
 
     if (label == 'C/CE') {
-      // Show CE when there's input, show C when display is just "0"
-      final showCE = calculatorState.display != '0' || calculatorState.expression.isNotEmpty;
+      final showCE = calculatorState.display != '0';
       displayLabel = showCE ? 'CE' : 'C';
     } else if (label == 'DEL') {
       icon = CalculatorIcons.backspace;

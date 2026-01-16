@@ -311,11 +311,13 @@ class ScientificGridBody extends ConsumerWidget {
     CalculatorTheme theme,
   ) {
     final calcState = ref.watch(calculatorProvider);
-    final showCE = calcState.display != '0' || calcState.expression.isNotEmpty;
+    final showCE = calcState.display != '0';
 
     return CalcButton(
+      key: ValueKey('ce_button_${showCE ? 'CE' : 'C'}'),
       text: showCE ? 'CE' : 'C',
-      onPressed: showCE ? calculator.clearEntry : calculator.clear,
+      // Always call clearEntry() - it internally decides CE vs C behavior
+      onPressed: calculator.clearEntry,
       type: CalcButtonType.operator,
     );
   }
