@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wincalc_engine/wincalc_engine.dart';
 import '../calculator/calculator_provider.dart';
+import '../../core/services/calculator_service.dart';
 import 'bit_converter.dart';
 
 /// Shift mode enum
@@ -133,12 +134,9 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
     if (!_initialized) {
       final calculator = ref.read(calculatorProvider.notifier);
 
-      // Set default word size to QWORD (64-bit)
+      ref.read(calculatorProvider.notifier).setMode(CalculatorMode.programmer);
       calculator.setQword();
-
-      // Set radix to match the default base (HEX)
       _setRadixForBase(state.currentBase);
-
       _initialized = true;
     }
   }

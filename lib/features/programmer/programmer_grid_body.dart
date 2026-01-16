@@ -139,7 +139,7 @@ class ProgrammerGridBody extends ConsumerWidget {
         ).withGridPlacement(columnStart: 0, rowStart: 4, columnSpan: 5, rowSpan: 1),
 
         // Row 5: BIN button
-        _buildBinButton(
+        _buildBaseButton(
           context,
           'BIN',
           programmerState.binValue,
@@ -266,7 +266,7 @@ class ProgrammerGridBody extends ConsumerWidget {
     ref.read(programmerProvider.notifier).setCurrentBase(base);
   }
 
-  /// Build base conversion button (HEX/DEC/OCT)
+  /// Build base conversion button (HEX/DEC/OCT/BIN)
   Widget _buildBaseButton(
     BuildContext context,
     String label,
@@ -326,90 +326,6 @@ class ProgrammerGridBody extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  /// Build BIN button with formatted binary value
-  Widget _buildBinButton(
-    BuildContext context,
-    String label,
-    String value,
-    bool isSelected,
-    CalculatorTheme theme,
-    VoidCallback onTap,
-  ) {
-    // Format binary value with spaces every 4 bits
-    final formattedValue = _formatBinary(value);
-
-    return Container(
-      color: theme.background,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? theme.textPrimary.withValues(alpha: 0.1)
-                  : Colors.transparent,
-              border: Border(
-                left: BorderSide(
-                  color: isSelected ? theme.accent : Colors.transparent,
-                  width: 4,
-                ),
-              ),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 40,
-                  child: Text(
-                    label,
-                    style: TextStyle(
-                      color: theme.textSecondary,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    formattedValue,
-                    style: TextStyle(
-                      color: theme.textPrimary,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'monospace',
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Format binary value with spaces every 4 bits (nibble)
-  String _formatBinary(String binary) {
-    if (binary.isEmpty) return '';
-    // Remove any existing spaces
-    final clean = binary.replaceAll(' ', '');
-    // Add space every 4 characters from right to left
-    final buffer = StringBuffer();
-    for (int i = 0; i < clean.length; i++) {
-      if (i > 0 && i % 4 == 0) {
-        buffer.write(' ');
-      }
-      buffer.write(clean[clean.length - 1 - i]);
-    }
-    // Reverse the result
-    final result = buffer.toString().split('').reversed.join('');
-    return result;
   }
 
   /// Build programmer calculator button
