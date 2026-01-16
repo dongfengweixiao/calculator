@@ -307,17 +307,17 @@ class ProgrammerGridBody extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 4),
                 Expanded(
                   child: Text(
                     value,
                     style: TextStyle(
                       color: theme.textPrimary,
-                      fontSize: 18,
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    overflow: TextOverflow.visible,
                   ),
                 ),
               ],

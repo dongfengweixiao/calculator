@@ -18,7 +18,7 @@ void main() async {
 
   // Set window options
   WindowOptions windowOptions = WindowOptions(
-    minimumSize: const Size(320, 500),
+    minimumSize: const Size(340, 560),
   );
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
