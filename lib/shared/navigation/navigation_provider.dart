@@ -64,9 +64,59 @@ final navCategories = [
         viewMode: ViewMode.volumeConverter,
       ),
       NavCategory(
+        name: '长度',
+        icon: CalculatorIcons.length,
+        viewMode: ViewMode.lengthConverter,
+      ),
+      NavCategory(
+        name: '重量',
+        icon: CalculatorIcons.weight,
+        viewMode: ViewMode.weightConverter,
+      ),
+      NavCategory(
         name: '温度',
         icon: CalculatorIcons.temperature,
         viewMode: ViewMode.temperatureConverter,
+      ),
+      NavCategory(
+        name: '能量',
+        icon: CalculatorIcons.energy,
+        viewMode: ViewMode.energyConverter,
+      ),
+      NavCategory(
+        name: '面积',
+        icon: CalculatorIcons.area,
+        viewMode: ViewMode.areaConverter,
+      ),
+      NavCategory(
+        name: '速度',
+        icon: CalculatorIcons.speed,
+        viewMode: ViewMode.speedConverter,
+      ),
+      NavCategory(
+        name: '时间',
+        icon: CalculatorIcons.time,
+        viewMode: ViewMode.timeConverter,
+      ),
+      NavCategory(
+        name: '功率',
+        icon: CalculatorIcons.powerConverter,
+        viewMode: ViewMode.powerConverter,
+      ),
+      NavCategory(
+        name: '数据',
+        icon: CalculatorIcons.data,
+        viewMode: ViewMode.dataConverter,
+      ),
+      NavCategory(
+        name: '压强',
+        icon: CalculatorIcons.pressure,
+        viewMode: ViewMode.pressureConverter,
+      ),
+      NavCategory(
+        name: '角度',
+        icon: CalculatorIcons.angle,
+        viewMode: ViewMode.angleConverter,
       ),
     ],
   ),

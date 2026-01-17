@@ -163,6 +163,20 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
   void _updateSuggestedValues() {
     setState(() {
       _suggestedValues = _converter.getSuggestedValues();
+
+      // Debug: Print suggested values info
+      print('=== Suggested values debug info ===');
+      print('Category ID: ${widget.config.categoryId}');
+      print('Total suggested values: ${_suggestedValues.length}');
+
+      for (final sv in _suggestedValues) {
+        final valueNum = sv['valueNum'] as double;
+        final isWhimsical = sv['isWhimsical'] as bool;
+        final unitName = sv['unit'] as String;
+        final unitId = sv['unitId'] as int;
+        print('  Unit: $unitName (id: $unitId), Value: ${sv['value']}, ValueNum: $valueNum, IsWhimsical: $isWhimsical');
+      }
+      print('=====================================\n');
     });
   }
 
@@ -377,6 +391,26 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
         return l10n.volumeConverterTitle;
       case 'temperatureConverterTitle':
         return l10n.temperatureConverterTitle;
+      case 'lengthConverterTitle':
+        return l10n.lengthConverterTitle;
+      case 'weightConverterTitle':
+        return l10n.weightConverterTitle;
+      case 'energyConverterTitle':
+        return l10n.energyConverterTitle;
+      case 'areaConverterTitle':
+        return l10n.areaConverterTitle;
+      case 'speedConverterTitle':
+        return l10n.speedConverterTitle;
+      case 'timeConverterTitle':
+        return l10n.timeConverterTitle;
+      case 'powerConverterTitle':
+        return l10n.powerConverterTitle;
+      case 'dataConverterTitle':
+        return l10n.dataConverterTitle;
+      case 'pressureConverterTitle':
+        return l10n.pressureConverterTitle;
+      case 'angleConverterTitle':
+        return l10n.angleConverterTitle;
       default:
         return widget.config.titleKey;
     }

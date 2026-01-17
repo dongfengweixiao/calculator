@@ -12,6 +12,16 @@ import '../scientific/scientific_grid_body.dart';
 import '../date_calculation/date_calculation_body.dart';
 import '../volume_converter/volume_converter_body.dart';
 import '../temperature_converter/temperature_converter_body.dart';
+import '../length_converter/length_converter_body.dart';
+import '../weight_converter/weight_converter_body.dart';
+import '../energy_converter/energy_converter_body.dart';
+import '../area_converter/area_converter_body.dart';
+import '../speed_converter/speed_converter_body.dart';
+import '../time_converter/time_converter_body.dart';
+import '../power_converter/power_converter_body.dart';
+import '../data_converter/data_converter_body.dart';
+import '../pressure_converter/pressure_converter_body.dart';
+import '../angle_converter/angle_converter_body.dart';
 import 'navigation_drawer.dart';
 import '../history/history_panel.dart';
 
@@ -63,7 +73,17 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
             final shouldShowHistoryPanel = showHistoryPanel &&
                 currentMode != ViewMode.dateCalculation &&
                 currentMode != ViewMode.volumeConverter &&
-                currentMode != ViewMode.temperatureConverter;
+                currentMode != ViewMode.temperatureConverter &&
+                currentMode != ViewMode.lengthConverter &&
+                currentMode != ViewMode.weightConverter &&
+                currentMode != ViewMode.energyConverter &&
+                currentMode != ViewMode.areaConverter &&
+                currentMode != ViewMode.speedConverter &&
+                currentMode != ViewMode.timeConverter &&
+                currentMode != ViewMode.powerConverter &&
+                currentMode != ViewMode.dataConverter &&
+                currentMode != ViewMode.pressureConverter &&
+                currentMode != ViewMode.angleConverter;
 
             return Row(
               children: [
@@ -127,6 +147,76 @@ class _CalculatorViewState extends ConsumerState<CalculatorView> {
     // For temperature converter mode
     if (currentMode == ViewMode.temperatureConverter) {
       return TemperatureConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For length converter mode
+    if (currentMode == ViewMode.lengthConverter) {
+      return LengthConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For weight converter mode
+    if (currentMode == ViewMode.weightConverter) {
+      return WeightConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For energy converter mode
+    if (currentMode == ViewMode.energyConverter) {
+      return EnergyConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For area converter mode
+    if (currentMode == ViewMode.areaConverter) {
+      return AreaConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For speed converter mode
+    if (currentMode == ViewMode.speedConverter) {
+      return SpeedConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For time converter mode
+    if (currentMode == ViewMode.timeConverter) {
+      return TimeConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For power converter mode
+    if (currentMode == ViewMode.powerConverter) {
+      return PowerConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For data converter mode
+    if (currentMode == ViewMode.dataConverter) {
+      return DataConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For pressure converter mode
+    if (currentMode == ViewMode.pressureConverter) {
+      return PressureConverterBody(
+        onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
+      );
+    }
+
+    // For angle converter mode
+    if (currentMode == ViewMode.angleConverter) {
+      return AngleConverterBody(
         onMenuPressed: () => _scaffoldKey.currentState?.openDrawer(),
       );
     }

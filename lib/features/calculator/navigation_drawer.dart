@@ -113,6 +113,26 @@ class CalculatorNavigationDrawer extends ConsumerWidget {
         return l10n.volumeConverterMode;
       case 'temperatureConverterMode':
         return l10n.temperatureConverterMode;
+      case 'lengthConverterMode':
+        return l10n.lengthConverterMode;
+      case 'weightConverterMode':
+        return l10n.weightConverterMode;
+      case 'energyConverterMode':
+        return l10n.energyConverterMode;
+      case 'areaConverterMode':
+        return l10n.areaConverterMode;
+      case 'speedConverterMode':
+        return l10n.speedConverterMode;
+      case 'timeConverterMode':
+        return l10n.timeConverterMode;
+      case 'powerConverterMode':
+        return l10n.powerConverterMode;
+      case 'dataConverterMode':
+        return l10n.dataConverterMode;
+      case 'pressureConverterMode':
+        return l10n.pressureConverterMode;
+      case 'angleConverterMode':
+        return l10n.angleConverterMode;
       default:
         return mode.localizationKey;
     }

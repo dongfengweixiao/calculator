@@ -132,7 +132,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get months => '月';
 
   @override
-  String get days => '日';
+  String get days => '天';
 
   @override
   String get difference => '差值';
@@ -271,4 +271,514 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get kelvin => '开尔文';
+
+  @override
+  String get lengthConverterMode => '长度';
+
+  @override
+  String get lengthConverterTitle => '长度转换';
+
+  @override
+  String get weightConverterMode => '重量';
+
+  @override
+  String get weightConverterTitle => '重量转换';
+
+  @override
+  String get energyConverterMode => '能量';
+
+  @override
+  String get energyConverterTitle => '能量转换';
+
+  @override
+  String get areaConverterMode => '面积';
+
+  @override
+  String get areaConverterTitle => '面积转换';
+
+  @override
+  String get speedConverterMode => '速度';
+
+  @override
+  String get speedConverterTitle => '速度转换';
+
+  @override
+  String get timeConverterMode => '时间';
+
+  @override
+  String get timeConverterTitle => '时间转换';
+
+  @override
+  String get powerConverterMode => '功率';
+
+  @override
+  String get powerConverterTitle => '功率转换';
+
+  @override
+  String get dataConverterMode => '数据';
+
+  @override
+  String get dataConverterTitle => '数据转换';
+
+  @override
+  String get pressureConverterMode => '压强';
+
+  @override
+  String get pressureConverterTitle => '压强转换';
+
+  @override
+  String get angleConverterMode => '角度';
+
+  @override
+  String get angleConverterTitle => '角度转换';
+
+  @override
+  String get meters => '米';
+
+  @override
+  String get kilometers => '公里';
+
+  @override
+  String get centimeters => '厘米';
+
+  @override
+  String get millimeters => '毫米';
+
+  @override
+  String get micrometers => '微米';
+
+  @override
+  String get nanometers => '纳米';
+
+  @override
+  String get miles => '英里';
+
+  @override
+  String get yards => '码';
+
+  @override
+  String get feet => '英尺';
+
+  @override
+  String get inches => '英寸';
+
+  @override
+  String get kilograms => '千克';
+
+  @override
+  String get grams => '克';
+
+  @override
+  String get milligrams => '毫克';
+
+  @override
+  String get metricTons => '公吨';
+
+  @override
+  String get pounds => '磅';
+
+  @override
+  String get ounces => '盎司';
+
+  @override
+  String get stones => '英石';
+
+  @override
+  String get joules => '焦耳';
+
+  @override
+  String get kilojoules => '千焦耳';
+
+  @override
+  String get calories => '热卡路里';
+
+  @override
+  String get kilocalories => '食物卡路里';
+
+  @override
+  String get wattHours => '瓦时';
+
+  @override
+  String get kilowattHours => '千瓦时';
+
+  @override
+  String get electronvolts => '电子伏特';
+
+  @override
+  String get britishThermalUnits => '英国热量单位';
+
+  @override
+  String get squareMeters => '平方米';
+
+  @override
+  String get squareKilometers => '平方公里';
+
+  @override
+  String get squareCentimeters => '平方厘米';
+
+  @override
+  String get hectares => '公顷';
+
+  @override
+  String get squareMiles => '平方英里';
+
+  @override
+  String get squareYards => '平方码';
+
+  @override
+  String get squareFeet => '平方英尺';
+
+  @override
+  String get squareInches => '平方英寸';
+
+  @override
+  String get acres => '英亩';
+
+  @override
+  String get metersPerSecond => '米/秒';
+
+  @override
+  String get kilometersPerHour => '公里/小时';
+
+  @override
+  String get milesPerHour => '英里/小时';
+
+  @override
+  String get feetPerSecond => '英尺/秒';
+
+  @override
+  String get knots => '节';
+
+  @override
+  String get mach => '马赫';
+
+  @override
+  String get seconds => '秒';
+
+  @override
+  String get milliseconds => '毫秒';
+
+  @override
+  String get microseconds => '微秒';
+
+  @override
+  String get nanoseconds => '纳秒';
+
+  @override
+  String get minutes => '分钟';
+
+  @override
+  String get hours => '小时';
+
+  @override
+  String get weeks => '周';
+
+  @override
+  String get watts => '瓦特';
+
+  @override
+  String get kilowatts => '千瓦';
+
+  @override
+  String get megawatts => '兆瓦';
+
+  @override
+  String get horsepowerMetric => '公制马力';
+
+  @override
+  String get btuPerMinute => '英热单位每分钟';
+
+  @override
+  String get bytes => '字节';
+
+  @override
+  String get kilobytes => '千字节';
+
+  @override
+  String get megabytes => '兆字节';
+
+  @override
+  String get gigabytes => '吉字节';
+
+  @override
+  String get terabytes => '太字节';
+
+  @override
+  String get petabytes => '拍字节';
+
+  @override
+  String get tebibytes => '太字节';
+
+  @override
+  String get pebibytes => '拍字节';
+
+  @override
+  String get bits => '比特';
+
+  @override
+  String get kibibytes => '千比特';
+
+  @override
+  String get mebibytes => '兆比特';
+
+  @override
+  String get gibibytes => '吉比特';
+
+  @override
+  String get pascals => '帕';
+
+  @override
+  String get kilopascals => '千帕';
+
+  @override
+  String get bars => '巴';
+
+  @override
+  String get atmospheres => '大气压';
+
+  @override
+  String get poundsPerSquareInch => '磅每平方英寸';
+
+  @override
+  String get millimetersOfMercury => '毫米汞柱';
+
+  @override
+  String get degreesAngle => '度';
+
+  @override
+  String get radians => '弧度';
+
+  @override
+  String get gradians => '百分度';
+
+  @override
+  String get turns => '圈';
+
+  @override
+  String get angstroms => '埃';
+
+  @override
+  String get nauticalMiles => '海里';
+
+  @override
+  String get carats => '克拉';
+
+  @override
+  String get centigrams => '厘克';
+
+  @override
+  String get decigrams => '分克';
+
+  @override
+  String get decagrams => '十克';
+
+  @override
+  String get hectograms => '百克';
+
+  @override
+  String get shortTons => '短吨（美制）';
+
+  @override
+  String get footPounds => '英尺磅';
+
+  @override
+  String get squareMillimeters => '平方毫米';
+
+  @override
+  String get centimetersPerSecond => '厘米/秒';
+
+  @override
+  String get horsepowerUs => '马力（美制）';
+
+  @override
+  String get footPoundsPerMinute => '英尺磅/分钟';
+
+  @override
+  String get nibbles => '半字节';
+
+  @override
+  String get kilobits => '千比特';
+
+  @override
+  String get kibibits => '千比特';
+
+  @override
+  String get megabits => '兆比特';
+
+  @override
+  String get mebibits => '兆比特';
+
+  @override
+  String get gigabits => '吉比特';
+
+  @override
+  String get gibibits => '吉比特';
+
+  @override
+  String get terabits => '太比特';
+
+  @override
+  String get tebibits => '太比特';
+
+  @override
+  String get petabits => '拍比特';
+
+  @override
+  String get pebibits => '拍比特';
+
+  @override
+  String get exabits => '艾比特';
+
+  @override
+  String get exbibits => '艾比特';
+
+  @override
+  String get zetabits => '泽比特';
+
+  @override
+  String get zebibits => '泽比特';
+
+  @override
+  String get yottabits => '尧比特';
+
+  @override
+  String get yobibits => '尧比特';
+
+  @override
+  String get exabytes => '艾字节';
+
+  @override
+  String get exbibytes => '艾字节';
+
+  @override
+  String get zetabytes => '泽字节';
+
+  @override
+  String get zebibytes => '泽字节';
+
+  @override
+  String get yottabytes => '尧字节';
+
+  @override
+  String get yobibytes => '尧字节';
+
+  @override
+  String get teaspoonsUs => '茶匙（美制）';
+
+  @override
+  String get tablespoonsUs => '汤匙（美制）';
+
+  @override
+  String get fluidOuncesUs => '液盎司（美制）';
+
+  @override
+  String get cupsUs => '杯（美制）';
+
+  @override
+  String get pintsUs => '品脱（美制）';
+
+  @override
+  String get quartsUs => '夸脱（美制）';
+
+  @override
+  String get gallonsUs => '加仑（美制）';
+
+  @override
+  String get teaspoonsUk => '茶匙（英制）';
+
+  @override
+  String get tablespoonsUk => '汤匙（英制）';
+
+  @override
+  String get fluidOuncesUk => '液盎司（英制）';
+
+  @override
+  String get pintsUk => '品脱（英制）';
+
+  @override
+  String get quartsUk => '夸脱（英制）';
+
+  @override
+  String get gallonsUk => '加仑（英制）';
+
+  @override
+  String get coffeeCups => '杯咖啡';
+
+  @override
+  String get bathtubs => '个浴缸';
+
+  @override
+  String get swimmingPools => '个标准泳池';
+
+  @override
+  String get paperclips => '根回形针';
+
+  @override
+  String get handsWhimsical => '手';
+
+  @override
+  String get jumboJets => '大型喷气式飞机';
+
+  @override
+  String get snowflakes => '雪花';
+
+  @override
+  String get soccerBalls => '足球';
+
+  @override
+  String get elephants => '大象';
+
+  @override
+  String get whales => '鲸鱼';
+
+  @override
+  String get batteries => '电池';
+
+  @override
+  String get bananas => '香蕉';
+
+  @override
+  String get slicesOfCake => '蛋糕片';
+
+  @override
+  String get handsArea => '手';
+
+  @override
+  String get papers => '纸张';
+
+  @override
+  String get soccerFields => '足球场';
+
+  @override
+  String get castles => '城堡';
+
+  @override
+  String get pyeong => '坪';
+
+  @override
+  String get turtles => '乌龟';
+
+  @override
+  String get horsesWhimsical => '马';
+
+  @override
+  String get jets => '喷气式飞机';
+
+  @override
+  String get lightBulbs => '灯泡';
+
+  @override
+  String get horsesPower => '马';
+
+  @override
+  String get trainEngines => '火车头';
+
+  @override
+  String get floppyDisks => '软盘';
+
+  @override
+  String get cds => 'CD';
+
+  @override
+  String get dvds => 'DVD';
 }

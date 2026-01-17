@@ -18,6 +18,36 @@ enum ViewMode {
 
   /// Temperature converter mode
   temperatureConverter,
+
+  /// Length converter mode
+  lengthConverter,
+
+  /// Weight converter mode
+  weightConverter,
+
+  /// Energy converter mode
+  energyConverter,
+
+  /// Area converter mode
+  areaConverter,
+
+  /// Speed converter mode
+  speedConverter,
+
+  /// Time converter mode
+  timeConverter,
+
+  /// Power converter mode
+  powerConverter,
+
+  /// Data converter mode
+  dataConverter,
+
+  /// Pressure converter mode
+  pressureConverter,
+
+  /// Angle converter mode
+  angleConverter,
 }
 
 /// Extension on ViewMode to provide conversion and display methods
@@ -37,6 +67,26 @@ extension ViewModeExtension on ViewMode {
         return 'volumeConverterMode';
       case ViewMode.temperatureConverter:
         return 'temperatureConverterMode';
+      case ViewMode.lengthConverter:
+        return 'lengthConverterMode';
+      case ViewMode.weightConverter:
+        return 'weightConverterMode';
+      case ViewMode.energyConverter:
+        return 'energyConverterMode';
+      case ViewMode.areaConverter:
+        return 'areaConverterMode';
+      case ViewMode.speedConverter:
+        return 'speedConverterMode';
+      case ViewMode.timeConverter:
+        return 'timeConverterMode';
+      case ViewMode.powerConverter:
+        return 'powerConverterMode';
+      case ViewMode.dataConverter:
+        return 'dataConverterMode';
+      case ViewMode.pressureConverter:
+        return 'pressureConverterMode';
+      case ViewMode.angleConverter:
+        return 'angleConverterMode';
     }
   }
 
@@ -55,6 +105,26 @@ extension ViewModeExtension on ViewMode {
         return 'VOLUME';
       case ViewMode.temperatureConverter:
         return 'TEMP';
+      case ViewMode.lengthConverter:
+        return 'LENGTH';
+      case ViewMode.weightConverter:
+        return 'WEIGHT';
+      case ViewMode.energyConverter:
+        return 'ENERGY';
+      case ViewMode.areaConverter:
+        return 'AREA';
+      case ViewMode.speedConverter:
+        return 'SPEED';
+      case ViewMode.timeConverter:
+        return 'TIME';
+      case ViewMode.powerConverter:
+        return 'POWER';
+      case ViewMode.dataConverter:
+        return 'DATA';
+      case ViewMode.pressureConverter:
+        return 'PRESSURE';
+      case ViewMode.angleConverter:
+        return 'ANGLE';
     }
   }
 }

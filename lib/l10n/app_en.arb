@@ -351,5 +351,693 @@
   "kelvin": "Kelvin",
   "@kelvin": {
     "description": "Kelvin temperature unit"
+  },
+  "lengthConverterMode": "Length",
+  "@lengthConverterMode": {
+    "description": "Name for the length converter mode"
+  },
+  "lengthConverterTitle": "Length Converter",
+  "@lengthConverterTitle": {
+    "description": "Title for length converter page"
+  },
+  "weightConverterMode": "Weight",
+  "@weightConverterMode": {
+    "description": "Name for the weight converter mode"
+  },
+  "weightConverterTitle": "Weight Converter",
+  "@weightConverterTitle": {
+    "description": "Title for weight converter page"
+  },
+  "energyConverterMode": "Energy",
+  "@energyConverterMode": {
+    "description": "Name for the energy converter mode"
+  },
+  "energyConverterTitle": "Energy Converter",
+  "@energyConverterTitle": {
+    "description": "Title for energy converter page"
+  },
+  "areaConverterMode": "Area",
+  "@areaConverterMode": {
+    "description": "Name for the area converter mode"
+  },
+  "areaConverterTitle": "Area Converter",
+  "@areaConverterTitle": {
+    "description": "Title for area converter page"
+  },
+  "speedConverterMode": "Speed",
+  "@speedConverterMode": {
+    "description": "Name for the speed converter mode"
+  },
+  "speedConverterTitle": "Speed Converter",
+  "@speedConverterTitle": {
+    "description": "Title for speed converter page"
+  },
+  "timeConverterMode": "Time",
+  "@timeConverterMode": {
+    "description": "Name for the time converter mode"
+  },
+  "timeConverterTitle": "Time Converter",
+  "@timeConverterTitle": {
+    "description": "Title for time converter page"
+  },
+  "powerConverterMode": "Power",
+  "@powerConverterMode": {
+    "description": "Name for the power converter mode"
+  },
+  "powerConverterTitle": "Power Converter",
+  "@powerConverterTitle": {
+    "description": "Title for power converter page"
+  },
+  "dataConverterMode": "Data",
+  "@dataConverterMode": {
+    "description": "Name for the data converter mode"
+  },
+  "dataConverterTitle": "Data Converter",
+  "@dataConverterTitle": {
+    "description": "Title for data converter page"
+  },
+  "pressureConverterMode": "Pressure",
+  "@pressureConverterMode": {
+    "description": "Name for the pressure converter mode"
+  },
+  "pressureConverterTitle": "Pressure Converter",
+  "@pressureConverterTitle": {
+    "description": "Title for pressure converter page"
+  },
+  "angleConverterMode": "Angle",
+  "@angleConverterMode": {
+    "description": "Name for the angle converter mode"
+  },
+  "angleConverterTitle": "Angle Converter",
+  "@angleConverterTitle": {
+    "description": "Title for angle converter page"
+  },
+  "meters": "Meters",
+  "@meters": {
+    "description": "Meters length unit"
+  },
+  "kilometers": "Kilometers",
+  "@kilometers": {
+    "description": "Kilometers length unit"
+  },
+  "centimeters": "Centimeters",
+  "@centimeters": {
+    "description": "Centimeters length unit"
+  },
+  "millimeters": "Millimeters",
+  "@millimeters": {
+    "description": "Millimeters length unit"
+  },
+  "micrometers": "Micrometers",
+  "@micrometers": {
+    "description": "Micrometers length unit"
+  },
+  "nanometers": "Nanometers",
+  "@nanometers": {
+    "description": "Nanometers length unit"
+  },
+  "miles": "Miles",
+  "@miles": {
+    "description": "Miles length unit"
+  },
+  "yards": "Yards",
+  "@yards": {
+    "description": "Yards length unit"
+  },
+  "feet": "Feet",
+  "@feet": {
+    "description": "Feet length unit"
+  },
+  "inches": "Inches",
+  "@inches": {
+    "description": "Inches length unit"
+  },
+  "kilograms": "Kilograms",
+  "@kilograms": {
+    "description": "Kilograms weight unit"
+  },
+  "grams": "Grams",
+  "@grams": {
+    "description": "Grams weight unit"
+  },
+  "milligrams": "Milligrams",
+  "@milligrams": {
+    "description": "Milligrams weight unit"
+  },
+  "metricTons": "Metric Tons",
+  "@metricTons": {
+    "description": "Metric tons weight unit"
+  },
+  "pounds": "Pounds",
+  "@pounds": {
+    "description": "Pounds weight unit"
+  },
+  "ounces": "Ounces",
+  "@ounces": {
+    "description": "Ounces weight unit"
+  },
+  "stones": "Stones",
+  "@stones": {
+    "description": "Stones weight unit"
+  },
+  "joules": "Joules",
+  "@joules": {
+    "description": "Joules energy unit"
+  },
+  "kilojoules": "Kilojoules",
+  "@kilojoules": {
+    "description": "Kilojoules energy unit"
+  },
+  "calories": "Calories",
+  "@calories": {
+    "description": "Calories energy unit"
+  },
+  "kilocalories": "Kilocalories",
+  "@kilocalories": {
+    "description": "Kilocalories energy unit"
+  },
+  "wattHours": "Watt-hours",
+  "@wattHours": {
+    "description": "Watt-hours energy unit"
+  },
+  "kilowattHours": "Kilowatt-hours",
+  "@kilowattHours": {
+    "description": "Kilowatt-hours energy unit"
+  },
+  "electronvolts": "Electronvolts",
+  "@electronvolts": {
+    "description": "Electronvolts energy unit"
+  },
+  "britishThermalUnits": "British thermal units",
+  "@britishThermalUnits": {
+    "description": "British thermal units energy unit"
+  },
+  "squareMeters": "Square Meters",
+  "@squareMeters": {
+    "description": "Square meters area unit"
+  },
+  "squareKilometers": "Square Kilometers",
+  "@squareKilometers": {
+    "description": "Square kilometers area unit"
+  },
+  "squareCentimeters": "Square Centimeters",
+  "@squareCentimeters": {
+    "description": "Square centimeters area unit"
+  },
+  "hectares": "Hectares",
+  "@hectares": {
+    "description": "Hectares area unit"
+  },
+  "squareMiles": "Square Miles",
+  "@squareMiles": {
+    "description": "Square miles area unit"
+  },
+  "squareYards": "Square Yards",
+  "@squareYards": {
+    "description": "Square yards area unit"
+  },
+  "squareFeet": "Square Feet",
+  "@squareFeet": {
+    "description": "Square feet area unit"
+  },
+  "squareInches": "Square Inches",
+  "@squareInches": {
+    "description": "Square inches area unit"
+  },
+  "acres": "Acres",
+  "@acres": {
+    "description": "Acres area unit"
+  },
+  "metersPerSecond": "Meters per second",
+  "@metersPerSecond": {
+    "description": "Meters per second speed unit"
+  },
+  "kilometersPerHour": "Kilometers per hour",
+  "@kilometersPerHour": {
+    "description": "Kilometers per hour speed unit"
+  },
+  "milesPerHour": "Miles per hour",
+  "@milesPerHour": {
+    "description": "Miles per hour speed unit"
+  },
+  "feetPerSecond": "Feet per second",
+  "@feetPerSecond": {
+    "description": "Feet per second speed unit"
+  },
+  "knots": "Knots",
+  "@knots": {
+    "description": "Knots speed unit"
+  },
+  "mach": "Mach",
+  "@mach": {
+    "description": "Mach speed unit"
+  },
+  "seconds": "Seconds",
+  "@seconds": {
+    "description": "Seconds time unit"
+  },
+  "milliseconds": "Milliseconds",
+  "@milliseconds": {
+    "description": "Milliseconds time unit"
+  },
+  "microseconds": "Microseconds",
+  "@microseconds": {
+    "description": "Microseconds time unit"
+  },
+  "nanoseconds": "Nanoseconds",
+  "@nanoseconds": {
+    "description": "Nanoseconds time unit"
+  },
+  "minutes": "Minutes",
+  "@minutes": {
+    "description": "Minutes time unit"
+  },
+  "hours": "Hours",
+  "@hours": {
+    "description": "Hours time unit"
+  },
+  "days": "Days",
+  "@days": {
+    "description": "Days time unit"
+  },
+  "weeks": "Weeks",
+  "@weeks": {
+    "description": "Weeks time unit"
+  },
+  "years": "Years",
+  "@years": {
+    "description": "Years time unit"
+  },
+  "watts": "Watts",
+  "@watts": {
+    "description": "Watts power unit"
+  },
+  "kilowatts": "Kilowatts",
+  "@kilowatts": {
+    "description": "Kilowatts power unit"
+  },
+  "megawatts": "Megawatts",
+  "@megawatts": {
+    "description": "Megawatts power unit"
+  },
+  "horsepowerMetric": "Horsepower (metric)",
+  "@horsepowerMetric": {
+    "description": "Horsepower (metric) power unit"
+  },
+  "btuPerMinute": "BTU per minute",
+  "@btuPerMinute": {
+    "description": "BTU per minute power unit"
+  },
+  "bytes": "Bytes",
+  "@bytes": {
+    "description": "Bytes data unit"
+  },
+  "kilobytes": "Kilobytes",
+  "@kilobytes": {
+    "description": "Kilobytes data unit"
+  },
+  "megabytes": "Megabytes",
+  "@megabytes": {
+    "description": "Megabytes data unit"
+  },
+  "gigabytes": "Gigabytes",
+  "@gigabytes": {
+    "description": "Gigabytes data unit"
+  },
+  "terabytes": "Terabytes",
+  "@terabytes": {
+    "description": "Terabytes data unit"
+  },
+  "petabytes": "Petabytes",
+  "@petabytes": {
+    "description": "Petabytes data unit"
+  },
+  "tebibytes": "Tebibytes",
+  "@tebibytes": {
+    "description": "Tebibytes data unit"
+  },
+  "pebibytes": "Pebibytes",
+  "@pebibytes": {
+    "description": "Pebibytes data unit"
+  },
+  "bits": "Bits",
+  "@bits": {
+    "description": "Bits data unit"
+  },
+  "kibibytes": "Kibibytes",
+  "@kibibytes": {
+    "description": "Kibibytes data unit"
+  },
+  "mebibytes": "Mebibytes",
+  "@mebibytes": {
+    "description": "Mebibytes data unit"
+  },
+  "gibibytes": "Gibibytes",
+  "@gibibytes": {
+    "description": "Gibibytes data unit"
+  },
+  "pascals": "Pascals",
+  "@pascals": {
+    "description": "Pascals pressure unit"
+  },
+  "kilopascals": "Kilopascals",
+  "@kilopascals": {
+    "description": "Kilopascals pressure unit"
+  },
+  "bars": "Bars",
+  "@bars": {
+    "description": "Bars pressure unit"
+  },
+  "atmospheres": "Atmospheres",
+  "@atmospheres": {
+    "description": "Atmospheres pressure unit"
+  },
+  "poundsPerSquareInch": "Pounds per square inch",
+  "@poundsPerSquareInch": {
+    "description": "Pounds per square inch pressure unit"
+  },
+  "millimetersOfMercury": "Millimeters of mercury",
+  "@millimetersOfMercury": {
+    "description": "Millimeters of mercury pressure unit"
+  },
+  "degreesAngle": "Degrees",
+  "@degreesAngle": {
+    "description": "Degrees angle unit"
+  },
+  "radians": "Radians",
+  "@radians": {
+    "description": "Radians angle unit"
+  },
+  "gradians": "Gradians",
+  "@gradians": {
+    "description": "Gradians angle unit"
+  },
+  "turns": "Turns",
+  "@turns": {
+    "description": "Turns angle unit"
+  },
+  "angstroms": "Angstroms",
+  "@angstroms": {
+    "description": "Angstroms length unit"
+  },
+  "nauticalMiles": "Nautical miles",
+  "@nauticalMiles": {
+    "description": "Nautical miles length unit"
+  },
+  "carats": "Carats",
+  "@carats": {
+    "description": "Carats weight unit"
+  },
+  "centigrams": "Centigrams",
+  "@centigrams": {
+    "description": "Centigrams weight unit"
+  },
+  "decigrams": "Decigrams",
+  "@decigrams": {
+    "description": "Decigrams weight unit"
+  },
+  "decagrams": "Decagrams",
+  "@decagrams": {
+    "description": "Decagrams weight unit"
+  },
+  "hectograms": "Hectograms",
+  "@hectograms": {
+    "description": "Hectograms weight unit"
+  },
+  "shortTons": "Short tons",
+  "@shortTons": {
+    "description": "Short tons weight unit"
+  },
+  "footPounds": "Foot-pounds",
+  "@footPounds": {
+    "description": "Foot-pounds energy unit"
+  },
+  "squareMillimeters": "Square millimeters",
+  "@squareMillimeters": {
+    "description": "Square millimeters area unit"
+  },
+  "centimetersPerSecond": "Centimeters per second",
+  "@centimetersPerSecond": {
+    "description": "Centimeters per second speed unit"
+  },
+  "horsepowerUs": "Horsepower (US)",
+  "@horsepowerUs": {
+    "description": "Horsepower (US) power unit"
+  },
+  "footPoundsPerMinute": "Foot-pounds/minute",
+  "@footPoundsPerMinute": {
+    "description": "Foot-pounds/minute power unit"
+  },
+  "nibbles": "Nibbles",
+  "@nibbles": {
+    "description": "Nibbles data unit"
+  },
+  "kilobits": "Kilobits",
+  "@kilobits": {
+    "description": "Kilobits data unit"
+  },
+  "kibibits": "Kibibits",
+  "@kibibits": {
+    "description": "Kibibits data unit"
+  },
+  "megabits": "Megabits",
+  "@megabits": {
+    "description": "Megabits data unit"
+  },
+  "mebibits": "Mebibits",
+  "@mebibits": {
+    "description": "Mebibits data unit"
+  },
+  "gigabits": "Gigabits",
+  "@gigabits": {
+    "description": "Gigabits data unit"
+  },
+  "gibibits": "Gibibits",
+  "@gibibits": {
+    "description": "Gibibits data unit"
+  },
+  "terabits": "Terabits",
+  "@terabits": {
+    "description": "Terabits data unit"
+  },
+  "tebibits": "Tebibits",
+  "@tebibits": {
+    "description": "Tebibits data unit"
+  },
+  "petabits": "Petabits",
+  "@petabits": {
+    "description": "Petabits data unit"
+  },
+  "pebibits": "Pebibits",
+  "@pebibits": {
+    "description": "Pebibits data unit"
+  },
+  "exabits": "Exabits",
+  "@exabits": {
+    "description": "Exabits data unit"
+  },
+  "exbibits": "Exbibits",
+  "@exbibits": {
+    "description": "Exbibits data unit"
+  },
+  "zetabits": "Zetabits",
+  "@zetabits": {
+    "description": "Zetabits data unit"
+  },
+  "zebibits": "Zebibits",
+  "@zebibits": {
+    "description": "Zebibits data unit"
+  },
+  "yottabits": "Yottabits",
+  "@yottabits": {
+    "description": "Yottabits data unit"
+  },
+  "yobibits": "Yobibits",
+  "@yobibits": {
+    "description": "Yobibits data unit"
+  },
+  "exabytes": "Exabytes",
+  "@exabytes": {
+    "description": "Exabytes data unit"
+  },
+  "exbibytes": "Exbibytes",
+  "@exbibytes": {
+    "description": "Exbibytes data unit"
+  },
+  "zetabytes": "Zetabytes",
+  "@zetabytes": {
+    "description": "Zetabytes data unit"
+  },
+  "zebibytes": "Zebibytes",
+  "@zebibytes": {
+    "description": "Zebibytes data unit"
+  },
+  "yottabytes": "Yottabytes",
+  "@yottabytes": {
+    "description": "Yottabytes data unit"
+  },
+  "yobibytes": "Yobibytes",
+  "@yobibytes": {
+    "description": "Yobibytes data unit"
+  },
+  "teaspoonsUs": "Teaspoons (US)",
+  "@teaspoonsUs": {
+    "description": "Teaspoons (US) volume unit"
+  },
+  "tablespoonsUs": "Tablespoons (US)",
+  "@tablespoonsUs": {
+    "description": "Tablespoons (US) volume unit"
+  },
+  "fluidOuncesUs": "Fluid ounces (US)",
+  "@fluidOuncesUs": {
+    "description": "Fluid ounces (US) volume unit"
+  },
+  "cupsUs": "Cups (US)",
+  "@cupsUs": {
+    "description": "Cups (US) volume unit"
+  },
+  "pintsUs": "Pints (US)",
+  "@pintsUs": {
+    "description": "Pints (US) volume unit"
+  },
+  "quartsUs": "Quarts (US)",
+  "@quartsUs": {
+    "description": "Quarts (US) volume unit"
+  },
+  "gallonsUs": "Gallons (US)",
+  "@gallonsUs": {
+    "description": "Gallons (US) volume unit"
+  },
+  "teaspoonsUk": "Teaspoons (UK)",
+  "@teaspoonsUk": {
+    "description": "Teaspoons (UK) volume unit"
+  },
+  "tablespoonsUk": "Tablespoons (UK)",
+  "@tablespoonsUk": {
+    "description": "Tablespoons (UK) volume unit"
+  },
+  "fluidOuncesUk": "Fluid ounces (UK)",
+  "@fluidOuncesUk": {
+    "description": "Fluid ounces (UK) volume unit"
+  },
+  "pintsUk": "Pints (UK)",
+  "@pintsUk": {
+    "description": "Pints (UK) volume unit"
+  },
+  "quartsUk": "Quarts (UK)",
+  "@quartsUk": {
+    "description": "Quarts (UK) volume unit"
+  },
+  "gallonsUk": "Gallons (UK)",
+  "@gallonsUk": {
+    "description": "Gallons (UK) volume unit"
+  },
+  "coffeeCups": "Coffee cups",
+  "@coffeeCups": {
+    "description": "Coffee cups volume unit"
+  },
+  "bathtubs": "Bathtubs",
+  "@bathtubs": {
+    "description": "Bathtubs volume unit"
+  },
+  "swimmingPools": "Swimming pools",
+  "@swimmingPools": {
+    "description": "Swimming pools volume unit"
+  },
+  "paperclips": "Paperclips",
+  "@paperclips": {
+    "description": "Paperclips whimsical length unit"
+  },
+  "handsWhimsical": "Hands",
+  "@handsWhimsical": {
+    "description": "Hands whimsical length unit"
+  },
+  "jumboJets": "Jumbo jets",
+  "@jumboJets": {
+    "description": "Jumbo jets whimsical length unit"
+  },
+  "snowflakes": "Snowflakes",
+  "@snowflakes": {
+    "description": "Snowflakes whimsical weight unit"
+  },
+  "soccerBalls": "Soccer balls",
+  "@soccerBalls": {
+    "description": "Soccer balls whimsical weight unit"
+  },
+  "elephants": "Elephants",
+  "@elephants": {
+    "description": "Elephants whimsical weight unit"
+  },
+  "whales": "Whales",
+  "@whales": {
+    "description": "Whales whimsical weight unit"
+  },
+  "batteries": "Batteries",
+  "@batteries": {
+    "description": "Batteries whimsical energy unit"
+  },
+  "bananas": "Bananas",
+  "@bananas": {
+    "description": "Bananas whimsical energy unit"
+  },
+  "slicesOfCake": "Slices of cake",
+  "@slicesOfCake": {
+    "description": "Slices of cake whimsical energy unit"
+  },
+  "handsArea": "Hands",
+  "@handsArea": {
+    "description": "Hands whimsical area unit"
+  },
+  "papers": "Papers",
+  "@papers": {
+    "description": "Papers whimsical area unit"
+  },
+  "soccerFields": "Soccer fields",
+  "@soccerFields": {
+    "description": "Soccer fields whimsical area unit"
+  },
+  "castles": "Castles",
+  "@castles": {
+    "description": "Castles whimsical area unit"
+  },
+  "pyeong": "Pyeong",
+  "@pyeong": {
+    "description": "Pyeong whimsical area unit"
+  },
+  "turtles": "Turtles",
+  "@turtles": {
+    "description": "Turtles whimsical speed unit"
+  },
+  "horsesWhimsical": "Horses",
+  "@horsesWhimsical": {
+    "description": "Horses whimsical speed unit"
+  },
+  "jets": "Jets",
+  "@jets": {
+    "description": "Jets whimsical speed unit"
+  },
+  "lightBulbs": "Light bulbs",
+  "@lightBulbs": {
+    "description": "Light bulbs whimsical power unit"
+  },
+  "horsesPower": "Horses",
+  "@horsesPower": {
+    "description": "Horses whimsical power unit"
+  },
+  "trainEngines": "Train engines",
+  "@trainEngines": {
+    "description": "Train engines whimsical power unit"
+  },
+  "floppyDisks": "Floppy disks",
+  "@floppyDisks": {
+    "description": "Floppy disks whimsical data unit"
+  },
+  "cds": "CDs",
+  "@cds": {
+    "description": "CDs whimsical data unit"
+  },
+  "dvds": "DVDs",
+  "@dvds": {
+    "description": "DVDs whimsical data unit"
   }
 }

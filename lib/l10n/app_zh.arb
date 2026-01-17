@@ -351,5 +351,693 @@
   "kelvin": "开尔文",
   "@kelvin": {
     "description": "Kelvin temperature unit"
+  },
+  "lengthConverterMode": "长度",
+  "@lengthConverterMode": {
+    "description": "Name for the length converter mode"
+  },
+  "lengthConverterTitle": "长度转换",
+  "@lengthConverterTitle": {
+    "description": "Title for length converter page"
+  },
+  "weightConverterMode": "重量",
+  "@weightConverterMode": {
+    "description": "Name for the weight converter mode"
+  },
+  "weightConverterTitle": "重量转换",
+  "@weightConverterTitle": {
+    "description": "Title for weight converter page"
+  },
+  "energyConverterMode": "能量",
+  "@energyConverterMode": {
+    "description": "Name for the energy converter mode"
+  },
+  "energyConverterTitle": "能量转换",
+  "@energyConverterTitle": {
+    "description": "Title for energy converter page"
+  },
+  "areaConverterMode": "面积",
+  "@areaConverterMode": {
+    "description": "Name for the area converter mode"
+  },
+  "areaConverterTitle": "面积转换",
+  "@areaConverterTitle": {
+    "description": "Title for area converter page"
+  },
+  "speedConverterMode": "速度",
+  "@speedConverterMode": {
+    "description": "Name for the speed converter mode"
+  },
+  "speedConverterTitle": "速度转换",
+  "@speedConverterTitle": {
+    "description": "Title for speed converter page"
+  },
+  "timeConverterMode": "时间",
+  "@timeConverterMode": {
+    "description": "Name for the time converter mode"
+  },
+  "timeConverterTitle": "时间转换",
+  "@timeConverterTitle": {
+    "description": "Title for time converter page"
+  },
+  "powerConverterMode": "功率",
+  "@powerConverterMode": {
+    "description": "Name for the power converter mode"
+  },
+  "powerConverterTitle": "功率转换",
+  "@powerConverterTitle": {
+    "description": "Title for power converter page"
+  },
+  "dataConverterMode": "数据",
+  "@dataConverterMode": {
+    "description": "Name for the data converter mode"
+  },
+  "dataConverterTitle": "数据转换",
+  "@dataConverterTitle": {
+    "description": "Title for data converter page"
+  },
+  "pressureConverterMode": "压强",
+  "@pressureConverterMode": {
+    "description": "Name for the pressure converter mode"
+  },
+  "pressureConverterTitle": "压强转换",
+  "@pressureConverterTitle": {
+    "description": "Title for pressure converter page"
+  },
+  "angleConverterMode": "角度",
+  "@angleConverterMode": {
+    "description": "Name for the angle converter mode"
+  },
+  "angleConverterTitle": "角度转换",
+  "@angleConverterTitle": {
+    "description": "Title for angle converter page"
+  },
+  "meters": "米",
+  "@meters": {
+    "description": "Meters length unit"
+  },
+  "kilometers": "公里",
+  "@kilometers": {
+    "description": "Kilometers length unit"
+  },
+  "centimeters": "厘米",
+  "@centimeters": {
+    "description": "Centimeters length unit"
+  },
+  "millimeters": "毫米",
+  "@millimeters": {
+    "description": "Millimeters length unit"
+  },
+  "micrometers": "微米",
+  "@micrometers": {
+    "description": "Micrometers length unit"
+  },
+  "nanometers": "纳米",
+  "@nanometers": {
+    "description": "Nanometers length unit"
+  },
+  "miles": "英里",
+  "@miles": {
+    "description": "Miles length unit"
+  },
+  "yards": "码",
+  "@yards": {
+    "description": "Yards length unit"
+  },
+  "feet": "英尺",
+  "@feet": {
+    "description": "Feet length unit"
+  },
+  "inches": "英寸",
+  "@inches": {
+    "description": "Inches length unit"
+  },
+  "kilograms": "千克",
+  "@kilograms": {
+    "description": "Kilograms weight unit"
+  },
+  "grams": "克",
+  "@grams": {
+    "description": "Grams weight unit"
+  },
+  "milligrams": "毫克",
+  "@milligrams": {
+    "description": "Milligrams weight unit"
+  },
+  "metricTons": "公吨",
+  "@metricTons": {
+    "description": "Metric tons weight unit"
+  },
+  "pounds": "磅",
+  "@pounds": {
+    "description": "Pounds weight unit"
+  },
+  "ounces": "盎司",
+  "@ounces": {
+    "description": "Ounces weight unit"
+  },
+  "stones": "英石",
+  "@stones": {
+    "description": "Stones weight unit"
+  },
+  "joules": "焦耳",
+  "@joules": {
+    "description": "Joules energy unit"
+  },
+  "kilojoules": "千焦耳",
+  "@kilojoules": {
+    "description": "Kilojoules energy unit"
+  },
+  "calories": "热卡路里",
+  "@calories": {
+    "description": "Calories energy unit"
+  },
+  "kilocalories": "食物卡路里",
+  "@kilocalories": {
+    "description": "Kilocalories energy unit"
+  },
+  "wattHours": "瓦时",
+  "@wattHours": {
+    "description": "Watt-hours energy unit"
+  },
+  "kilowattHours": "千瓦时",
+  "@kilowattHours": {
+    "description": "Kilowatt-hours energy unit"
+  },
+  "electronvolts": "电子伏特",
+  "@electronvolts": {
+    "description": "Electronvolts energy unit"
+  },
+  "britishThermalUnits": "英国热量单位",
+  "@britishThermalUnits": {
+    "description": "British thermal units energy unit"
+  },
+  "squareMeters": "平方米",
+  "@squareMeters": {
+    "description": "Square meters area unit"
+  },
+  "squareKilometers": "平方公里",
+  "@squareKilometers": {
+    "description": "Square kilometers area unit"
+  },
+  "squareCentimeters": "平方厘米",
+  "@squareCentimeters": {
+    "description": "Square centimeters area unit"
+  },
+  "hectares": "公顷",
+  "@hectares": {
+    "description": "Hectares area unit"
+  },
+  "squareMiles": "平方英里",
+  "@squareMiles": {
+    "description": "Square miles area unit"
+  },
+  "squareYards": "平方码",
+  "@squareYards": {
+    "description": "Square yards area unit"
+  },
+  "squareFeet": "平方英尺",
+  "@squareFeet": {
+    "description": "Square feet area unit"
+  },
+  "squareInches": "平方英寸",
+  "@squareInches": {
+    "description": "Square inches area unit"
+  },
+  "acres": "英亩",
+  "@acres": {
+    "description": "Acres area unit"
+  },
+  "metersPerSecond": "米/秒",
+  "@metersPerSecond": {
+    "description": "Meters per second speed unit"
+  },
+  "kilometersPerHour": "公里/小时",
+  "@kilometersPerHour": {
+    "description": "Kilometers per hour speed unit"
+  },
+  "milesPerHour": "英里/小时",
+  "@milesPerHour": {
+    "description": "Miles per hour speed unit"
+  },
+  "feetPerSecond": "英尺/秒",
+  "@feetPerSecond": {
+    "description": "Feet per second speed unit"
+  },
+  "knots": "节",
+  "@knots": {
+    "description": "Knots speed unit"
+  },
+  "mach": "马赫",
+  "@mach": {
+    "description": "Mach speed unit"
+  },
+  "seconds": "秒",
+  "@seconds": {
+    "description": "Seconds time unit"
+  },
+  "milliseconds": "毫秒",
+  "@milliseconds": {
+    "description": "Milliseconds time unit"
+  },
+  "microseconds": "微秒",
+  "@microseconds": {
+    "description": "Microseconds time unit"
+  },
+  "nanoseconds": "纳秒",
+  "@nanoseconds": {
+    "description": "Nanoseconds time unit"
+  },
+  "minutes": "分钟",
+  "@minutes": {
+    "description": "Minutes time unit"
+  },
+  "hours": "小时",
+  "@hours": {
+    "description": "Hours time unit"
+  },
+  "days": "天",
+  "@days": {
+    "description": "Days time unit"
+  },
+  "weeks": "周",
+  "@weeks": {
+    "description": "Weeks time unit"
+  },
+  "years": "年",
+  "@years": {
+    "description": "Years time unit"
+  },
+  "watts": "瓦特",
+  "@watts": {
+    "description": "Watts power unit"
+  },
+  "kilowatts": "千瓦",
+  "@kilowatts": {
+    "description": "Kilowatts power unit"
+  },
+  "megawatts": "兆瓦",
+  "@megawatts": {
+    "description": "Megawatts power unit"
+  },
+  "horsepowerMetric": "公制马力",
+  "@horsepowerMetric": {
+    "description": "Horsepower (metric) power unit"
+  },
+  "btuPerMinute": "英热单位每分钟",
+  "@btuPerMinute": {
+    "description": "BTU per minute power unit"
+  },
+  "bytes": "字节",
+  "@bytes": {
+    "description": "Bytes data unit"
+  },
+  "kilobytes": "千字节",
+  "@kilobytes": {
+    "description": "Kilobytes data unit"
+  },
+  "megabytes": "兆字节",
+  "@megabytes": {
+    "description": "Megabytes data unit"
+  },
+  "gigabytes": "吉字节",
+  "@gigabytes": {
+    "description": "Gigabytes data unit"
+  },
+  "terabytes": "太字节",
+  "@terabytes": {
+    "description": "Terabytes data unit"
+  },
+  "petabytes": "拍字节",
+  "@petabytes": {
+    "description": "Petabytes data unit"
+  },
+  "tebibytes": "太字节",
+  "@tebibytes": {
+    "description": "Tebibytes data unit"
+  },
+  "pebibytes": "拍字节",
+  "@pebibytes": {
+    "description": "Pebibytes data unit"
+  },
+  "bits": "比特",
+  "@bits": {
+    "description": "Bits data unit"
+  },
+  "kibibytes": "千比特",
+  "@kibibytes": {
+    "description": "Kibibytes data unit"
+  },
+  "mebibytes": "兆比特",
+  "@mebibytes": {
+    "description": "Mebibytes data unit"
+  },
+  "gibibytes": "吉比特",
+  "@gibibytes": {
+    "description": "Gibibytes data unit"
+  },
+  "pascals": "帕",
+  "@pascals": {
+    "description": "Pascals pressure unit"
+  },
+  "kilopascals": "千帕",
+  "@kilopascals": {
+    "description": "Kilopascals pressure unit"
+  },
+  "bars": "巴",
+  "@bars": {
+    "description": "Bars pressure unit"
+  },
+  "atmospheres": "大气压",
+  "@atmospheres": {
+    "description": "Atmospheres pressure unit"
+  },
+  "poundsPerSquareInch": "磅每平方英寸",
+  "@poundsPerSquareInch": {
+    "description": "Pounds per square inch pressure unit"
+  },
+  "millimetersOfMercury": "毫米汞柱",
+  "@millimetersOfMercury": {
+    "description": "Millimeters of mercury pressure unit"
+  },
+  "degreesAngle": "度",
+  "@degreesAngle": {
+    "description": "Degrees angle unit"
+  },
+  "radians": "弧度",
+  "@radians": {
+    "description": "Radians angle unit"
+  },
+  "gradians": "百分度",
+  "@gradians": {
+    "description": "Gradians angle unit"
+  },
+  "turns": "圈",
+  "@turns": {
+    "description": "Turns angle unit"
+  },
+  "angstroms": "埃",
+  "@angstroms": {
+    "description": "Angstroms length unit"
+  },
+  "nauticalMiles": "海里",
+  "@nauticalMiles": {
+    "description": "Nautical miles length unit"
+  },
+  "carats": "克拉",
+  "@carats": {
+    "description": "Carats weight unit"
+  },
+  "centigrams": "厘克",
+  "@centigrams": {
+    "description": "Centigrams weight unit"
+  },
+  "decigrams": "分克",
+  "@decigrams": {
+    "description": "Decigrams weight unit"
+  },
+  "decagrams": "十克",
+  "@decagrams": {
+    "description": "Decagrams weight unit"
+  },
+  "hectograms": "百克",
+  "@hectograms": {
+    "description": "Hectograms weight unit"
+  },
+  "shortTons": "短吨（美制）",
+  "@shortTons": {
+    "description": "Short tons weight unit"
+  },
+  "footPounds": "英尺磅",
+  "@footPounds": {
+    "description": "Foot-pounds energy unit"
+  },
+  "squareMillimeters": "平方毫米",
+  "@squareMillimeters": {
+    "description": "Square millimeters area unit"
+  },
+  "centimetersPerSecond": "厘米/秒",
+  "@centimetersPerSecond": {
+    "description": "Centimeters per second speed unit"
+  },
+  "horsepowerUs": "马力（美制）",
+  "@horsepowerUs": {
+    "description": "Horsepower (US) power unit"
+  },
+  "footPoundsPerMinute": "英尺磅/分钟",
+  "@footPoundsPerMinute": {
+    "description": "Foot-pounds/minute power unit"
+  },
+  "nibbles": "半字节",
+  "@nibbles": {
+    "description": "Nibbles data unit"
+  },
+  "kilobits": "千比特",
+  "@kilobits": {
+    "description": "Kilobits data unit"
+  },
+  "kibibits": "千比特",
+  "@kibibits": {
+    "description": "Kibibits data unit"
+  },
+  "megabits": "兆比特",
+  "@megabits": {
+    "description": "Megabits data unit"
+  },
+  "mebibits": "兆比特",
+  "@mebibits": {
+    "description": "Mebibits data unit"
+  },
+  "gigabits": "吉比特",
+  "@gigabits": {
+    "description": "Gigabits data unit"
+  },
+  "gibibits": "吉比特",
+  "@gibibits": {
+    "description": "Gibibits data unit"
+  },
+  "terabits": "太比特",
+  "@terabits": {
+    "description": "Terabits data unit"
+  },
+  "tebibits": "太比特",
+  "@tebibits": {
+    "description": "Tebibits data unit"
+  },
+  "petabits": "拍比特",
+  "@petabits": {
+    "description": "Petabits data unit"
+  },
+  "pebibits": "拍比特",
+  "@pebibits": {
+    "description": "Pebibits data unit"
+  },
+  "exabits": "艾比特",
+  "@exabits": {
+    "description": "Exabits data unit"
+  },
+  "exbibits": "艾比特",
+  "@exbibits": {
+    "description": "Exbibits data unit"
+  },
+  "zetabits": "泽比特",
+  "@zetabits": {
+    "description": "Zetabits data unit"
+  },
+  "zebibits": "泽比特",
+  "@zebibits": {
+    "description": "Zebibits data unit"
+  },
+  "yottabits": "尧比特",
+  "@yottabits": {
+    "description": "Yottabits data unit"
+  },
+  "yobibits": "尧比特",
+  "@yobibits": {
+    "description": "Yobibits data unit"
+  },
+  "exabytes": "艾字节",
+  "@exabytes": {
+    "description": "Exabytes data unit"
+  },
+  "exbibytes": "艾字节",
+  "@exbibytes": {
+    "description": "Exbibytes data unit"
+  },
+  "zetabytes": "泽字节",
+  "@zetabytes": {
+    "description": "Zetabytes data unit"
+  },
+  "zebibytes": "泽字节",
+  "@zebibytes": {
+    "description": "Zebibytes data unit"
+  },
+  "yottabytes": "尧字节",
+  "@yottabytes": {
+    "description": "Yottabytes data unit"
+  },
+  "yobibytes": "尧字节",
+  "@yobibytes": {
+    "description": "Yobibytes data unit"
+  },
+  "teaspoonsUs": "茶匙（美制）",
+  "@teaspoonsUs": {
+    "description": "Teaspoons (US) volume unit"
+  },
+  "tablespoonsUs": "汤匙（美制）",
+  "@tablespoonsUs": {
+    "description": "Tablespoons (US) volume unit"
+  },
+  "fluidOuncesUs": "液盎司（美制）",
+  "@fluidOuncesUs": {
+    "description": "Fluid ounces (US) volume unit"
+  },
+  "cupsUs": "杯（美制）",
+  "@cupsUs": {
+    "description": "Cups (US) volume unit"
+  },
+  "pintsUs": "品脱（美制）",
+  "@pintsUs": {
+    "description": "Pints (US) volume unit"
+  },
+  "quartsUs": "夸脱（美制）",
+  "@quartsUs": {
+    "description": "Quarts (US) volume unit"
+  },
+  "gallonsUs": "加仑（美制）",
+  "@gallonsUs": {
+    "description": "Gallons (US) volume unit"
+  },
+  "teaspoonsUk": "茶匙（英制）",
+  "@teaspoonsUk": {
+    "description": "Teaspoons (UK) volume unit"
+  },
+  "tablespoonsUk": "汤匙（英制）",
+  "@tablespoonsUk": {
+    "description": "Tablespoons (UK) volume unit"
+  },
+  "fluidOuncesUk": "液盎司（英制）",
+  "@fluidOuncesUk": {
+    "description": "Fluid ounces (UK) volume unit"
+  },
+  "pintsUk": "品脱（英制）",
+  "@pintsUk": {
+    "description": "Pints (UK) volume unit"
+  },
+  "quartsUk": "夸脱（英制）",
+  "@quartsUk": {
+    "description": "Quarts (UK) volume unit"
+  },
+  "gallonsUk": "加仑（英制）",
+  "@gallonsUk": {
+    "description": "Gallons (UK) volume unit"
+  },
+  "coffeeCups": "杯咖啡",
+  "@coffeeCups": {
+    "description": "Coffee cups volume unit"
+  },
+  "bathtubs": "个浴缸",
+  "@bathtubs": {
+    "description": "Bathtubs volume unit"
+  },
+  "swimmingPools": "个标准泳池",
+  "@swimmingPools": {
+    "description": "Swimming pools volume unit"
+  },
+  "paperclips": "根回形针",
+  "@paperclips": {
+    "description": "Paperclips whimsical length unit"
+  },
+  "handsWhimsical": "手",
+  "@handsWhimsical": {
+    "description": "Hands whimsical length unit"
+  },
+  "jumboJets": "大型喷气式飞机",
+  "@jumboJets": {
+    "description": "Jumbo jets whimsical length unit"
+  },
+  "snowflakes": "雪花",
+  "@snowflakes": {
+    "description": "Snowflakes whimsical weight unit"
+  },
+  "soccerBalls": "足球",
+  "@soccerBalls": {
+    "description": "Soccer balls whimsical weight unit"
+  },
+  "elephants": "大象",
+  "@elephants": {
+    "description": "Elephants whimsical weight unit"
+  },
+  "whales": "鲸鱼",
+  "@whales": {
+    "description": "Whales whimsical weight unit"
+  },
+  "batteries": "电池",
+  "@batteries": {
+    "description": "Batteries whimsical energy unit"
+  },
+  "bananas": "香蕉",
+  "@bananas": {
+    "description": "Bananas whimsical energy unit"
+  },
+  "slicesOfCake": "蛋糕片",
+  "@slicesOfCake": {
+    "description": "Slices of cake whimsical energy unit"
+  },
+  "handsArea": "手",
+  "@handsArea": {
+    "description": "Hands whimsical area unit"
+  },
+  "papers": "纸张",
+  "@papers": {
+    "description": "Papers whimsical area unit"
+  },
+  "soccerFields": "足球场",
+  "@soccerFields": {
+    "description": "Soccer fields whimsical area unit"
+  },
+  "castles": "城堡",
+  "@castles": {
+    "description": "Castles whimsical area unit"
+  },
+  "pyeong": "坪",
+  "@pyeong": {
+    "description": "Pyeong whimsical area unit"
+  },
+  "turtles": "乌龟",
+  "@turtles": {
+    "description": "Turtles whimsical speed unit"
+  },
+  "horsesWhimsical": "马",
+  "@horsesWhimsical": {
+    "description": "Horses whimsical speed unit"
+  },
+  "jets": "喷气式飞机",
+  "@jets": {
+    "description": "Jets whimsical speed unit"
+  },
+  "lightBulbs": "灯泡",
+  "@lightBulbs": {
+    "description": "Light bulbs whimsical power unit"
+  },
+  "horsesPower": "马",
+  "@horsesPower": {
+    "description": "Horses whimsical power unit"
+  },
+  "trainEngines": "火车头",
+  "@trainEngines": {
+    "description": "Train engines whimsical power unit"
+  },
+  "floppyDisks": "软盘",
+  "@floppyDisks": {
+    "description": "Floppy disks whimsical data unit"
+  },
+  "cds": "CD",
+  "@cds": {
+    "description": "CDs whimsical data unit"
+  },
+  "dvds": "DVD",
+  "@dvds": {
+    "description": "DVDs whimsical data unit"
   }
 }

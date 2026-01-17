@@ -332,7 +332,7 @@ abstract class AppLocalizations {
   /// **'Subtract'**
   String get subtract;
 
-  /// Years label for date offset
+  /// Years time unit
   ///
   /// In en, this message translates to:
   /// **'Years'**
@@ -344,7 +344,7 @@ abstract class AppLocalizations {
   /// **'Months'**
   String get months;
 
-  /// Days label for date offset
+  /// Days time unit
   ///
   /// In en, this message translates to:
   /// **'Days'**
@@ -625,6 +625,1026 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Kelvin'**
   String get kelvin;
+
+  /// Name for the length converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get lengthConverterMode;
+
+  /// Title for length converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Length Converter'**
+  String get lengthConverterTitle;
+
+  /// Name for the weight converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get weightConverterMode;
+
+  /// Title for weight converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Weight Converter'**
+  String get weightConverterTitle;
+
+  /// Name for the energy converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Energy'**
+  String get energyConverterMode;
+
+  /// Title for energy converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Energy Converter'**
+  String get energyConverterTitle;
+
+  /// Name for the area converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Area'**
+  String get areaConverterMode;
+
+  /// Title for area converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Area Converter'**
+  String get areaConverterTitle;
+
+  /// Name for the speed converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Speed'**
+  String get speedConverterMode;
+
+  /// Title for speed converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Speed Converter'**
+  String get speedConverterTitle;
+
+  /// Name for the time converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get timeConverterMode;
+
+  /// Title for time converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Time Converter'**
+  String get timeConverterTitle;
+
+  /// Name for the power converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Power'**
+  String get powerConverterMode;
+
+  /// Title for power converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Power Converter'**
+  String get powerConverterTitle;
+
+  /// Name for the data converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get dataConverterMode;
+
+  /// Title for data converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Data Converter'**
+  String get dataConverterTitle;
+
+  /// Name for the pressure converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure'**
+  String get pressureConverterMode;
+
+  /// Title for pressure converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure Converter'**
+  String get pressureConverterTitle;
+
+  /// Name for the angle converter mode
+  ///
+  /// In en, this message translates to:
+  /// **'Angle'**
+  String get angleConverterMode;
+
+  /// Title for angle converter page
+  ///
+  /// In en, this message translates to:
+  /// **'Angle Converter'**
+  String get angleConverterTitle;
+
+  /// Meters length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Meters'**
+  String get meters;
+
+  /// Kilometers length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilometers'**
+  String get kilometers;
+
+  /// Centimeters length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Centimeters'**
+  String get centimeters;
+
+  /// Millimeters length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Millimeters'**
+  String get millimeters;
+
+  /// Micrometers length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Micrometers'**
+  String get micrometers;
+
+  /// Nanometers length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Nanometers'**
+  String get nanometers;
+
+  /// Miles length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Miles'**
+  String get miles;
+
+  /// Yards length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Yards'**
+  String get yards;
+
+  /// Feet length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Feet'**
+  String get feet;
+
+  /// Inches length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Inches'**
+  String get inches;
+
+  /// Kilograms weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilograms'**
+  String get kilograms;
+
+  /// Grams weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Grams'**
+  String get grams;
+
+  /// Milligrams weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Milligrams'**
+  String get milligrams;
+
+  /// Metric tons weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Metric Tons'**
+  String get metricTons;
+
+  /// Pounds weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pounds'**
+  String get pounds;
+
+  /// Ounces weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Ounces'**
+  String get ounces;
+
+  /// Stones weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Stones'**
+  String get stones;
+
+  /// Joules energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Joules'**
+  String get joules;
+
+  /// Kilojoules energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilojoules'**
+  String get kilojoules;
+
+  /// Calories energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Calories'**
+  String get calories;
+
+  /// Kilocalories energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilocalories'**
+  String get kilocalories;
+
+  /// Watt-hours energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Watt-hours'**
+  String get wattHours;
+
+  /// Kilowatt-hours energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilowatt-hours'**
+  String get kilowattHours;
+
+  /// Electronvolts energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Electronvolts'**
+  String get electronvolts;
+
+  /// British thermal units energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'British thermal units'**
+  String get britishThermalUnits;
+
+  /// Square meters area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Meters'**
+  String get squareMeters;
+
+  /// Square kilometers area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Kilometers'**
+  String get squareKilometers;
+
+  /// Square centimeters area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Centimeters'**
+  String get squareCentimeters;
+
+  /// Hectares area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Hectares'**
+  String get hectares;
+
+  /// Square miles area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Miles'**
+  String get squareMiles;
+
+  /// Square yards area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Yards'**
+  String get squareYards;
+
+  /// Square feet area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Feet'**
+  String get squareFeet;
+
+  /// Square inches area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square Inches'**
+  String get squareInches;
+
+  /// Acres area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Acres'**
+  String get acres;
+
+  /// Meters per second speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Meters per second'**
+  String get metersPerSecond;
+
+  /// Kilometers per hour speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilometers per hour'**
+  String get kilometersPerHour;
+
+  /// Miles per hour speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Miles per hour'**
+  String get milesPerHour;
+
+  /// Feet per second speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Feet per second'**
+  String get feetPerSecond;
+
+  /// Knots speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Knots'**
+  String get knots;
+
+  /// Mach speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Mach'**
+  String get mach;
+
+  /// Seconds time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get seconds;
+
+  /// Milliseconds time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Milliseconds'**
+  String get milliseconds;
+
+  /// Microseconds time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Microseconds'**
+  String get microseconds;
+
+  /// Nanoseconds time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Nanoseconds'**
+  String get nanoseconds;
+
+  /// Minutes time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get minutes;
+
+  /// Hours time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Hours'**
+  String get hours;
+
+  /// Weeks time unit
+  ///
+  /// In en, this message translates to:
+  /// **'Weeks'**
+  String get weeks;
+
+  /// Watts power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Watts'**
+  String get watts;
+
+  /// Kilowatts power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilowatts'**
+  String get kilowatts;
+
+  /// Megawatts power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Megawatts'**
+  String get megawatts;
+
+  /// Horsepower (metric) power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Horsepower (metric)'**
+  String get horsepowerMetric;
+
+  /// BTU per minute power unit
+  ///
+  /// In en, this message translates to:
+  /// **'BTU per minute'**
+  String get btuPerMinute;
+
+  /// Bytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Bytes'**
+  String get bytes;
+
+  /// Kilobytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilobytes'**
+  String get kilobytes;
+
+  /// Megabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Megabytes'**
+  String get megabytes;
+
+  /// Gigabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabytes'**
+  String get gigabytes;
+
+  /// Terabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Terabytes'**
+  String get terabytes;
+
+  /// Petabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Petabytes'**
+  String get petabytes;
+
+  /// Tebibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Tebibytes'**
+  String get tebibytes;
+
+  /// Pebibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pebibytes'**
+  String get pebibytes;
+
+  /// Bits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Bits'**
+  String get bits;
+
+  /// Kibibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kibibytes'**
+  String get kibibytes;
+
+  /// Mebibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Mebibytes'**
+  String get mebibytes;
+
+  /// Gibibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gibibytes'**
+  String get gibibytes;
+
+  /// Pascals pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pascals'**
+  String get pascals;
+
+  /// Kilopascals pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilopascals'**
+  String get kilopascals;
+
+  /// Bars pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Bars'**
+  String get bars;
+
+  /// Atmospheres pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Atmospheres'**
+  String get atmospheres;
+
+  /// Pounds per square inch pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pounds per square inch'**
+  String get poundsPerSquareInch;
+
+  /// Millimeters of mercury pressure unit
+  ///
+  /// In en, this message translates to:
+  /// **'Millimeters of mercury'**
+  String get millimetersOfMercury;
+
+  /// Degrees angle unit
+  ///
+  /// In en, this message translates to:
+  /// **'Degrees'**
+  String get degreesAngle;
+
+  /// Radians angle unit
+  ///
+  /// In en, this message translates to:
+  /// **'Radians'**
+  String get radians;
+
+  /// Gradians angle unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gradians'**
+  String get gradians;
+
+  /// Turns angle unit
+  ///
+  /// In en, this message translates to:
+  /// **'Turns'**
+  String get turns;
+
+  /// Angstroms length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Angstroms'**
+  String get angstroms;
+
+  /// Nautical miles length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Nautical miles'**
+  String get nauticalMiles;
+
+  /// Carats weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Carats'**
+  String get carats;
+
+  /// Centigrams weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Centigrams'**
+  String get centigrams;
+
+  /// Decigrams weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Decigrams'**
+  String get decigrams;
+
+  /// Decagrams weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Decagrams'**
+  String get decagrams;
+
+  /// Hectograms weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Hectograms'**
+  String get hectograms;
+
+  /// Short tons weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Short tons'**
+  String get shortTons;
+
+  /// Foot-pounds energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Foot-pounds'**
+  String get footPounds;
+
+  /// Square millimeters area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Square millimeters'**
+  String get squareMillimeters;
+
+  /// Centimeters per second speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Centimeters per second'**
+  String get centimetersPerSecond;
+
+  /// Horsepower (US) power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Horsepower (US)'**
+  String get horsepowerUs;
+
+  /// Foot-pounds/minute power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Foot-pounds/minute'**
+  String get footPoundsPerMinute;
+
+  /// Nibbles data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Nibbles'**
+  String get nibbles;
+
+  /// Kilobits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kilobits'**
+  String get kilobits;
+
+  /// Kibibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Kibibits'**
+  String get kibibits;
+
+  /// Megabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Megabits'**
+  String get megabits;
+
+  /// Mebibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Mebibits'**
+  String get mebibits;
+
+  /// Gigabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gigabits'**
+  String get gigabits;
+
+  /// Gibibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gibibits'**
+  String get gibibits;
+
+  /// Terabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Terabits'**
+  String get terabits;
+
+  /// Tebibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Tebibits'**
+  String get tebibits;
+
+  /// Petabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Petabits'**
+  String get petabits;
+
+  /// Pebibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pebibits'**
+  String get pebibits;
+
+  /// Exabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Exabits'**
+  String get exabits;
+
+  /// Exbibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Exbibits'**
+  String get exbibits;
+
+  /// Zetabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Zetabits'**
+  String get zetabits;
+
+  /// Zebibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Zebibits'**
+  String get zebibits;
+
+  /// Yottabits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Yottabits'**
+  String get yottabits;
+
+  /// Yobibits data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Yobibits'**
+  String get yobibits;
+
+  /// Exabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Exabytes'**
+  String get exabytes;
+
+  /// Exbibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Exbibytes'**
+  String get exbibytes;
+
+  /// Zetabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Zetabytes'**
+  String get zetabytes;
+
+  /// Zebibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Zebibytes'**
+  String get zebibytes;
+
+  /// Yottabytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Yottabytes'**
+  String get yottabytes;
+
+  /// Yobibytes data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Yobibytes'**
+  String get yobibytes;
+
+  /// Teaspoons (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Teaspoons (US)'**
+  String get teaspoonsUs;
+
+  /// Tablespoons (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Tablespoons (US)'**
+  String get tablespoonsUs;
+
+  /// Fluid ounces (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Fluid ounces (US)'**
+  String get fluidOuncesUs;
+
+  /// Cups (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Cups (US)'**
+  String get cupsUs;
+
+  /// Pints (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pints (US)'**
+  String get pintsUs;
+
+  /// Quarts (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Quarts (US)'**
+  String get quartsUs;
+
+  /// Gallons (US) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gallons (US)'**
+  String get gallonsUs;
+
+  /// Teaspoons (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Teaspoons (UK)'**
+  String get teaspoonsUk;
+
+  /// Tablespoons (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Tablespoons (UK)'**
+  String get tablespoonsUk;
+
+  /// Fluid ounces (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Fluid ounces (UK)'**
+  String get fluidOuncesUk;
+
+  /// Pints (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pints (UK)'**
+  String get pintsUk;
+
+  /// Quarts (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Quarts (UK)'**
+  String get quartsUk;
+
+  /// Gallons (UK) volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Gallons (UK)'**
+  String get gallonsUk;
+
+  /// Coffee cups volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Coffee cups'**
+  String get coffeeCups;
+
+  /// Bathtubs volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Bathtubs'**
+  String get bathtubs;
+
+  /// Swimming pools volume unit
+  ///
+  /// In en, this message translates to:
+  /// **'Swimming pools'**
+  String get swimmingPools;
+
+  /// Paperclips whimsical length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Paperclips'**
+  String get paperclips;
+
+  /// Hands whimsical length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Hands'**
+  String get handsWhimsical;
+
+  /// Jumbo jets whimsical length unit
+  ///
+  /// In en, this message translates to:
+  /// **'Jumbo jets'**
+  String get jumboJets;
+
+  /// Snowflakes whimsical weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Snowflakes'**
+  String get snowflakes;
+
+  /// Soccer balls whimsical weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Soccer balls'**
+  String get soccerBalls;
+
+  /// Elephants whimsical weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Elephants'**
+  String get elephants;
+
+  /// Whales whimsical weight unit
+  ///
+  /// In en, this message translates to:
+  /// **'Whales'**
+  String get whales;
+
+  /// Batteries whimsical energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Batteries'**
+  String get batteries;
+
+  /// Bananas whimsical energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Bananas'**
+  String get bananas;
+
+  /// Slices of cake whimsical energy unit
+  ///
+  /// In en, this message translates to:
+  /// **'Slices of cake'**
+  String get slicesOfCake;
+
+  /// Hands whimsical area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Hands'**
+  String get handsArea;
+
+  /// Papers whimsical area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Papers'**
+  String get papers;
+
+  /// Soccer fields whimsical area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Soccer fields'**
+  String get soccerFields;
+
+  /// Castles whimsical area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Castles'**
+  String get castles;
+
+  /// Pyeong whimsical area unit
+  ///
+  /// In en, this message translates to:
+  /// **'Pyeong'**
+  String get pyeong;
+
+  /// Turtles whimsical speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Turtles'**
+  String get turtles;
+
+  /// Horses whimsical speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Horses'**
+  String get horsesWhimsical;
+
+  /// Jets whimsical speed unit
+  ///
+  /// In en, this message translates to:
+  /// **'Jets'**
+  String get jets;
+
+  /// Light bulbs whimsical power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Light bulbs'**
+  String get lightBulbs;
+
+  /// Horses whimsical power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Horses'**
+  String get horsesPower;
+
+  /// Train engines whimsical power unit
+  ///
+  /// In en, this message translates to:
+  /// **'Train engines'**
+  String get trainEngines;
+
+  /// Floppy disks whimsical data unit
+  ///
+  /// In en, this message translates to:
+  /// **'Floppy disks'**
+  String get floppyDisks;
+
+  /// CDs whimsical data unit
+  ///
+  /// In en, this message translates to:
+  /// **'CDs'**
+  String get cds;
+
+  /// DVDs whimsical data unit
+  ///
+  /// In en, this message translates to:
+  /// **'DVDs'**
+  String get dvds;
 }
 
 class _AppLocalizationsDelegate

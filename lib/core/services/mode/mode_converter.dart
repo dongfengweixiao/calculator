@@ -17,6 +17,16 @@ class ModeConverter {
       case ViewMode.dateCalculation:
       case ViewMode.volumeConverter:
       case ViewMode.temperatureConverter:
+      case ViewMode.lengthConverter:
+      case ViewMode.weightConverter:
+      case ViewMode.energyConverter:
+      case ViewMode.areaConverter:
+      case ViewMode.speedConverter:
+      case ViewMode.timeConverter:
+      case ViewMode.powerConverter:
+      case ViewMode.dataConverter:
+      case ViewMode.pressureConverter:
+      case ViewMode.angleConverter:
         // These modes don't use calculator engine, return standard mode
         return CalculatorMode.standard;
     }

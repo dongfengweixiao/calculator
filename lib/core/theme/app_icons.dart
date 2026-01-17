@@ -51,7 +51,7 @@ class CalculatorIcons {
   static const IconData random = IconData(0xE970, fontFamily: _fontFamily);
 
   /// Weight and mass converter
-  static const IconData weight = IconData(0xE713, fontFamily: _fontFamily);
+  static const IconData weight = IconData(0xF4C1, fontFamily: _fontFamily);
 
   /// Settings
   static const IconData settings = IconData(0xE71B, fontFamily: _fontFamily);
@@ -60,7 +60,7 @@ class CalculatorIcons {
   static const IconData volume = IconData(0xF1AA, fontFamily: _fontFamily);
 
   /// Data converter
-  static const IconData data = IconData(0xE72C, fontFamily: _fontFamily);
+  static const IconData data = IconData(0xF20F, fontFamily: _fontFamily);
 
   /// Full keypad
   static const IconData fullKeypad = IconData(0xE75F, fontFamily: _fontFamily);
@@ -81,13 +81,13 @@ class CalculatorIcons {
   static const IconData history = IconData(0xE81C, fontFamily: _fontFamily);
 
   /// Time converter
-  static const IconData time = IconData(0xE823, fontFamily: _fontFamily);
+  static const IconData time = IconData(0xE917, fontFamily: _fontFamily);
 
   /// Standard calculator
   static const IconData standardCalculator = IconData(0xE8EF, fontFamily: _fontFamily);
 
   /// Speed converter
-  static const IconData speed = IconData(0xE8B7, fontFamily: _fontFamily);
+  static const IconData speed = IconData(0xEADA, fontFamily: _fontFamily);
 
   /// Currency converter
   static const IconData currency = IconData(0xEB0D, fontFamily: _fontFamily);
@@ -105,7 +105,7 @@ class CalculatorIcons {
   static const IconData programmerCalculator = IconData(0xECCE, fontFamily: _fontFamily);
 
   /// Angle converter
-  static const IconData angle = IconData(0xF20F, fontFamily: _fontFamily);
+  static const IconData angle = IconData(0xF515, fontFamily: _fontFamily);
 
   /// Memory recall (MR)
   static const IconData memoryRecall = IconData(0xF753, fontFamily: _fontFamily);

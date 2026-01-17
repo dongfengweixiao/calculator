@@ -185,6 +185,10 @@ class UnitConverterService {
     final units = <ConverterUnit>[];
     final unitCount = unit_converter_get_unit_count(_converter!);
 
+    // Debug: Print all units for this category
+    final categoryId = unit_converter_get_current_category(_converter!);
+    print('=== Units in Category $categoryId ===');
+
     for (int i = 0; i < unitCount; i++) {
       final nameBuffer = calloc<Char>(256);
       final abbrBuffer = calloc<Char>(64);
@@ -209,6 +213,12 @@ class UnitConverterService {
         final isWhimsicalInt = unit_converter_is_unit_whimsical(_converter!, i);
         final isWhimsical = isWhimsicalInt != 0;
 
+        final name = nameBuffer.cast<Utf8>().toDartString(length: nameLength);
+        final abbr = abbrBuffer.cast<Utf8>().toDartString(length: abbrLength);
+
+        // Debug print
+        print('  Unit ID: $id, Name: "$name", Abbr: "$abbr", IsWhimsical: $isWhimsical');
+
         // Skip whimsical units - they shouldn't appear in dropdown menus
         if (isWhimsical) {
           continue;
@@ -216,8 +226,8 @@ class UnitConverterService {
 
         units.add(ConverterUnit(
           id: id,
-          name: nameBuffer.cast<Utf8>().toDartString(length: nameLength),
-          abbreviation: abbrBuffer.cast<Utf8>().toDartString(length: abbrLength),
+          name: name,
+          abbreviation: abbr,
           isWhimsical: isWhimsical,
         ));
       } finally {
@@ -226,6 +236,7 @@ class UnitConverterService {
       }
     }
 
+    print('=====================================\n');
     return units;
   }
 
@@ -451,13 +462,45 @@ class UnitConverterService {
 
   /// Check if a unit is whimsical based on its ID
   bool _isUnitWhimsical(int unitId) {
-    // Volume whimsical unit IDs from UnitIcons
+    // Whimsical unit IDs from UnitIcons
     const whimsicalUnitIds = {
+      // Length whimsical units
+      129, // Banana
+      130, // Cake
+      180, // Paperclips
+      181, // Hands
+      182, // Jumbo jets
+      // Weight and Mass whimsical units
+      280, // Snowflakes
+      281, // Soccer balls
+      282, // Elephants
+      283, // Whales
+      // Energy whimsical units
+      480, // Batteries
+      481, // Bananas
+      482, // Dolphins
+      // Area whimsical units
+      580, // Hands
+      581, // Papers
+      582, // Soccer fields
+      583, // Castles
+      584, // Pyeong
+      // Speed whimsical units
+      680, // Turtles
+      681, // Horses
+      682, // Jets
+      // Power whimsical units
+      780, // Light bulbs
+      781, // Horses
+      782, // Jets
+      // Data whimsical units
+      880, // Floppy disks
+      881, // CDs
+      882, // DVDs
+      // Volume whimsical units
       1220, // CoffeeCup (Metric cup)
       1221, // Bathtub
       1222, // SwimmingPool
-      // Length whimsical units would be here if needed
-      // 129, 130, // Banana, Cake (from engine test)
     };
     return whimsicalUnitIds.contains(unitId);
   }
