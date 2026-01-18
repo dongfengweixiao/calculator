@@ -7,6 +7,7 @@ import '../../features/calculators/scientific_calculator_page.dart';
 import '../../features/calculators/programmer_calculator_page.dart';
 import '../../features/calculators/date_calculation_page.dart';
 import '../../features/converters/unit_converter_page.dart';
+import '../../features/settings/keyboard_shortcuts_page.dart';
 import '../../core/config/converter_configs.dart';
 
 part 'app_router.g.dart';
@@ -118,6 +119,21 @@ GoRouter appRouter(Ref ref) {
               );
             },
           ),
+
+          // ====================================================================
+          // Settings Routes
+          // ====================================================================
+
+          /// Keyboard shortcuts settings
+          GoRoute(
+            path: '/settings/keyboard-shortcuts',
+            name: 'keyboardShortcuts',
+            pageBuilder: (context, state) => _noTransitionPage(
+              key: state.pageKey,
+              child: const KeyboardShortcutsPage(),
+            ),
+          ),
+
         ],
       ),
 

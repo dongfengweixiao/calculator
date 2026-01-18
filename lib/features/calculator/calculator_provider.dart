@@ -82,6 +82,9 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
     );
   }
 
+  /// Expose the calculator service for advanced usage
+  CalculatorService get service => _service;
+
   List<String> _getMemoryItems() {
     final count = _service.getMemoryCount();
     final items = <String>[];

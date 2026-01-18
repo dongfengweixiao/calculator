@@ -401,4 +401,24 @@ class CalculatorService {
     if (!_isInitialized) return 0;
     return calculator_get_parenthesis_count(_calculator!);
   }
+
+  // ============================================================================
+  // Scientific Mode - Angle Type
+  // ============================================================================
+
+  /// Get the current angle type (DEG=0, RAD=1, GRAD=2)
+  int getAngleType() {
+    if (!_isInitialized) return 0; // Default to DEG
+    return calculator_get_angle_type(_calculator!);
+  }
+
+  // ============================================================================
+  // Programmer Mode - Word Width
+  // ============================================================================
+
+  /// Get the current word width (QWORD=0, DWORD=1, WORD=2, BYTE=3)
+  int getWordWidth() {
+    if (!_isInitialized) return 1; // Default to DWORD
+    return calculator_get_word_width(_calculator!);
+  }
 }

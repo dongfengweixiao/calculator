@@ -328,6 +328,11 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
     }
   }
 
+  /// Set word size directly
+  void setWordSize(WordSize wordSize) {
+    state = state.copyWith(wordSize: wordSize);
+  }
+
   /// Toggle input mode
   void toggleInputMode() {
     final newMode = state.inputMode == ProgrammerInputMode.fullKeypad

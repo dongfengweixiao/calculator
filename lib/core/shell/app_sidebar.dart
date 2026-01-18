@@ -46,7 +46,36 @@ class AppSidebar extends ConsumerWidget {
               ),
             ),
           ),
+          // Fixed settings entry at the bottom
+          _buildSettingsEntry(context, theme, currentLocation),
         ],
+      ),
+    );
+  }
+
+  /// Build the fixed settings entry at the bottom of sidebar
+  Widget _buildSettingsEntry(
+    BuildContext context,
+    CalculatorTheme theme,
+    Uri currentLocation,
+  ) {
+    final isSettingsSelected = currentLocation.path == '/settings/keyboard-shortcuts';
+
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: theme.textSecondary.withValues(alpha: 0.1),
+            width: 1,
+          ),
+        ),
+      ),
+      child: _SidebarNavItem(
+        icon: Icons.settings_outlined,
+        label: 'Keyboard Shortcuts',
+        isSelected: isSettingsSelected,
+        theme: theme,
+        onTap: () => context.go('/settings/keyboard-shortcuts'),
       ),
     );
   }

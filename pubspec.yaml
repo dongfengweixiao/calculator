@@ -37,7 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   ffi: ^2.1.5
-  wincalc_engine: ^0.0.7
+  wincalc_engine:
+    path: ../wincalc_engine
 
   # State management
   flutter_riverpod: ^3.1.0
@@ -55,6 +56,11 @@ dependencies:
   logging: ^1.3.0
   go_router: ^17.0.1
   riverpod_annotation: ^4.0.0
+  hotkey_manager: ^0.2.3
+
+dependency_overrides: 
+  hotkey_manager_linux:
+    path: ../hotkey_manager/packages/hotkey_manager_linux
 
 dev_dependencies:
   flutter_test:
