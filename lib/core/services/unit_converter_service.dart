@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:wincalc_engine/wincalc_engine.dart';
+import 'package:logging/logging.dart';
 
 /// Unit data model from the native converter
 class ConverterUnit {
@@ -35,6 +36,8 @@ class ConverterCategory {
 
 /// Simple unit converter service - follows Microsoft Calculator architecture
 class UnitConverterService {
+  static final log = Logger('UnitConverterService');
+
   Pointer<UnitConverterInstance>? _converter;
   bool _isInitialized = false;
 
@@ -187,7 +190,7 @@ class UnitConverterService {
 
     // Debug: Print all units for this category
     final categoryId = unit_converter_get_current_category(_converter!);
-    print('=== Units in Category $categoryId ===');
+    log.fine('=== Units in Category $categoryId ===');
 
     for (int i = 0; i < unitCount; i++) {
       final nameBuffer = calloc<Char>(256);
@@ -217,7 +220,7 @@ class UnitConverterService {
         final abbr = abbrBuffer.cast<Utf8>().toDartString(length: abbrLength);
 
         // Debug print
-        print('  Unit ID: $id, Name: "$name", Abbr: "$abbr", IsWhimsical: $isWhimsical');
+        log.fine('  Unit ID: $id, Name: "$name", Abbr: "$abbr", IsWhimsical: $isWhimsical');
 
         // Skip whimsical units - they shouldn't appear in dropdown menus
         if (isWhimsical) {
@@ -236,7 +239,7 @@ class UnitConverterService {
       }
     }
 
-    print('=====================================\n');
+    log.fine('=====================================\n');
     return units;
   }
 

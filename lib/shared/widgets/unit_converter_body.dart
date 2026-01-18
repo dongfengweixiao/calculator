@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 import '../theme/theme_provider.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/services/unit_converter_service.dart';
@@ -59,6 +60,8 @@ class UnitConverterBody extends ConsumerStatefulWidget {
 }
 
 class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
+  static final _log = Logger('UnitConverterBody');
+
   // ===== Core State =====
 
   /// Which field is currently active (receiving input)
@@ -165,18 +168,18 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
       _suggestedValues = _converter.getSuggestedValues();
 
       // Debug: Print suggested values info
-      print('=== Suggested values debug info ===');
-      print('Category ID: ${widget.config.categoryId}');
-      print('Total suggested values: ${_suggestedValues.length}');
+      _log.fine('=== Suggested values debug info ===');
+      _log.fine('Category ID: ${widget.config.categoryId}');
+      _log.fine('Total suggested values: ${_suggestedValues.length}');
 
       for (final sv in _suggestedValues) {
         final valueNum = sv['valueNum'] as double;
         final isWhimsical = sv['isWhimsical'] as bool;
         final unitName = sv['unit'] as String;
         final unitId = sv['unitId'] as int;
-        print('  Unit: $unitName (id: $unitId), Value: ${sv['value']}, ValueNum: $valueNum, IsWhimsical: $isWhimsical');
+        _log.fine('  Unit: $unitName (id: $unitId), Value: ${sv['value']}, ValueNum: $valueNum, IsWhimsical: $isWhimsical');
       }
-      print('=====================================\n');
+      _log.fine('=====================================\n');
     });
   }
 
