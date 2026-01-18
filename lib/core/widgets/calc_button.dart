@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/app_theme.dart';
 import '../theme/app_font_sizes.dart';
 import '../theme/app_dimensions.dart';
-import '../../shared/theme/theme_provider.dart';
+import '../../extensions/extensions.dart';
 
 /// Unified calculator button widget for all calculator modes
 ///
@@ -58,7 +58,7 @@ class _CalcButtonState extends ConsumerState<CalcButton> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ref.watch(calculatorThemeProvider);
+    final theme = context.theme;
     final backgroundColor = theme.getButtonBackground(
       widget.type,
       _buttonState,

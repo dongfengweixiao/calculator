@@ -449,14 +449,20 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
 
   /// Recall history result at index (loads the result into display)
   void recallHistory(int index) {
-    // For now, just get the result and set it as current value
-    // A more complete implementation would use the C API if available
     final items = state.historyItems;
-    if (index >= 0 && index < items.length) {
-      // The result is just displayed - user can use it in calculations
-      // Note: This is a simple implementation; actual Microsoft Calculator
-      // has more complex history recall behavior
+
+    // Validate index
+    if (index < 0 || index >= items.length) {
+      return;
     }
+
+    // No index conversion needed - UI and Engine use the same index direction
+    // Engine stores history in order: [0]=oldest, [n]=newest
+    // UI displays history in reverse order: item[0]=newest (engine[n]), item[n]=oldest (engine[0])
+    // But the loadHistoryAt API expects the same index that the UI uses
+    _service.loadHistoryAt(index);
+
+    // Update UI state to reflect engine changes
     state = _updateState();
   }
 
@@ -475,6 +481,24 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
 
   /// Get result in binary (for programmer mode)
   String getResultBin() => _service.getResultBin();
+
+  // ============================================================================
+  // Bit Flip Operations (Programmer Mode)
+  // ============================================================================
+
+  /// Toggle a specific bit (0-63) in programmer mode
+  /// Following Microsoft Calculator architecture:
+  /// - Uses engine's calc_cmd_binpos function to get correct command code
+  /// - Engine handles bit toggling internally
+  /// - Updates all radix displays (HEX/DEC/OCT/BIN)
+  void toggleBit(int bitNumber) {
+    if (bitNumber < 0 || bitNumber > 63) {
+      throw ArgumentError('Bit number must be between 0 and 63');
+    }
+    // Use engine's function to get the correct bit position command
+    final command = _service.getBitPositionCommand(bitNumber);
+    sendCommand(command);
+  }
 }
 
 /// Calculator provider

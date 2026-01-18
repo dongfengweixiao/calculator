@@ -1039,5 +1039,121 @@
   "dvds": "DVDs",
   "@dvds": {
     "description": "DVDs whimsical data unit"
+  },
+  "settingsMode": "Settings",
+  "@settingsMode": {
+    "description": "Name for the settings page"
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title for the settings page"
+  },
+  "settingsPlaceholder": "Settings functionality coming soon...",
+  "@settingsPlaceholder": {
+    "description": "Placeholder text for the settings page"
+  },
+  "themeMode": "Theme",
+  "@themeMode": {
+    "description": "Theme mode setting label"
+  },
+  "themeLight": "Light",
+  "@themeLight": {
+    "description": "Light theme mode option"
+  },
+  "themeDark": "Dark",
+  "@themeDark": {
+    "description": "Dark theme mode option"
+  },
+  "themeSystem": "System",
+  "@themeSystem": {
+    "description": "System theme mode option (follow system theme)"
+  },
+  "settingsGeneral": "General",
+  "@settingsGeneral": {
+    "description": "General settings section title"
+  },
+  "settingsAbout": "About",
+  "@settingsAbout": {
+    "description": "About section title"
+  },
+  "settingsAppNameLabel": "App Name",
+  "@settingsAppNameLabel": {
+    "description": "Application name label"
+  },
+  "settingsAppName": "Calculator",
+  "@settingsAppName": {
+    "description": "Application name"
+  },
+  "settingsAppVersionLabel": "Version",
+  "@settingsAppVersionLabel": {
+    "description": "Application version label"
+  },
+  "settingsAppVersion": "v0.9.0",
+  "@settingsAppVersion": {
+    "description": "Application version number"
+  },
+  "settingsCopyright": "© 2025 Calculator Project. All rights reserved.",
+  "@settingsCopyright": {
+    "description": "Copyright information"
+  },
+  "settingsFeedback": "Feedback",
+  "@settingsFeedback": {
+    "description": "Feedback section title"
+  },
+  "settingsSendEmail": "Send Email",
+  "@settingsSendEmail": {
+    "description": "Send email option"
+  },
+  "settingsSubmitTicket": "Submit Ticket",
+  "@settingsSubmitTicket": {
+    "description": "Submit ticket option"
+  },
+  "settingsPrivacy": "Privacy",
+  "@settingsPrivacy": {
+    "description": "Privacy section title"
+  },
+  "settingsPrivacyContent": "We respect and protect your privacy:\n\n• No personal information is collected\n• No data is transmitted over the network\n• All data is stored locally on your device\n• No third-party tracking tools are used",
+  "@settingsPrivacyContent": {
+    "description": "Privacy policy content"
+  },
+  "settingsAcknowledgements": "Acknowledgements",
+  "@settingsAcknowledgements": {
+    "description": "Acknowledgements section title"
+  },
+  "settingsAcknowledgementsContent": "This project is based on the following open source projects:\n• Flutter - Cross-platform UI framework\n• wincalc_engine - Windows Calculator engine\n• Riverpod - State management\n• go_router - Routing management",
+  "@settingsAcknowledgementsContent": {
+    "description": "Acknowledgements content"
+  },
+  "settingsIconSource": "App Icon",
+  "@settingsIconSource": {
+    "description": "App icon source label"
+  },
+  "settingsIconSourceContent": "Thanks to",
+  "@settingsIconSourceContent": {
+    "description": "App icon source content prefix"
+  },
+  "settingsIconSourceLink": "Streamline Icons",
+  "@settingsIconSourceLink": {
+    "description": "Streamline Icons brand name"
+  },
+  "settingsIconSourceSuffix": "for the beautiful icon",
+  "@settingsIconSourceSuffix": {
+    "description": "App icon source content suffix"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "languageSystem": "Follow System",
+  "@languageSystem": {
+    "description": "Language option to follow system setting"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language option"
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinese language option"
   }
 }

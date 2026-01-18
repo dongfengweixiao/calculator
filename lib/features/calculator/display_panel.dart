@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'calculator_provider.dart';
-import '../../shared/theme/theme_provider.dart';
 import '../../core/theme/app_font_sizes.dart';
 import '../../core/theme/app_colors.dart';
+import '../../extensions/extensions.dart';
 
 /// Calculator display panel
 class DisplayPanel extends ConsumerWidget {
@@ -12,12 +12,11 @@ class DisplayPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final calculatorState = ref.watch(calculatorProvider);
-    final theme = ref.watch(calculatorThemeProvider);
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-      color: theme.background,
+      color: context.theme.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -29,7 +28,7 @@ class DisplayPanel extends ConsumerWidget {
               calculatorState.expression,
               style: TextStyle(
                 fontSize: CalculatorFontSizes.numeric16,
-                color: theme.textSecondary,
+                color: context.theme.textSecondary,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -49,7 +48,7 @@ class DisplayPanel extends ConsumerWidget {
                   fontWeight: FontWeight.w300,
                   color: calculatorState.hasError
                       ? CalculatorDarkColors.textError
-                      : theme.textPrimary,
+                      : context.theme.textPrimary,
                 ),
                 maxLines: 1,
                 textAlign: TextAlign.right,

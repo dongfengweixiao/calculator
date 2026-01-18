@@ -782,4 +782,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dvds => 'DVDs';
+
+  @override
+  String get settingsMode => 'Settings';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsPlaceholder => 'Settings functionality coming soon...';
+
+  @override
+  String get themeMode => 'Theme';
+
+  @override
+  String get themeLight => 'Light';
+
+  @override
+  String get themeDark => 'Dark';
+
+  @override
+  String get themeSystem => 'System';
+
+  @override
+  String get settingsGeneral => 'General';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get settingsAppNameLabel => 'App Name';
+
+  @override
+  String get settingsAppName => 'Calculator';
+
+  @override
+  String get settingsAppVersionLabel => 'Version';
+
+  @override
+  String get settingsAppVersion => 'v0.9.0';
+
+  @override
+  String get settingsCopyright =>
+      '© 2025 Calculator Project. All rights reserved.';
+
+  @override
+  String get settingsFeedback => 'Feedback';
+
+  @override
+  String get settingsSendEmail => 'Send Email';
+
+  @override
+  String get settingsSubmitTicket => 'Submit Ticket';
+
+  @override
+  String get settingsPrivacy => 'Privacy';
+
+  @override
+  String get settingsPrivacyContent =>
+      'We respect and protect your privacy:\n\n• No personal information is collected\n• No data is transmitted over the network\n• All data is stored locally on your device\n• No third-party tracking tools are used';
+
+  @override
+  String get settingsAcknowledgements => 'Acknowledgements';
+
+  @override
+  String get settingsAcknowledgementsContent =>
+      'This project is based on the following open source projects:\n• Flutter - Cross-platform UI framework\n• wincalc_engine - Windows Calculator engine\n• Riverpod - State management\n• go_router - Routing management';
+
+  @override
+  String get settingsIconSource => 'App Icon';
+
+  @override
+  String get settingsIconSourceContent => 'Thanks to';
+
+  @override
+  String get settingsIconSourceLink => 'Streamline Icons';
+
+  @override
+  String get settingsIconSourceSuffix => 'for the beautiful icon';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get languageSystem => 'Follow System';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageChinese => '中文';
 }

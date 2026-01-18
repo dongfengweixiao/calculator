@@ -1,21 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
+import '../../core/services/persistence/preferences_service.dart';
 
-/// Theme mode (light, dark, system)
-enum ThemeMode { light, dark, system }
+/// App theme mode (light, dark, system)
+enum AppThemeMode { light, dark, system }
+
+/// Extension to convert AppThemeMode to Flutter's ThemeMode
+extension AppThemeModeX on AppThemeMode {
+  ThemeMode toFlutterThemeMode() {
+    switch (this) {
+      case AppThemeMode.light:
+        return ThemeMode.light;
+      case AppThemeMode.dark:
+        return ThemeMode.dark;
+      case AppThemeMode.system:
+        return ThemeMode.system;
+    }
+  }
+}
 
 /// Theme state
 class ThemeState {
-  final ThemeMode mode;
+  final AppThemeMode mode;
   final CalculatorTheme theme;
 
   const ThemeState({
-    this.mode = ThemeMode.dark,
+    this.mode = AppThemeMode.dark,
     this.theme = CalculatorTheme.dark,
   });
 
-  ThemeState copyWith({ThemeMode? mode, CalculatorTheme? theme}) {
+  ThemeState copyWith({AppThemeMode? mode, CalculatorTheme? theme}) {
     return ThemeState(mode: mode ?? this.mode, theme: theme ?? this.theme);
   }
 }
@@ -24,31 +39,44 @@ class ThemeState {
 class ThemeNotifier extends Notifier<ThemeState> {
   @override
   ThemeState build() {
-    return const ThemeState();
+    // Load saved theme mode from persistence
+    final savedMode = _loadThemeMode();
+    return ThemeState(mode: savedMode, theme: _getThemeForMode(savedMode));
+  }
+
+  /// Load theme mode from persistence
+  AppThemeMode _loadThemeMode() {
+    final savedMode = PreferencesService.getThemeMode();
+    return savedMode ?? AppThemeMode.dark;
+  }
+
+  /// Get theme for a given mode
+  CalculatorTheme _getThemeForMode(AppThemeMode mode) {
+    switch (mode) {
+      case AppThemeMode.light:
+        return CalculatorTheme.light;
+      case AppThemeMode.dark:
+        return CalculatorTheme.dark;
+      case AppThemeMode.system:
+        // For system mode, we'll determine the actual theme based on platform brightness
+        // The actual theme will be resolved by MaterialApp.themeMode
+        return CalculatorTheme.dark; // Default fallback
+    }
   }
 
   /// Set theme mode
-  void setThemeMode(ThemeMode mode) {
-    CalculatorTheme theme;
-    switch (mode) {
-      case ThemeMode.light:
-        theme = CalculatorTheme.light;
-      case ThemeMode.dark:
-        theme = CalculatorTheme.dark;
-      case ThemeMode.system:
-        // For now, default to dark
-        theme = CalculatorTheme.dark;
-    }
-    state = ThemeState(mode: mode, theme: theme);
+  void setThemeMode(AppThemeMode mode) {
+    // Save to persistence
+    PreferencesService.setThemeMode(mode);
+
+    // Update state
+    state = ThemeState(mode: mode, theme: _getThemeForMode(mode));
   }
 
-  /// Toggle between light and dark
+  /// Toggle between light and dark (ignoring system mode)
   void toggleTheme() {
-    if (state.mode == ThemeMode.dark) {
-      setThemeMode(ThemeMode.light);
-    } else {
-      setThemeMode(ThemeMode.dark);
-    }
+    final newMode = state.mode == AppThemeMode.dark ? AppThemeMode.light : AppThemeMode.dark;
+    setThemeMode(newMode);
   }
 }
 
@@ -65,4 +93,9 @@ final calculatorThemeProvider = Provider<CalculatorTheme>((ref) {
 /// Convenience provider for Flutter's Brightness
 final brightnessProvider = Provider<Brightness>((ref) {
   return ref.watch(themeProvider).theme.brightness;
+});
+
+/// Provider for Flutter's ThemeMode (used in MaterialApp)
+final flutterThemeModeProvider = Provider<ThemeMode>((ref) {
+  return ref.watch(themeProvider).mode.toFlutterThemeMode();
 });

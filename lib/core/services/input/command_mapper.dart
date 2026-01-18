@@ -71,15 +71,15 @@ class CommandMapper {
   static int mapMemoryOperationToCommand(String operation) {
     switch (operation.toUpperCase()) {
       case 'MC':
-        return CalculatorCommands.CMD_MEMORY_CLEAR;
+        return CalculatorCommands.CMD_MC;
       case 'MR':
-        return CalculatorCommands.CMD_MEMORY_RECALL;
+        return CalculatorCommands.CMD_MR;
       case 'M+':
-        return CalculatorCommands.CMD_MEMORY_ADD;
+        return CalculatorCommands.CMD_MPLUS;
       case 'M-':
-        return CalculatorCommands.CMD_MEMORY_SUBTRACT;
+        return CalculatorCommands.CMD_MMINUS;
       case 'MS':
-        return CalculatorCommands.CMD_MEMORY_STORE;
+        return CalculatorCommands.CMD_MS;
       default:
         throw ArgumentError('Unknown memory operation: $operation');
     }

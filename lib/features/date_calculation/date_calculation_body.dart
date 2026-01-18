@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import '../../shared/theme/theme_provider.dart';
-import '../../core/theme/app_theme.dart';
-import '../../l10n/app_localizations.dart';
+import '../../extensions/extensions.dart';
 
 /// Date calculation mode
 enum DateCalculationMode {
@@ -55,31 +53,28 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ref.watch(calculatorThemeProvider);
-    final l10n = AppLocalizations.of(context);
-
     return Scaffold(
-      backgroundColor: theme.background,
+      backgroundColor: context.theme.background,
       body: Column(
         children: [
           // Header with hamburger button and title
-          _buildHeader(theme, l10n),
+          _buildHeader(context),
 
           // Mode selector
-          _buildModeSelector(theme, l10n),
+          _buildModeSelector(context),
 
           // Content
           Expanded(
             child: _mode == DateCalculationMode.dateDifference
-                ? _buildDateDifferenceContent(theme, l10n)
-                : _buildAddSubtractContent(theme, l10n),
+                ? _buildDateDifferenceContent(context)
+                : _buildAddSubtractContent(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildHeader(CalculatorTheme theme, AppLocalizations l10n) {
+  Widget _buildHeader(BuildContext context) {
     return SizedBox(
       height: 48,
       child: Row(
@@ -93,7 +88,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
               alignment: Alignment.center,
               child: Icon(
                 Icons.menu,
-                color: theme.textPrimary,
+                color: context.theme.textPrimary,
                 size: 20,
               ),
             ),
@@ -101,9 +96,9 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
           // Title
           Expanded(
             child: Text(
-              l10n.dateCalculationTitle,
+              context.l10n.dateCalculationTitle,
               style: TextStyle(
-                color: theme.textPrimary,
+                color: context.theme.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -114,15 +109,13 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
     );
   }
 
-  Widget _buildModeSelector(CalculatorTheme theme, AppLocalizations l10n) {
+  Widget _buildModeSelector(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
           Expanded(
             child: _ModeSelector(
-              theme: theme,
-              l10n: l10n,
               selectedMode: _mode,
               onModeSelected: (mode) {
                 setState(() {
@@ -136,8 +129,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
     );
   }
 
-  Widget _buildDateDifferenceContent(CalculatorTheme theme, AppLocalizations l10n) {
-    final differenceResult = _calculateDateDifference(l10n);
+  Widget _buildDateDifferenceContent(BuildContext context) {
+    final differenceResult = _calculateDateDifference(context);
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -146,9 +139,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
         children: [
           // From date picker
           _buildDatePicker(
-            theme: theme,
-            l10n: l10n,
-            label: l10n.fromDate,
+            context: context,
+            label: context.l10n.fromDate,
             date: _fromDate,
             onDateChanged: (date) {
               setState(() {
@@ -160,9 +152,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
 
           // To date picker
           _buildDatePicker(
-            theme: theme,
-            l10n: l10n,
-            label: l10n.toDate,
+            context: context,
+            label: context.l10n.toDate,
             date: _toDate,
             onDateChanged: (date) {
               setState(() {
@@ -174,9 +165,9 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
 
           // Result
           Text(
-            l10n.difference,
+            context.l10n.difference,
             style: TextStyle(
-              color: theme.textSecondary,
+              color: context.theme.textSecondary,
               fontSize: 14,
             ),
           ),
@@ -184,7 +175,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
           Text(
             differenceResult.formattedDifference,
             style: TextStyle(
-              color: theme.textPrimary,
+              color: context.theme.textPrimary,
               fontSize: 28,
               fontWeight: FontWeight.w600,
             ),
@@ -193,7 +184,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
           Text(
             differenceResult.totalDays,
             style: TextStyle(
-              color: theme.textSecondary,
+              color: context.theme.textSecondary,
               fontSize: 18,
             ),
           ),
@@ -202,7 +193,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
     );
   }
 
-  Widget _buildAddSubtractContent(CalculatorTheme theme, AppLocalizations l10n) {
+  Widget _buildAddSubtractContent(BuildContext context) {
     final resultDate = _calculateAddSubtractDate();
 
     return Container(
@@ -212,9 +203,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
         children: [
           // Start date picker
           _buildDatePicker(
-            theme: theme,
-            l10n: l10n,
-            label: l10n.startDate,
+            context: context,
+            label: context.l10n.startDate,
             date: _startDate,
             onDateChanged: (date) {
               setState(() {
@@ -229,12 +219,12 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
             segments: [
               ButtonSegment(
                 value: true,
-                label: Text(l10n.add),
+                label: Text(context.l10n.add),
                 icon: const Icon(Icons.add),
               ),
               ButtonSegment(
                 value: false,
-                label: Text(l10n.subtract),
+                label: Text(context.l10n.subtract),
                 icon: const Icon(Icons.remove),
               ),
             ],
@@ -247,15 +237,15 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.resolveWith((states) {
                 if (states.contains(WidgetState.selected)) {
-                  return theme.accentColor;
+                  return context.theme.accentColor;
                 }
-                return theme.background;
+                return context.theme.background;
               }),
               foregroundColor: WidgetStateProperty.resolveWith((states) {
                 if (states.contains(WidgetState.selected)) {
-                  return theme.background;
+                  return context.theme.background;
                 }
-                return theme.textPrimary;
+                return context.theme.textPrimary;
               }),
             ),
           ),
@@ -267,9 +257,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
             children: [
               Expanded(
                 child: _buildOffsetSelector(
-                  theme: theme,
-                  l10n: l10n,
-                  label: l10n.years,
+                  context: context,
+                  label: context.l10n.years,
                   value: _yearsOffset,
                   onChanged: (value) {
                     setState(() {
@@ -281,9 +270,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
               const SizedBox(width: 16),
               Expanded(
                 child: _buildOffsetSelector(
-                  theme: theme,
-                  l10n: l10n,
-                  label: l10n.months,
+                  context: context,
+                  label: context.l10n.months,
                   value: _monthsOffset,
                   onChanged: (value) {
                     setState(() {
@@ -295,9 +283,8 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
               const SizedBox(width: 16),
               Expanded(
                 child: _buildOffsetSelector(
-                  theme: theme,
-                  l10n: l10n,
-                  label: l10n.days,
+                  context: context,
+                  label: context.l10n.days,
                   value: _daysOffset,
                   onChanged: (value) {
                     setState(() {
@@ -312,9 +299,9 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
 
           // Result
           Text(
-            l10n.result,
+            context.l10n.result,
             style: TextStyle(
-              color: theme.textSecondary,
+              color: context.theme.textSecondary,
               fontSize: 14,
             ),
           ),
@@ -322,7 +309,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
           Text(
             DateFormat('yyyy-MM-dd').format(resultDate),
             style: TextStyle(
-              color: theme.textPrimary,
+              color: context.theme.textPrimary,
               fontSize: 28,
               fontWeight: FontWeight.w600,
             ),
@@ -333,8 +320,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
   }
 
   Widget _buildDatePicker({
-    required CalculatorTheme theme,
-    required AppLocalizations l10n,
+    required BuildContext context,
     required String label,
     required DateTime? date,
     required ValueChanged<DateTime> onDateChanged,
@@ -345,7 +331,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
         Text(
           label,
           style: TextStyle(
-            color: theme.textSecondary,
+            color: context.theme.textSecondary,
             fontSize: 14,
           ),
         ),
@@ -365,21 +351,21 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
           child: Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              border: Border.all(color: theme.divider),
+              border: Border.all(color: context.theme.divider),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Row(
               children: [
                 Icon(
                   Icons.calendar_today,
-                  color: theme.textPrimary,
+                  color: context.theme.textPrimary,
                   size: 20,
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  date != null ? DateFormat('yyyy-MM-dd').format(date) : l10n.selectDate,
+                  date != null ? DateFormat('yyyy-MM-dd').format(date) : context.l10n.selectDate,
                   style: TextStyle(
-                    color: theme.textPrimary,
+                    color: context.theme.textPrimary,
                     fontSize: 16,
                   ),
                 ),
@@ -392,8 +378,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
   }
 
   Widget _buildOffsetSelector({
-    required CalculatorTheme theme,
-    required AppLocalizations l10n,
+    required BuildContext context,
     required String label,
     required int value,
     required ValueChanged<int> onChanged,
@@ -404,7 +389,7 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
         Text(
           label,
           style: TextStyle(
-            color: theme.textSecondary,
+            color: context.theme.textSecondary,
             fontSize: 14,
           ),
         ),
@@ -412,19 +397,19 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            border: Border.all(color: theme.divider),
+            border: Border.all(color: context.theme.divider),
             borderRadius: BorderRadius.circular(4),
           ),
           child: DropdownButton<int>(
             value: value,
-            dropdownColor: theme.background,
+            dropdownColor: context.theme.background,
             items: List.generate(
               1000,
               (i) => DropdownMenuItem(
                 value: i,
                 child: Text(
                   '$i',
-                  style: TextStyle(color: theme.textPrimary),
+                  style: TextStyle(color: context.theme.textPrimary),
                 ),
               ),
             ),
@@ -444,10 +429,10 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
   /// Improved date difference calculation using Microsoft-style algorithm
   /// This implements a more accurate calculation that considers actual calendar dates
   /// Returns a result containing formatted difference and total days
-  _DateDifferenceResult _calculateDateDifference(AppLocalizations l10n) {
+  _DateDifferenceResult _calculateDateDifference(BuildContext context) {
     if (_fromDate == null || _toDate == null) {
       return _DateDifferenceResult(
-        formattedDifference: l10n.selectBothDates,
+        formattedDifference: context.l10n.selectBothDates,
         totalDays: '',
       );
     }
@@ -527,13 +512,13 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
     days = days % 7;
 
     // Build result string with localized units
-    if (years > 0) parts.add('$years ${years > 1 ? l10n.years_plural : l10n.year}');
-    if (months > 0) parts.add('$months ${months > 1 ? l10n.months_plural : l10n.month}');
-    if (weeks > 0) parts.add('$weeks ${weeks > 1 ? l10n.weeks_plural : l10n.week}');
-    if (days > 0) parts.add('$days ${days > 1 ? l10n.days_plural : l10n.day}');
+    if (years > 0) parts.add('$years ${years > 1 ? context.l10n.years_plural : context.l10n.year}');
+    if (months > 0) parts.add('$months ${months > 1 ? context.l10n.months_plural : context.l10n.month}');
+    if (weeks > 0) parts.add('$weeks ${weeks > 1 ? context.l10n.weeks_plural : context.l10n.week}');
+    if (days > 0) parts.add('$days ${days > 1 ? context.l10n.days_plural : context.l10n.day}');
 
-    final formattedDifference = parts.isEmpty ? '0 ${l10n.days_plural}' : parts.join(', ');
-    final totalDaysText = '$totalDays ${totalDays == 1 ? l10n.day : l10n.days_plural}';
+    final formattedDifference = parts.isEmpty ? '0 ${context.l10n.days_plural}' : parts.join(', ');
+    final totalDaysText = '$totalDays ${totalDays == 1 ? context.l10n.day : context.l10n.days_plural}';
 
     return _DateDifferenceResult(
       formattedDifference: formattedDifference,
@@ -580,14 +565,10 @@ class _DateCalculationBodyState extends ConsumerState<DateCalculationBody> {
 }
 
 class _ModeSelector extends StatelessWidget {
-  final CalculatorTheme theme;
-  final AppLocalizations l10n;
   final DateCalculationMode selectedMode;
   final ValueChanged<DateCalculationMode> onModeSelected;
 
   const _ModeSelector({
-    required this.theme,
-    required this.l10n,
     required this.selectedMode,
     required this.onModeSelected,
   });
@@ -596,20 +577,20 @@ class _ModeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: theme.divider),
+        border: Border.all(color: context.theme.divider),
         borderRadius: BorderRadius.circular(4),
       ),
       child: DropdownButton<DateCalculationMode>(
         value: selectedMode,
-        dropdownColor: theme.background,
+        dropdownColor: context.theme.background,
         items: [
           DropdownMenuItem(
             value: DateCalculationMode.dateDifference,
-            child: Text(l10n.calculateDifferenceBetweenDates),
+            child: Text(context.l10n.calculateDifferenceBetweenDates),
           ),
           DropdownMenuItem(
             value: DateCalculationMode.addSubtract,
-            child: Text(l10n.addOrSubtractFromDate),
+            child: Text(context.l10n.addOrSubtractFromDate),
           ),
         ],
         onChanged: (mode) {

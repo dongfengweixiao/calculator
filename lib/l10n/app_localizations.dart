@@ -1645,6 +1645,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'DVDs'**
   String get dvds;
+
+  /// Name for the settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsMode;
+
+  /// Title for the settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// Placeholder text for the settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Settings functionality coming soon...'**
+  String get settingsPlaceholder;
+
+  /// Theme mode setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeMode;
+
+  /// Light theme mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
+  /// Dark theme mode option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// System theme mode option (follow system theme)
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeSystem;
+
+  /// General settings section title
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get settingsGeneral;
+
+  /// About section title
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// Application name label
+  ///
+  /// In en, this message translates to:
+  /// **'App Name'**
+  String get settingsAppNameLabel;
+
+  /// Application name
+  ///
+  /// In en, this message translates to:
+  /// **'Calculator'**
+  String get settingsAppName;
+
+  /// Application version label
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get settingsAppVersionLabel;
+
+  /// Application version number
+  ///
+  /// In en, this message translates to:
+  /// **'v0.9.0'**
+  String get settingsAppVersion;
+
+  /// Copyright information
+  ///
+  /// In en, this message translates to:
+  /// **'© 2025 Calculator Project. All rights reserved.'**
+  String get settingsCopyright;
+
+  /// Feedback section title
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get settingsFeedback;
+
+  /// Send email option
+  ///
+  /// In en, this message translates to:
+  /// **'Send Email'**
+  String get settingsSendEmail;
+
+  /// Submit ticket option
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Ticket'**
+  String get settingsSubmitTicket;
+
+  /// Privacy section title
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get settingsPrivacy;
+
+  /// Privacy policy content
+  ///
+  /// In en, this message translates to:
+  /// **'We respect and protect your privacy:\n\n• No personal information is collected\n• No data is transmitted over the network\n• All data is stored locally on your device\n• No third-party tracking tools are used'**
+  String get settingsPrivacyContent;
+
+  /// Acknowledgements section title
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledgements'**
+  String get settingsAcknowledgements;
+
+  /// Acknowledgements content
+  ///
+  /// In en, this message translates to:
+  /// **'This project is based on the following open source projects:\n• Flutter - Cross-platform UI framework\n• wincalc_engine - Windows Calculator engine\n• Riverpod - State management\n• go_router - Routing management'**
+  String get settingsAcknowledgementsContent;
+
+  /// App icon source label
+  ///
+  /// In en, this message translates to:
+  /// **'App Icon'**
+  String get settingsIconSource;
+
+  /// App icon source content prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks to'**
+  String get settingsIconSourceContent;
+
+  /// Streamline Icons brand name
+  ///
+  /// In en, this message translates to:
+  /// **'Streamline Icons'**
+  String get settingsIconSourceLink;
+
+  /// App icon source content suffix
+  ///
+  /// In en, this message translates to:
+  /// **'for the beautiful icon'**
+  String get settingsIconSourceSuffix;
+
+  /// Language setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Language option to follow system setting
+  ///
+  /// In en, this message translates to:
+  /// **'Follow System'**
+  String get languageSystem;
+
+  /// English language option
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// Chinese language option
+  ///
+  /// In en, this message translates to:
+  /// **'中文'**
+  String get languageChinese;
 }
 
 class _AppLocalizationsDelegate

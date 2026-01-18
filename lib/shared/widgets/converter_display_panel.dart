@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_font_sizes.dart';
-import '../../core/theme/app_theme.dart';
 import '../../core/utils/unit_icons.dart';
-import '../../l10n/app_localizations.dart';
+import '../../extensions/extensions.dart';
 
 /// Unit dropdown widget for converter
 /// Styled like scientific calculator's trig button
@@ -11,7 +10,6 @@ class ConverterUnitDropdown extends StatelessWidget {
   final String value;
   final List<DropdownMenuItem<String>> items;
   final ValueChanged<String?> onChanged;
-  final CalculatorTheme theme;
 
   const ConverterUnitDropdown({
     super.key,
@@ -19,11 +17,12 @@ class ConverterUnitDropdown extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChanged,
-    required this.theme,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+
     return Container(
       height: 38,
       decoration: BoxDecoration(
@@ -75,20 +74,20 @@ class ConverterUnitDropdown extends StatelessWidget {
 /// Styled like standard calculator's display panel
 class ConverterValueDisplay extends StatelessWidget {
   final String value;
-  final CalculatorTheme theme;
   final bool isActive;
   final VoidCallback? onTap;
 
   const ConverterValueDisplay({
     super.key,
     required this.value,
-    required this.theme,
     this.isActive = false,
     this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+
     return MouseRegion(
       cursor: onTap != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
@@ -186,8 +185,8 @@ class ConverterDisplayPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = CalculatorThemeProvider.of(context);
-    final l10n = AppLocalizations.of(context);
+    final theme = context.theme;
+    final l10n = context.l10n;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +194,6 @@ class ConverterDisplayPanel extends StatelessWidget {
         // Row 1: value1 display
         ConverterValueDisplay(
           value: value1,
-          theme: theme,
           isActive: isValue1Active,
           onTap: onValue1Activated,
         ),
@@ -207,14 +205,12 @@ class ConverterDisplayPanel extends StatelessWidget {
           value: unit1,
           items: unitItems1,
           onChanged: onUnit1Changed,
-          theme: theme,
         ),
         const SizedBox(height: 8),
 
         // Row 3: value2 display
         ConverterValueDisplay(
           value: value2,
-          theme: theme,
           isActive: !isValue1Active,
           onTap: onValue2Activated,
         ),
@@ -226,7 +222,6 @@ class ConverterDisplayPanel extends StatelessWidget {
           value: unit2,
           items: unitItems2,
           onChanged: onUnit2Changed,
-          theme: theme,
         ),
         const SizedBox(height: 8),
 

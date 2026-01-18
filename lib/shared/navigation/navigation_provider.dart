@@ -1,163 +1,40 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/theme/app_icons.dart';
-import '../../core/domain/entities/view_mode.dart';
 import '../../core/services/layout/responsive_layout_service.dart';
-import '../../core/services/persistence/preferences_service.dart';
-
-/// Navigation category for the sidebar
-class NavCategory {
-  final String name;
-  final IconData icon;
-  final ViewMode? viewMode;
-  final bool isHeader;
-
-  const NavCategory({
-    required this.name,
-    required this.icon,
-    this.viewMode,
-    this.isHeader = false,
-  });
-}
-
-/// Navigation category group
-class NavCategoryGroup {
-  final String name;
-  final List<NavCategory> categories;
-
-  const NavCategoryGroup({required this.name, required this.categories});
-}
-
-/// All navigation categories
-final navCategories = [
-  const NavCategoryGroup(
-    name: '计算器',
-    categories: [
-      NavCategory(
-        name: '标准',
-        icon: CalculatorIcons.standardCalculator,
-        viewMode: ViewMode.standard,
-      ),
-      NavCategory(
-        name: '科学',
-        icon: CalculatorIcons.scientificCalculator,
-        viewMode: ViewMode.scientific,
-      ),
-      NavCategory(
-        name: '程序员',
-        icon: CalculatorIcons.programmerCalculator,
-        viewMode: ViewMode.programmer,
-      ),
-      NavCategory(
-        name: '日期计算',
-        icon: CalculatorIcons.dateCalculation,
-        viewMode: ViewMode.dateCalculation,
-      ),
-    ],
-  ),
-  const NavCategoryGroup(
-    name: '转换器',
-    categories: [
-      NavCategory(
-        name: '体积',
-        icon: CalculatorIcons.volume,
-        viewMode: ViewMode.volumeConverter,
-      ),
-      NavCategory(
-        name: '长度',
-        icon: CalculatorIcons.length,
-        viewMode: ViewMode.lengthConverter,
-      ),
-      NavCategory(
-        name: '重量',
-        icon: CalculatorIcons.weight,
-        viewMode: ViewMode.weightConverter,
-      ),
-      NavCategory(
-        name: '温度',
-        icon: CalculatorIcons.temperature,
-        viewMode: ViewMode.temperatureConverter,
-      ),
-      NavCategory(
-        name: '能量',
-        icon: CalculatorIcons.energy,
-        viewMode: ViewMode.energyConverter,
-      ),
-      NavCategory(
-        name: '面积',
-        icon: CalculatorIcons.area,
-        viewMode: ViewMode.areaConverter,
-      ),
-      NavCategory(
-        name: '速度',
-        icon: CalculatorIcons.speed,
-        viewMode: ViewMode.speedConverter,
-      ),
-      NavCategory(
-        name: '时间',
-        icon: CalculatorIcons.time,
-        viewMode: ViewMode.timeConverter,
-      ),
-      NavCategory(
-        name: '功率',
-        icon: CalculatorIcons.powerConverter,
-        viewMode: ViewMode.powerConverter,
-      ),
-      NavCategory(
-        name: '数据',
-        icon: CalculatorIcons.data,
-        viewMode: ViewMode.dataConverter,
-      ),
-      NavCategory(
-        name: '压强',
-        icon: CalculatorIcons.pressure,
-        viewMode: ViewMode.pressureConverter,
-      ),
-      NavCategory(
-        name: '角度',
-        icon: CalculatorIcons.angle,
-        viewMode: ViewMode.angleConverter,
-      ),
-    ],
-  ),
-];
 
 /// Navigation state
+///
+/// Simplified to manage only UI state like drawer and history panel visibility.
+/// Page navigation is handled by go_router through route paths.
 class NavigationState {
   final bool isDrawerOpen;
-  final ViewMode currentMode;
   final bool showHistoryPanel;
 
   const NavigationState({
     this.isDrawerOpen = false,
-    this.currentMode = ViewMode.standard,
     this.showHistoryPanel = false,
   });
 
   NavigationState copyWith({
     bool? isDrawerOpen,
-    ViewMode? currentMode,
     bool? showHistoryPanel,
   }) {
     return NavigationState(
       isDrawerOpen: isDrawerOpen ?? this.isDrawerOpen,
-      currentMode: currentMode ?? this.currentMode,
       showHistoryPanel: showHistoryPanel ?? this.showHistoryPanel,
     );
   }
 }
 
 /// Navigation notifier
-/// Refactored to use domain entities and services
+///
+/// Manages UI-related navigation state (drawer, history panel).
+/// Actual page navigation is handled by go_router.
 class NavigationNotifier extends Notifier<NavigationState> {
   @override
   NavigationState build() {
-    // Load the last used view mode from preferences
-    final savedMode = PreferencesService.getLastViewMode();
-
-    return NavigationState(
-      currentMode: savedMode ?? ViewMode.standard,
-    );
+    // Initialize with history panel visibility based on screen width
+    // Note: This will be updated by the layout builder when context is available
+    return const NavigationState();
   }
 
   /// Toggle drawer open/close
@@ -173,13 +50,6 @@ class NavigationNotifier extends Notifier<NavigationState> {
   /// Close drawer
   void closeDrawer() {
     state = state.copyWith(isDrawerOpen: false);
-  }
-
-  /// Set current mode
-  void setMode(ViewMode mode) {
-    state = state.copyWith(currentMode: mode, isDrawerOpen: false);
-    // Save the selected mode to preferences
-    PreferencesService.saveLastViewMode(mode);
   }
 
   /// Toggle history panel visibility
@@ -198,17 +68,17 @@ class NavigationNotifier extends Notifier<NavigationState> {
 }
 
 /// Navigation provider
+///
+/// Provides UI navigation state (drawer, history panel).
+/// This is separate from route-based navigation which is handled by go_router.
 final navigationProvider =
     NotifierProvider<NavigationNotifier, NavigationState>(
       NavigationNotifier.new,
     );
 
-/// Current view mode provider
-final currentModeProvider = Provider<ViewMode>((ref) {
-  return ref.watch(navigationProvider).currentMode;
-});
-
 /// Show history panel provider
+///
+/// Exposes the history panel visibility state
 final showHistoryPanelProvider = Provider<bool>((ref) {
   return ref.watch(navigationProvider).showHistoryPanel;
 });

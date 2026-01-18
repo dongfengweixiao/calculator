@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../shared/navigation/navigation_provider.dart';
+import 'package:go_router/go_router.dart';
 import '../../shared/theme/theme_provider.dart';
 import '../../core/theme/app_theme.dart';
-import '../../core/domain/entities/view_mode.dart';
 import '../../l10n/l10n.dart';
 import '../../l10n/app_localizations.dart';
+import '../../core/router/nav_config.dart';
 
 /// Navigation drawer for calculator mode selection
+///
+/// This version uses route-based navigation configuration instead of ViewMode enum,
+/// making it fully compatible with go_router.
 class CalculatorNavigationDrawer extends ConsumerWidget {
   const CalculatorNavigationDrawer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(calculatorThemeProvider);
+    final currentLocation = GoRouterState.of(context).uri;
+    final l10n = context.l10n;
 
     return Drawer(
       backgroundColor: theme.navPaneBackground,
@@ -27,8 +32,14 @@ class CalculatorNavigationDrawer extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (final group in navCategories)
-                      _buildCategoryGroup(context, ref, theme, group),
+                    for (final group in navCategoriesConfig)
+                      _buildCategoryGroup(
+                        context,
+                        theme,
+                        group,
+                        currentLocation,
+                        l10n,
+                      ),
                   ],
                 ),
               ),
@@ -41,9 +52,10 @@ class CalculatorNavigationDrawer extends ConsumerWidget {
 
   Widget _buildCategoryGroup(
     BuildContext context,
-    WidgetRef ref,
     CalculatorTheme theme,
-    NavCategoryGroup group,
+    NavCategoryConfig group,
+    Uri currentLocation,
+    AppLocalizations l10n,
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +64,7 @@ class CalculatorNavigationDrawer extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
           child: Text(
-            group.name,
+            group.nameKey(l10n),
             style: TextStyle(
               color: theme.textSecondary,
               fontSize: 14,
@@ -61,81 +73,38 @@ class CalculatorNavigationDrawer extends ConsumerWidget {
           ),
         ),
         // Category items
-        for (final category in group.categories)
-          _buildCategoryItem(context, ref, theme, category),
+        for (final item in group.items)
+          _buildCategoryItem(
+            context,
+            theme,
+            item,
+            currentLocation,
+            l10n,
+          ),
       ],
     );
   }
 
   Widget _buildCategoryItem(
     BuildContext context,
-    WidgetRef ref,
     CalculatorTheme theme,
-    NavCategory category,
+    NavItemConfig item,
+    Uri currentLocation,
+    AppLocalizations l10n,
   ) {
-    final navState = ref.watch(navigationProvider);
-    final isSelected = category.viewMode == navState.currentMode;
-    final l10n = context.l10n;
-
-    // Get localized label
-    String localizedLabel;
-    if (category.viewMode != null) {
-      localizedLabel = _getModeDisplayName(l10n, category.viewMode!);
-    } else {
-      localizedLabel = category.name;
-    }
+    final isSelected = currentLocation.path == item.route;
+    final localizedLabel = item.titleKey(l10n);
 
     return _NavigationItem(
-      icon: category.icon,
+      icon: item.icon,
       label: localizedLabel,
       isSelected: isSelected,
       theme: theme,
-      onPressed: category.viewMode != null
-          ? () {
-              ref.read(navigationProvider.notifier).setMode(category.viewMode!);
-              Navigator.of(context).pop();
-            }
-          : null,
+      onPressed: () {
+        context.go(item.route);
+        Navigator.of(context).pop();
+      },
     );
-  }
-
-  String _getModeDisplayName(AppLocalizations l10n, ViewMode mode) {
-    switch (mode.localizationKey) {
-      case 'standardMode':
-        return l10n.standardMode;
-      case 'scientificMode':
-        return l10n.scientificMode;
-      case 'programmerMode':
-        return l10n.programmerMode;
-      case 'dateCalculationMode':
-        return l10n.dateCalculationMode;
-      case 'volumeConverterMode':
-        return l10n.volumeConverterMode;
-      case 'temperatureConverterMode':
-        return l10n.temperatureConverterMode;
-      case 'lengthConverterMode':
-        return l10n.lengthConverterMode;
-      case 'weightConverterMode':
-        return l10n.weightConverterMode;
-      case 'energyConverterMode':
-        return l10n.energyConverterMode;
-      case 'areaConverterMode':
-        return l10n.areaConverterMode;
-      case 'speedConverterMode':
-        return l10n.speedConverterMode;
-      case 'timeConverterMode':
-        return l10n.timeConverterMode;
-      case 'powerConverterMode':
-        return l10n.powerConverterMode;
-      case 'dataConverterMode':
-        return l10n.dataConverterMode;
-      case 'pressureConverterMode':
-        return l10n.pressureConverterMode;
-      case 'angleConverterMode':
-        return l10n.angleConverterMode;
-      default:
-        return mode.localizationKey;
-    }
   }
 }
 

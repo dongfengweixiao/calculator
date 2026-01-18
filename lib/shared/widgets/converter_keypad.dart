@@ -36,12 +36,8 @@ class ConverterKeypad extends StatelessWidget {
   /// Button layout configuration
   final ConverterKeypadLayout layout;
 
-  /// Theme for styling
-  final CalculatorTheme theme;
-
   const ConverterKeypad._({
     required this.layout,
-    required this.theme,
   });
 
   /// Create converter keypad
@@ -61,7 +57,6 @@ class ConverterKeypad extends StatelessWidget {
   ///     |  1  |  2  |  3    |
   ///     |  ±  |  0  |  .    |
   factory ConverterKeypad({
-    required CalculatorTheme theme,
     required VoidCallback onClearEntry,
     required VoidCallback onDelete,
     required void Function(String digit) onNumber,
@@ -106,7 +101,6 @@ class ConverterKeypad extends StatelessWidget {
     }
 
     return ConverterKeypad._(
-      theme: theme,
       layout: ConverterKeypadLayout(
         columnCount: 3,
         buttons: [
@@ -219,14 +213,16 @@ class ConverterKeypad extends StatelessWidget {
         if (button == null) continue;
 
         widgets.add(
-          CalcButton(
-            text: button.text,
-            icon: button.icon,
-            type: button.type,
-            onPressed: button.onPressed,
-          ).withGridPlacement(
-            columnStart: col,
-            rowStart: row,
+          Builder(
+            builder: (context) => CalcButton(
+              text: button.text,
+              icon: button.icon,
+              type: button.type,
+              onPressed: button.onPressed,
+            ).withGridPlacement(
+              columnStart: col,
+              rowStart: row,
+            ),
           ),
         );
       }

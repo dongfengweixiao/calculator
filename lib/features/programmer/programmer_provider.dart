@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wincalc_engine/wincalc_engine.dart';
 import '../calculator/calculator_provider.dart';
 import '../../core/services/calculator_service.dart';
-import 'bit_converter.dart';
 
 /// Shift mode enum
 enum ShiftMode {
@@ -196,49 +195,11 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
   }
 
   /// Toggle a specific bit (bitNumber: 63-0, where 0 is LSB)
-  /// When editing bits, this will:
-  /// 1. Generate the new bit value as a binary string
-  /// 2. Clear expression and result
-  /// 3. Set radix to BINARY and input the binary string
-  /// 4. Restore the original radix
-  /// 5. Update local state from calculator engine
-  ///
-  /// Following Microsoft Calculator architecture:
-  /// - Work with strings, not numbers
-  /// - Let wincalc_engine handle all base conversions
+  /// Sends command 700 + bitNumber to the engine
+  /// For example: bit 0 → command 700, bit 63 → command 763
   void toggleBit(int bitNumber) {
-    // Convert bit number to array index (bitValues[0] = bit 63, bitValues[63] = bit 0)
-    final arrayIndex = 63 - bitNumber;
-    final newBitValues = List<bool>.from(state.bitValues);
-    newBitValues[arrayIndex] = !newBitValues[arrayIndex];
-
-    // Convert bit values directly to binary string (no BigInt conversion needed)
-    final binaryStr = BitConverter.bitValuesToBinaryString(newBitValues, state.wordSize);
-
-    // Step 1: Clear expression and result (clear twice for full clear)
     final calculator = ref.read(calculatorProvider.notifier);
-    calculator.clear();
-    calculator.clear();
-
-    // Step 2: Set radix to BINARY and input the binary string
-    // wincalc_engine will convert it to the current display base
-    calculator.setRadix(CalcRadixType.CALC_RADIX_BINARY);
-    _inputString(binaryStr);
-
-    // Step 3: Restore the original radix
-    _setRadixForBase(state.currentBase);
-
-    // Step 4: Update local state from calculator engine
-    // The engine will handle all signed/unsigned formatting based on word size
-    updateValuesFromCalculator();
-
-    // Also update bit values manually since calculator engine doesn't provide bit array
-    _updateBitValuesOnly(newBitValues);
-  }
-
-  /// Update only bit values without changing display values
-  void _updateBitValuesOnly(List<bool> newBitValues) {
-    state = state.copyWith(bitValues: newBitValues);
+    calculator.toggleBit(bitNumber);
   }
 
   /// Set calculator engine radix to match programmer base
@@ -260,37 +221,6 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
     }
   }
 
-  /// Input a string directly to wincalc_engine
-  /// Following Microsoft Calculator architecture: work with strings, not numbers
-  void _inputString(String valueStr) {
-    final calculator = ref.read(calculatorProvider.notifier);
-
-    // Input each character
-    for (int i = 0; i < valueStr.length; i++) {
-      final char = valueStr[i];
-      if (char == '-') {
-        calculator.inputNegate();
-      } else if (char.toUpperCase() == 'A') {
-        calculator.inputDigit(10);
-      } else if (char.toUpperCase() == 'B') {
-        calculator.inputDigit(11);
-      } else if (char.toUpperCase() == 'C') {
-        calculator.inputDigit(12);
-      } else if (char.toUpperCase() == 'D') {
-        calculator.inputDigit(13);
-      } else if (char.toUpperCase() == 'E') {
-        calculator.inputDigit(14);
-      } else if (char.toUpperCase() == 'F') {
-        calculator.inputDigit(15);
-      } else {
-        final digit = int.tryParse(char);
-        if (digit != null) {
-          calculator.inputDigit(digit);
-        }
-      }
-    }
-  }
-
   /// Set current base
   void setCurrentBase(ProgrammerBase base) {
     state = state.copyWith(currentBase: base);
@@ -301,14 +231,44 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
   }
 
   /// Cycle word size and sync with calculator engine
+  /// When word size changes:
+  /// - From larger to smaller: clear bits beyond new word size
+  /// - From smaller to larger: initialize new bits to 1
   void cycleWordSize() {
     final sizes = WordSize.values;
     final currentIndex = sizes.indexOf(state.wordSize);
     final nextIndex = (currentIndex + 1) % sizes.length;
     final newWordSize = sizes[nextIndex];
+    final oldWordSize = state.wordSize;
 
-    // Update local state
-    state = state.copyWith(wordSize: newWordSize);
+    // Create new bit values based on word size change
+    List<bool> newBitValues;
+    if (newWordSize.bits > oldWordSize.bits) {
+      // Word size increased: initialize new bits to 1
+      newBitValues = List<bool>.generate(64, (index) {
+        final bitNumber = 63 - index;
+        if (bitNumber >= newWordSize.bits) {
+          return false;
+        } else if (bitNumber >= oldWordSize.bits) {
+          return true;
+        } else {
+          return state.bitValues[index];
+        }
+      });
+    } else {
+      // Word size decreased: clear bits beyond new word size
+      newBitValues = List<bool>.generate(64, (index) {
+        final bitNumber = 63 - index;
+        if (bitNumber >= newWordSize.bits) {
+          return false;
+        } else {
+          return state.bitValues[index];
+        }
+      });
+    }
+
+    // Update local state with new bit values
+    state = state.copyWith(wordSize: newWordSize, bitValues: newBitValues);
 
     // Sync with calculator engine
     final calculator = ref.read(calculatorProvider.notifier);
@@ -359,5 +319,5 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
 /// Programmer calculator provider
 final programmerProvider =
     NotifierProvider<ProgrammerNotifier, ProgrammerState>(() {
-  return ProgrammerNotifier();
-});
+      return ProgrammerNotifier();
+    });

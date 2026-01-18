@@ -781,4 +781,94 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dvds => 'DVD';
+
+  @override
+  String get settingsMode => '设置';
+
+  @override
+  String get settingsTitle => '设置';
+
+  @override
+  String get settingsPlaceholder => '设置功能即将推出...';
+
+  @override
+  String get themeMode => '主题';
+
+  @override
+  String get themeLight => '亮色';
+
+  @override
+  String get themeDark => '暗色';
+
+  @override
+  String get themeSystem => '跟随系统';
+
+  @override
+  String get settingsGeneral => '通用';
+
+  @override
+  String get settingsAbout => '关于';
+
+  @override
+  String get settingsAppNameLabel => '应用名称';
+
+  @override
+  String get settingsAppName => '计算器';
+
+  @override
+  String get settingsAppVersionLabel => '版本号';
+
+  @override
+  String get settingsAppVersion => 'v0.9.0';
+
+  @override
+  String get settingsCopyright =>
+      '© 2025 Calculator Project. All rights reserved.';
+
+  @override
+  String get settingsFeedback => '反馈';
+
+  @override
+  String get settingsSendEmail => '发送邮件';
+
+  @override
+  String get settingsSubmitTicket => '提交工单';
+
+  @override
+  String get settingsPrivacy => '隐私';
+
+  @override
+  String get settingsPrivacyContent =>
+      '本应用尊重并保护您的隐私：\n\n• 不收集任何个人信息\n• 不联网传输任何数据\n• 所有数据仅存储在本地设备\n• 不使用任何第三方追踪工具';
+
+  @override
+  String get settingsAcknowledgements => '致谢';
+
+  @override
+  String get settingsAcknowledgementsContent =>
+      '本项目基于以下开源项目：\n• Flutter - 跨平台 UI 框架\n• wincalc_engine - Windows 计算器引擎\n• Riverpod - 状态管理\n• go_router - 路由管理';
+
+  @override
+  String get settingsIconSource => '应用图标';
+
+  @override
+  String get settingsIconSourceContent => '感谢';
+
+  @override
+  String get settingsIconSourceLink => 'Streamline Icons';
+
+  @override
+  String get settingsIconSourceSuffix => '提供的精美图标';
+
+  @override
+  String get language => '语言';
+
+  @override
+  String get languageSystem => '跟随系统';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageChinese => '中文';
 }

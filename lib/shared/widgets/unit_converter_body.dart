@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
-import '../theme/theme_provider.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/services/unit_converter_service.dart';
+import '../../core/services/persistence/preferences_service.dart';
 import '../../core/utils/unit_localization.dart';
 import '../../l10n/app_localizations.dart';
+import '../../extensions/extensions.dart';
 import '../widgets/converter_keypad.dart';
 import '../widgets/converter_display_panel.dart';
 
@@ -17,20 +18,12 @@ class UnitConverterConfig {
   /// Page title localization key
   final String titleKey;
 
-  /// Default unit for field 1
-  final String defaultUnit1;
-
-  /// Default unit for field 2
-  final String defaultUnit2;
-
   /// Whether to show sign toggle button (±)
   final bool showSignToggle;
 
   const UnitConverterConfig({
     required this.categoryId,
     required this.titleKey,
-    required this.defaultUnit1,
-    required this.defaultUnit2,
     this.showSignToggle = false,
   });
 }
@@ -45,14 +38,19 @@ class UnitConverterConfig {
 /// - Switching activation doesn't recalculate immediately
 /// - Next input after switching triggers reset and new conversion
 /// - Optionally supports positive/negative values (±)
+/// - Unit selections are persisted per converter type
 class UnitConverterBody extends ConsumerStatefulWidget {
   final VoidCallback onMenuPressed;
   final UnitConverterConfig config;
+  /// Converter type identifier (e.g., 'volume', 'temperature')
+  /// Used for persisting unit selections
+  final String converterType;
 
   const UnitConverterBody({
     super.key,
     required this.onMenuPressed,
     required this.config,
+    required this.converterType,
   });
 
   @override
@@ -63,6 +61,9 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
   static final _log = Logger('UnitConverterBody');
 
   // ===== Core State =====
+
+  /// Whether the converter has been initialized
+  bool _isInitialized = false;
 
   /// Which field is currently active (receiving input)
   bool _isValue1Active = true;
@@ -94,8 +95,9 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
   @override
   void initState() {
     super.initState();
-    _selectedUnit1 = widget.config.defaultUnit1;
-    _selectedUnit2 = widget.config.defaultUnit2;
+    // Initialize with empty strings, will be set after converter initializes
+    _selectedUnit1 = '';
+    _selectedUnit2 = '';
     _initializeConverter();
   }
 
@@ -110,8 +112,48 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
     _converter = UnitConverterService();
     _converter.initialize(categoryId: widget.config.categoryId);
     _buildUnitMapping();
+    _initializeUnits();
     _updateConverterUnits();
     _updateDisplayFromEngine();
+
+    // Mark as initialized and trigger UI update
+    setState(() {
+      _isInitialized = true;
+    });
+  }
+
+  /// Initialize units from persistence or defaults
+  void _initializeUnits() {
+    final category = _converter.currentCategory;
+    if (category == null || category.units.isEmpty) return;
+
+    // Get default units (first and last from engine)
+    final defaultUnit1 = category.units.first.name;
+    final defaultUnit2 = category.units.last.name;
+
+    // Try to load persisted units
+    final persistedUnit1 = PreferencesService.getConverterUnit1(widget.converterType);
+    final persistedUnit2 = PreferencesService.getConverterUnit2(widget.converterType);
+
+    // Validate and set unit 1
+    if (persistedUnit1 != null && _unitNameToId.containsKey(persistedUnit1)) {
+      _selectedUnit1 = persistedUnit1;
+    } else {
+      _selectedUnit1 = defaultUnit1;
+      // Save default unit for future use
+      PreferencesService.setConverterUnit1(widget.converterType, defaultUnit1);
+    }
+
+    // Validate and set unit 2
+    if (persistedUnit2 != null && _unitNameToId.containsKey(persistedUnit2)) {
+      _selectedUnit2 = persistedUnit2;
+    } else {
+      _selectedUnit2 = defaultUnit2;
+      // Save default unit for future use
+      PreferencesService.setConverterUnit2(widget.converterType, defaultUnit2);
+    }
+
+    _log.fine('Initialized units for ${widget.converterType}: $_selectedUnit1 -> $_selectedUnit2');
   }
 
   /// Build mapping from unit names to engine IDs
@@ -304,6 +346,9 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
       _hasUnitChanged = true;
     });
 
+    // Persist the unit selection
+    PreferencesService.setConverterUnit1(widget.converterType, unitName);
+
     _updateConverterUnits();
 
     // Immediately read from engine and update UI
@@ -319,6 +364,9 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
       _selectedUnit2 = unitName;
       _hasUnitChanged = true;
     });
+
+    // Persist the unit selection
+    PreferencesService.setConverterUnit2(widget.converterType, unitName);
 
     _updateConverterUnits();
 
@@ -361,89 +409,30 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ref.watch(calculatorThemeProvider);
-    final l10n = AppLocalizations.of(context);
+    final theme = context.theme;
+    final l10n = context.l10n;
 
-    // Get title from localization using the key
-    final title = _getLocalizedTitle(l10n);
+    // Show loading indicator while initializing
+    if (!_isInitialized) {
+      return Scaffold(
+        backgroundColor: theme.background,
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(theme.accentColor),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: theme.background,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          final isWideLayout = constraints.maxWidth >= 768;
-          return Column(
-            children: [
-              _buildHeader(theme, title),
-              Expanded(
-                child: isWideLayout
-                    ? _buildWideLayout(theme, l10n)
-                    : _buildNarrowLayout(theme, l10n),
-              ),
-            ],
-          );
+          final isWideLayout = context.isWideWindow;
+          return isWideLayout
+              ? _buildWideLayout(theme, l10n)
+              : _buildNarrowLayout(theme, l10n);
         },
-      ),
-    );
-  }
-
-  String _getLocalizedTitle(AppLocalizations l10n) {
-    // Use the titleKey to get localized title
-    switch (widget.config.titleKey) {
-      case 'volumeConverterTitle':
-        return l10n.volumeConverterTitle;
-      case 'temperatureConverterTitle':
-        return l10n.temperatureConverterTitle;
-      case 'lengthConverterTitle':
-        return l10n.lengthConverterTitle;
-      case 'weightConverterTitle':
-        return l10n.weightConverterTitle;
-      case 'energyConverterTitle':
-        return l10n.energyConverterTitle;
-      case 'areaConverterTitle':
-        return l10n.areaConverterTitle;
-      case 'speedConverterTitle':
-        return l10n.speedConverterTitle;
-      case 'timeConverterTitle':
-        return l10n.timeConverterTitle;
-      case 'powerConverterTitle':
-        return l10n.powerConverterTitle;
-      case 'dataConverterTitle':
-        return l10n.dataConverterTitle;
-      case 'pressureConverterTitle':
-        return l10n.pressureConverterTitle;
-      case 'angleConverterTitle':
-        return l10n.angleConverterTitle;
-      default:
-        return widget.config.titleKey;
-    }
-  }
-
-  Widget _buildHeader(CalculatorTheme theme, String title) {
-    return SizedBox(
-      height: 48,
-      child: Row(
-        children: [
-          InkWell(
-            onTap: widget.onMenuPressed,
-            child: Container(
-              width: 48,
-              height: 48,
-              alignment: Alignment.center,
-              child: Icon(Icons.menu, color: theme.textPrimary, size: 20),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                color: theme.textPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -454,13 +443,14 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
         _buildConverterSection(theme, l10n),
         const SizedBox(height: 16),
         Expanded(
-          child: ConverterKeypad(
-            theme: theme,
-            onClearEntry: _onClearPressed,
-            onDelete: _onBackPressed,
-            onNumber: _onNumberPressed,
-            onNegate: widget.config.showSignToggle ? _onNegatePressed : null,
-            showSignToggle: widget.config.showSignToggle,
+          child: Builder(
+            builder: (context) => ConverterKeypad(
+              onClearEntry: _onClearPressed,
+              onDelete: _onBackPressed,
+              onNumber: _onNumberPressed,
+              onNegate: widget.config.showSignToggle ? _onNegatePressed : null,
+              showSignToggle: widget.config.showSignToggle,
+            ),
           ),
         ),
       ],
@@ -478,13 +468,14 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
         ),
         Expanded(
           flex: 1,
-          child: ConverterKeypad(
-            theme: theme,
-            onClearEntry: _onClearPressed,
-            onDelete: _onBackPressed,
-            onNumber: _onNumberPressed,
-            onNegate: widget.config.showSignToggle ? _onNegatePressed : null,
-            showSignToggle: widget.config.showSignToggle,
+          child: Builder(
+            builder: (context) => ConverterKeypad(
+              onClearEntry: _onClearPressed,
+              onDelete: _onBackPressed,
+              onNumber: _onNumberPressed,
+              onNegate: widget.config.showSignToggle ? _onNegatePressed : null,
+              showSignToggle: widget.config.showSignToggle,
+            ),
           ),
         ),
       ],

@@ -73,6 +73,15 @@ class CalculatorService {
     calculator_send_command(_calculator!, command);
   }
 
+  /// Get bit position command for programmer mode bit flip
+  /// Uses the engine's calc_cmd_binpos function to get the correct command code
+  int getBitPositionCommand(int bitNumber) {
+    if (bitNumber < 0 || bitNumber > 63) {
+      throw ArgumentError('Bit number must be between 0 and 63');
+    }
+    return calc_cmd_binpos(bitNumber);
+  }
+
   /// Get the primary display text
   String getPrimaryDisplay() {
     if (!_isInitialized) return '0';

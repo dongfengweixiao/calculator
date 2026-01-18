@@ -1039,5 +1039,121 @@
   "dvds": "DVD",
   "@dvds": {
     "description": "DVDs whimsical data unit"
+  },
+  "settingsMode": "设置",
+  "@settingsMode": {
+    "description": "Name for the settings page"
+  },
+  "settingsTitle": "设置",
+  "@settingsTitle": {
+    "description": "Title for the settings page"
+  },
+  "settingsPlaceholder": "设置功能即将推出...",
+  "@settingsPlaceholder": {
+    "description": "Placeholder text for the settings page"
+  },
+  "themeMode": "主题",
+  "@themeMode": {
+    "description": "Theme mode setting label"
+  },
+  "themeLight": "亮色",
+  "@themeLight": {
+    "description": "Light theme mode option"
+  },
+  "themeDark": "暗色",
+  "@themeDark": {
+    "description": "Dark theme mode option"
+  },
+  "themeSystem": "跟随系统",
+  "@themeSystem": {
+    "description": "System theme mode option (follow system theme)"
+  },
+  "settingsGeneral": "通用",
+  "@settingsGeneral": {
+    "description": "General settings section title"
+  },
+  "settingsAbout": "关于",
+  "@settingsAbout": {
+    "description": "About section title"
+  },
+  "settingsAppNameLabel": "应用名称",
+  "@settingsAppNameLabel": {
+    "description": "Application name label"
+  },
+  "settingsAppName": "计算器",
+  "@settingsAppName": {
+    "description": "Application name"
+  },
+  "settingsAppVersionLabel": "版本号",
+  "@settingsAppVersionLabel": {
+    "description": "Application version label"
+  },
+  "settingsAppVersion": "v0.9.0",
+  "@settingsAppVersion": {
+    "description": "Application version number"
+  },
+  "settingsCopyright": "© 2025 Calculator Project. All rights reserved.",
+  "@settingsCopyright": {
+    "description": "Copyright information"
+  },
+  "settingsFeedback": "反馈",
+  "@settingsFeedback": {
+    "description": "Feedback section title"
+  },
+  "settingsSendEmail": "发送邮件",
+  "@settingsSendEmail": {
+    "description": "Send email option"
+  },
+  "settingsSubmitTicket": "提交工单",
+  "@settingsSubmitTicket": {
+    "description": "Submit ticket option"
+  },
+  "settingsPrivacy": "隐私",
+  "@settingsPrivacy": {
+    "description": "Privacy section title"
+  },
+  "settingsPrivacyContent": "本应用尊重并保护您的隐私：\n\n• 不收集任何个人信息\n• 不联网传输任何数据\n• 所有数据仅存储在本地设备\n• 不使用任何第三方追踪工具",
+  "@settingsPrivacyContent": {
+    "description": "Privacy policy content"
+  },
+  "settingsAcknowledgements": "致谢",
+  "@settingsAcknowledgements": {
+    "description": "Acknowledgements section title"
+  },
+  "settingsAcknowledgementsContent": "本项目基于以下开源项目：\n• Flutter - 跨平台 UI 框架\n• wincalc_engine - Windows 计算器引擎\n• Riverpod - 状态管理\n• go_router - 路由管理",
+  "@settingsAcknowledgementsContent": {
+    "description": "Acknowledgements content"
+  },
+  "settingsIconSource": "应用图标",
+  "@settingsIconSource": {
+    "description": "App icon source label"
+  },
+  "settingsIconSourceContent": "感谢",
+  "@settingsIconSourceContent": {
+    "description": "App icon source content prefix"
+  },
+  "settingsIconSourceLink": "Streamline Icons",
+  "@settingsIconSourceLink": {
+    "description": "Streamline Icons brand name"
+  },
+  "settingsIconSourceSuffix": "提供的精美图标",
+  "@settingsIconSourceSuffix": {
+    "description": "App icon source content suffix"
+  },
+  "language": "语言",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "languageSystem": "跟随系统",
+  "@languageSystem": {
+    "description": "Language option to follow system setting"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "English language option"
+  },
+  "languageChinese": "中文",
+  "@languageChinese": {
+    "description": "Chinese language option"
   }
 }
