@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../calculator/calculator_provider.dart';
-import '../calculator/display_panel.dart';
+import 'package:go_router/go_router.dart';
+import '../../features/calculator/calculator_provider.dart';
+import '../../features/calculator/display_panel.dart';
 import '../../shared/theme/theme_provider.dart';
 import '../../shared/navigation/navigation_provider.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_icons.dart';
 import '../../core/widgets/calc_button.dart';
-import '../../core/domain/entities/view_mode.dart';
-import 'programmer_provider.dart';
-import 'services/programmer_button_service.dart';
-import 'flyouts/bitwise_flyout.dart';
-import 'flyouts/shift_flyout.dart';
-import '../../l10n/l10n.dart';
+import '../../features/programmer/programmer_provider.dart';
+import '../../features/programmer/services/programmer_button_service.dart';
+import '../../features/programmer/flyouts/bitwise_flyout.dart';
+import '../../features/programmer/flyouts/shift_flyout.dart';
 
-/// Programmer calculator complete body using grid layout
-/// 5 columns × 14 rows
+/// Programmer calculator page
 ///
-/// Grid structure:
-/// - Row 0: Header (spans all 5 columns)
-/// - Row 1: Display (spans all 5 columns)
-/// - Row 2: HEX button (spans all 5 columns)
-/// - Row 3: DEC button (spans all 5 columns)
-/// - Row 4: OCT button (spans all 5 columns)
-/// - Row 5: BIN button (spans all 5 columns)
-/// - Row 6: Control buttons (spans all 5 columns, horizontal layout)
-/// - Row 7: Bitwise and Shift flyout buttons (2 columns, 3 empty)
-/// - Row 8-13: Main button grid
-class ProgrammerGridBody extends ConsumerWidget {
-  /// Callback when hamburger menu button is pressed
-  final VoidCallback? onMenuPressed;
-
-  const ProgrammerGridBody({super.key, this.onMenuPressed});
+/// This page contains the programmer calculator layout without the header,
+/// as the header is now provided by the AppShell.
+///
+/// Grid structure: 5 columns × 13 rows (removed header row)
+/// - Row 0: Display
+/// - Row 1: HEX button
+/// - Row 2: DEC button
+/// - Row 3: OCT button
+/// - Row 4: BIN button
+/// - Row 5: Control buttons
+/// - Row 6: Bitwise and Shift flyout buttons
+/// - Row 7-12: Main button grid
+class ProgrammerCalculatorPage extends ConsumerWidget {
+  const ProgrammerCalculatorPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,23 +38,11 @@ class ProgrammerGridBody extends ConsumerWidget {
     final calculatorState = ref.watch(calculatorProvider);
     final buttonService = ProgrammerButtonService(ref);
     final showHistoryPanel = ref.watch(showHistoryPanelProvider);
-    final navState = ref.watch(navigationProvider);
+    final currentPath = GoRouterState.of(context).uri.path;
+    final isProgrammerMode = currentPath == '/programmer';
 
-    // Initialize radix when switching to programmer mode
-    ref.listen<NavigationState>(navigationProvider, (previous, next) {
-      final previousMode = previous?.currentMode;
-      final currentMode = next.currentMode;
-
-      // When switching to programmer mode, initialize radix
-      if (currentMode == ViewMode.programmer && previousMode != ViewMode.programmer) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(programmerProvider.notifier).initialize();
-        });
-      }
-    });
-
-    // Also initialize if currently in programmer mode (app startup case)
-    if (navState.currentMode == ViewMode.programmer) {
+    // Initialize when in programmer mode
+    if (isProgrammerMode) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(programmerProvider.notifier).initialize();
       });
@@ -67,8 +52,7 @@ class ProgrammerGridBody extends ConsumerWidget {
     // This ensures that when users input numbers, all base displays are synchronized
     ref.listen<CalculatorState>(calculatorProvider, (previous, next) {
       // Only update when in programmer mode and display value changed
-      if (navState.currentMode == ViewMode.programmer &&
-          previous?.display != next.display) {
+      if (isProgrammerMode && previous?.display != next.display) {
         ref.read(programmerProvider.notifier).updateValuesFromCalculator();
       }
     });
@@ -77,22 +61,21 @@ class ProgrammerGridBody extends ConsumerWidget {
       // 5 equal columns
       columnSizes: [1.fr, 1.fr, 1.fr, 1.fr, 1.fr],
 
-      // 14 rows with different heights
+      // 13 rows with different heights (removed header row)
       rowSizes: [
-        48.px,   // Row 0: Header
-        2.fr,    // Row 1: Display
-        40.px,   // Row 2: HEX
-        40.px,   // Row 3: DEC
-        40.px,   // Row 4: OCT
-        40.px,   // Row 5: BIN
-        40.px,   // Row 6: Control buttons
-        40.px,   // Row 7: Bitwise and Shift flyouts
-        1.fr,    // Row 8: A, <<, >>, C/CE, DEL
-        1.fr,    // Row 9: B, (, ), %, ÷
-        1.fr,    // Row 10: C, 7, 8, 9, ×
-        1.fr,    // Row 11: D, 4, 5, 6, -
-        1.fr,    // Row 12: E, 1, 2, 3, +
-        1.fr,    // Row 13: F, ±, 0, ., =
+        2.fr,    // Row 0: Display
+        40.px,   // Row 1: HEX
+        40.px,   // Row 2: DEC
+        40.px,   // Row 3: OCT
+        40.px,   // Row 4: BIN
+        40.px,   // Row 5: Control buttons
+        40.px,   // Row 6: Bitwise and Shift flyouts
+        1.fr,    // Row 7: A, <<, >>, C/CE, DEL
+        1.fr,    // Row 8: B, (, ), %, ÷
+        1.fr,    // Row 9: C, 7, 8, 9, ×
+        1.fr,    // Row 10: D, 4, 5, 6, -
+        1.fr,    // Row 11: E, 1, 2, 3, +
+        1.fr,    // Row 12: F, ±, 0, ., =
       ],
 
       // Add gaps between columns and rows
@@ -100,15 +83,11 @@ class ProgrammerGridBody extends ConsumerWidget {
       rowGap: 2,
 
       children: [
-        // Row 0: Header (spans all 5 columns)
-        _buildHeader(context, ref, theme, navState, onMenuPressed)
+        // Row 0: Display (spans all 5 columns)
+        const DisplayPanel()
             .withGridPlacement(columnStart: 0, rowStart: 0, columnSpan: 5, rowSpan: 1),
 
-        // Row 1: Display (spans all 5 columns)
-        const DisplayPanel()
-            .withGridPlacement(columnStart: 0, rowStart: 1, columnSpan: 5, rowSpan: 1),
-
-        // Row 2: HEX button
+        // Row 1: HEX button
         _buildBaseButton(
           context,
           'HEX',
@@ -116,9 +95,9 @@ class ProgrammerGridBody extends ConsumerWidget {
           programmerState.currentBase == ProgrammerBase.hex,
           theme,
           () => _handleBaseSelected(ref, ProgrammerBase.hex),
-        ).withGridPlacement(columnStart: 0, rowStart: 2, columnSpan: 5, rowSpan: 1),
+        ).withGridPlacement(columnStart: 0, rowStart: 1, columnSpan: 5, rowSpan: 1),
 
-        // Row 3: DEC button
+        // Row 2: DEC button
         _buildBaseButton(
           context,
           'DEC',
@@ -126,9 +105,9 @@ class ProgrammerGridBody extends ConsumerWidget {
           programmerState.currentBase == ProgrammerBase.dec,
           theme,
           () => _handleBaseSelected(ref, ProgrammerBase.dec),
-        ).withGridPlacement(columnStart: 0, rowStart: 3, columnSpan: 5, rowSpan: 1),
+        ).withGridPlacement(columnStart: 0, rowStart: 2, columnSpan: 5, rowSpan: 1),
 
-        // Row 4: OCT button
+        // Row 3: OCT button
         _buildBaseButton(
           context,
           'OCT',
@@ -136,9 +115,9 @@ class ProgrammerGridBody extends ConsumerWidget {
           programmerState.currentBase == ProgrammerBase.oct,
           theme,
           () => _handleBaseSelected(ref, ProgrammerBase.oct),
-        ).withGridPlacement(columnStart: 0, rowStart: 4, columnSpan: 5, rowSpan: 1),
+        ).withGridPlacement(columnStart: 0, rowStart: 3, columnSpan: 5, rowSpan: 1),
 
-        // Row 5: BIN button
+        // Row 4: BIN button
         _buildBaseButton(
           context,
           'BIN',
@@ -146,9 +125,9 @@ class ProgrammerGridBody extends ConsumerWidget {
           programmerState.currentBase == ProgrammerBase.bin,
           theme,
           () => _handleBaseSelected(ref, ProgrammerBase.bin),
-        ).withGridPlacement(columnStart: 0, rowStart: 5, columnSpan: 5, rowSpan: 1),
+        ).withGridPlacement(columnStart: 0, rowStart: 4, columnSpan: 5, rowSpan: 1),
 
-        // Row 6: Control buttons (spans all 5 columns, horizontal layout)
+        // Row 5: Control buttons (spans all 5 columns, horizontal layout)
         (Container(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           decoration: BoxDecoration(
@@ -221,9 +200,9 @@ class ProgrammerGridBody extends ConsumerWidget {
               ],
             ],
           ),
-        )).withGridPlacement(columnStart: 0, rowStart: 6, columnSpan: 5, rowSpan: 1),
+        )).withGridPlacement(columnStart: 0, rowStart: 5, columnSpan: 5, rowSpan: 1),
 
-        // Row 7: Bitwise and Shift flyout buttons (horizontal layout, left aligned)
+        // Row 6: Bitwise and Shift flyout buttons (horizontal layout, left aligned)
         (Container(
           color: theme.background,
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -241,9 +220,9 @@ class ProgrammerGridBody extends ConsumerWidget {
               ),
             ],
           ),
-        )).withGridPlacement(columnStart: 0, rowStart: 7, columnSpan: 5, rowSpan: 1),
+        )).withGridPlacement(columnStart: 0, rowStart: 6, columnSpan: 5, rowSpan: 1),
 
-        // Row 8-13: Full keypad OR bit flip grid based on input mode
+        // Row 7-12: Full keypad OR bit flip grid based on input mode
         ..._buildFullKeypad(
           ref,
           theme,
@@ -252,10 +231,10 @@ class ProgrammerGridBody extends ConsumerWidget {
           buttonService,
         ),
 
-        // Bit flip grid (spans rows 8-13)
+        // Bit flip grid (spans rows 7-12)
         if (programmerState.inputMode == ProgrammerInputMode.bitFlip)
           _buildBitFlipGrid(ref, theme, programmerState)
-              .withGridPlacement(columnStart: 0, rowStart: 8, columnSpan: 5, rowSpan: 6),
+              .withGridPlacement(columnStart: 0, rowStart: 7, columnSpan: 5, rowSpan: 6),
       ],
     );
   }
@@ -337,7 +316,6 @@ class ProgrammerGridBody extends ConsumerWidget {
     CalculatorState calculatorState,
     ProgrammerButtonService buttonService,
   ) {
-    final buttonService = ProgrammerButtonService(ref);
     final isDisabled = buttonService.isButtonDisabled(label, programmerState);
     final labelInfo = _getLabelInfo(label, calculatorState);
     final buttonType = _getButtonType(label);
@@ -499,7 +477,7 @@ class ProgrammerGridBody extends ConsumerWidget {
     return children;
   }
 
-  /// Build full keypad buttons (rows 8-13)
+  /// Build full keypad buttons (rows 7-12)
   /// Returns a list of 30 buttons (5 columns × 6 rows)
   List<Widget> _buildFullKeypad(
     WidgetRef ref,
@@ -514,77 +492,77 @@ class ProgrammerGridBody extends ConsumerWidget {
     }
 
     return [
-      // Row 8: A, <<, >>, C/CE, DEL
+      // Row 7: A, <<, >>, C/CE, DEL
       _buildProgrammerButton('A', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 0, rowStart: 8),
+          .withGridPlacement(columnStart: 0, rowStart: 7),
       _buildProgrammerButton('<<', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 1, rowStart: 8),
+          .withGridPlacement(columnStart: 1, rowStart: 7),
       _buildProgrammerButton('>>', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 2, rowStart: 8),
+          .withGridPlacement(columnStart: 2, rowStart: 7),
       _buildProgrammerButton('C/CE', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 3, rowStart: 8),
+          .withGridPlacement(columnStart: 3, rowStart: 7),
       _buildProgrammerButton('DEL', ref, theme, programmerState, calculatorState, buttonService)
+          .withGridPlacement(columnStart: 4, rowStart: 7),
+
+      // Row 8: B, (, ), %, ÷
+      _buildProgrammerButton('B', ref, theme, programmerState, calculatorState, buttonService)
+          .withGridPlacement(columnStart: 0, rowStart: 8),
+      _buildProgrammerButton('(', ref, theme, programmerState, calculatorState, buttonService)
+          .withGridPlacement(columnStart: 1, rowStart: 8),
+      _buildProgrammerButton(')', ref, theme, programmerState, calculatorState, buttonService)
+          .withGridPlacement(columnStart: 2, rowStart: 8),
+      _buildProgrammerButton('%', ref, theme, programmerState, calculatorState, buttonService)
+          .withGridPlacement(columnStart: 3, rowStart: 8),
+      _buildProgrammerButton('÷', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 4, rowStart: 8),
 
-      // Row 9: B, (, ), %, ÷
-      _buildProgrammerButton('B', ref, theme, programmerState, calculatorState, buttonService)
+      // Row 9: C, 7, 8, 9, ×
+      _buildProgrammerButton('C', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 0, rowStart: 9),
-      _buildProgrammerButton('(', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('7', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 1, rowStart: 9),
-      _buildProgrammerButton(')', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('8', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 2, rowStart: 9),
-      _buildProgrammerButton('%', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('9', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 3, rowStart: 9),
-      _buildProgrammerButton('÷', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('×', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 4, rowStart: 9),
 
-      // Row 10: C, 7, 8, 9, ×
-      _buildProgrammerButton('C', ref, theme, programmerState, calculatorState, buttonService)
+      // Row 10: D, 4, 5, 6, -
+      _buildProgrammerButton('D', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 0, rowStart: 10),
-      _buildProgrammerButton('7', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('4', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 1, rowStart: 10),
-      _buildProgrammerButton('8', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('5', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 2, rowStart: 10),
-      _buildProgrammerButton('9', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('6', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 3, rowStart: 10),
-      _buildProgrammerButton('×', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('-', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 4, rowStart: 10),
 
-      // Row 11: D, 4, 5, 6, -
-      _buildProgrammerButton('D', ref, theme, programmerState, calculatorState, buttonService)
+      // Row 11: E, 1, 2, 3, +
+      _buildProgrammerButton('E', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 0, rowStart: 11),
-      _buildProgrammerButton('4', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('1', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 1, rowStart: 11),
-      _buildProgrammerButton('5', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('2', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 2, rowStart: 11),
-      _buildProgrammerButton('6', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('3', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 3, rowStart: 11),
-      _buildProgrammerButton('-', ref, theme, programmerState, calculatorState, buttonService)
+      _buildProgrammerButton('+', ref, theme, programmerState, calculatorState, buttonService)
           .withGridPlacement(columnStart: 4, rowStart: 11),
 
-      // Row 12: E, 1, 2, 3, +
-      _buildProgrammerButton('E', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 0, rowStart: 12),
-      _buildProgrammerButton('1', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 1, rowStart: 12),
-      _buildProgrammerButton('2', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 2, rowStart: 12),
-      _buildProgrammerButton('3', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 3, rowStart: 12),
-      _buildProgrammerButton('+', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 4, rowStart: 12),
-
-      // Row 13: F, ±, 0, ., =
+      // Row 12: F, ±, 0, ., =
       _buildProgrammerButton('F', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 0, rowStart: 13),
+          .withGridPlacement(columnStart: 0, rowStart: 12),
       _buildProgrammerButton('±', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 1, rowStart: 13),
+          .withGridPlacement(columnStart: 1, rowStart: 12),
       _buildProgrammerButton('0', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 2, rowStart: 13),
+          .withGridPlacement(columnStart: 2, rowStart: 12),
       _buildProgrammerButton('.', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 3, rowStart: 13),
+          .withGridPlacement(columnStart: 3, rowStart: 12),
       _buildProgrammerButton('=', ref, theme, programmerState, calculatorState, buttonService)
-          .withGridPlacement(columnStart: 4, rowStart: 13),
+          .withGridPlacement(columnStart: 4, rowStart: 12),
     ];
   }
 
@@ -600,93 +578,6 @@ class ProgrammerGridBody extends ConsumerWidget {
     } else {
       return CalcButtonType.number;
     }
-  }
-
-  /// Build header widget
-  Widget _buildHeader(
-    BuildContext context,
-    WidgetRef ref,
-    CalculatorTheme theme,
-    navState,
-    VoidCallback? onMenuPressed,
-  ) {
-    return Container(
-      height: 48,
-      color: theme.background,
-      child: Row(
-        children: [
-          // Hamburger button and mode name
-          _buildHamburgerButton(context, ref, theme, onMenuPressed),
-
-          const Spacer(),
-
-          // Theme toggle button
-          _HeaderButton(
-            icon: theme.brightness == Brightness.dark
-                ? Icons.light_mode_outlined
-                : Icons.dark_mode_outlined,
-            theme: theme,
-            onPressed: () {
-              ref.read(themeProvider.notifier).toggleTheme();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Build hamburger button with mode name
-  Widget _buildHamburgerButton(
-    BuildContext context,
-    WidgetRef ref,
-    CalculatorTheme theme,
-    VoidCallback? onMenuPressed,
-  ) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onMenuPressed,
-        child: Container(
-          height: 48,
-          padding: const EdgeInsets.only(left: 8, right: 16),
-          color: theme.background,
-          child: Row(
-            children: [
-              // Hamburger button
-              Container(
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.menu,
-                  color: theme.textPrimary,
-                  size: 20,
-                ),
-              ),
-
-              // Mode name
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: Text(
-                  _getModeDisplayName(context),
-                  style: TextStyle(
-                    color: theme.textPrimary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Get mode display name
-  String _getModeDisplayName(BuildContext context) {
-    final l10n = context.l10n;
-    return l10n.programmerMode;
   }
 }
 
@@ -768,48 +659,6 @@ class _ControlButtonState extends State<_ControlButton> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Header button widget
-class _HeaderButton extends StatefulWidget {
-  final IconData icon;
-  final CalculatorTheme theme;
-  final VoidCallback onPressed;
-
-  const _HeaderButton({
-    required this.icon,
-    required this.theme,
-    required this.onPressed,
-  });
-
-  @override
-  State<_HeaderButton> createState() => _HeaderButtonState();
-}
-
-class _HeaderButtonState extends State<_HeaderButton> {
-  bool _isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onPressed,
-        child: Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            color: _isHovered
-                ? widget.theme.textPrimary.withValues(alpha: 0.08)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Icon(widget.icon, color: widget.theme.textSecondary, size: 18),
         ),
       ),
     );

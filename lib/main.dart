@@ -8,7 +8,7 @@ import 'package:logging/logging.dart';
 import 'l10n/l10n.dart';
 import 'l10n/app_localizations.dart';
 import 'shared/theme/theme_provider.dart';
-import 'features/calculator/calculator_view.dart';
+import 'core/router/app_router.dart';
 import 'core/services/persistence/preferences_service.dart';
 import 'core/config/logger_config.dart';
 
@@ -58,8 +58,9 @@ class CalculatorApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeState = ref.watch(themeProvider);
+    final router = ref.watch(appRouterProvider);
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'WinCalc',
       debugShowCheckedModeBanner: false,
       theme: themeState.theme.toThemeData().useSystemChineseFont(themeState.theme.brightness),
@@ -70,7 +71,7 @@ class CalculatorApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: supportedLocales,
-      home: const CalculatorView(),
+      routerConfig: router,
     );
   }
 }

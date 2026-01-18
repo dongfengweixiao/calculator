@@ -11,14 +11,41 @@ class CalculatorIcons {
   // Sorted by codePoint value in ascending order
   // ============================================================================
 
+  /// Undefined icon 0x000D
+  static const IconData undefined0x000D = IconData(0x000D, fontFamily: _fontFamily);
+
   /// SPACE
   static const IconData space = IconData(0x0020, fontFamily: _fontFamily);
-  
+
   /// Bit shift button icon
   static const IconData shiftButton = IconData(0xE301, fontFamily: _fontFamily);
-  
+
   /// Nonamed icon 1
-  static const IconData nonamed01 = IconData(0xE3B3, fontFamily: _fontFamily);
+  static const IconData undefined0xE3B3 = IconData(0xE3B3, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE3B4
+  static const IconData undefined0xE3B4 = IconData(0xE3B4, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE3B5
+  static const IconData undefined0xE3B5 = IconData(0xE3B5, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE45D
+  static const IconData undefined0xE45D = IconData(0xE45D, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE45E
+  static const IconData undefined0xE45E = IconData(0xE45E, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE61D
+  static const IconData undefined0xE61D = IconData(0xE61D, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE70D
+  static const IconData undefined0xE70D = IconData(0xE70D, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE70E
+  static const IconData undefined0xE70E = IconData(0xE70E, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE713
+  static const IconData undefined0xE713 = IconData(0xE713, fontFamily: _fontFamily);
   
   /// Multiply (×)
   static const IconData multiply = IconData(0xE947, fontFamily: _fontFamily);
@@ -50,11 +77,26 @@ class CalculatorIcons {
   /// Random
   static const IconData random = IconData(0xE970, fontFamily: _fontFamily);
 
+  /// Undefined icon 0xE9E9
+  static const IconData undefined0xE9E9 = IconData(0xE9E9, fontFamily: _fontFamily);
+
   /// Weight and mass converter
   static const IconData weight = IconData(0xF4C1, fontFamily: _fontFamily);
 
   /// Settings
   static const IconData settings = IconData(0xE71B, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE72B
+  static const IconData undefined0xE72B = IconData(0xE72B, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE72C
+  static const IconData undefined0xE72C = IconData(0xE72C, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE72D
+  static const IconData undefined0xE72D = IconData(0xE72D, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xE74D
+  static const IconData undefined0xE74D = IconData(0xE74D, fontFamily: _fontFamily);
 
   /// Volume converter
   static const IconData volume = IconData(0xF1AA, fontFamily: _fontFamily);
@@ -101,11 +143,29 @@ class CalculatorIcons {
   /// Length converter
   static const IconData length = IconData(0xECC6, fontFamily: _fontFamily);
 
+  /// Undefined icon 0xECC9
+  static const IconData undefined0xECC9 = IconData(0xECC9, fontFamily: _fontFamily);
+
   /// Programmer calculator
   static const IconData programmerCalculator = IconData(0xECCE, fontFamily: _fontFamily);
 
+  /// Undefined icon 0xEE47
+  static const IconData undefined0xEE47 = IconData(0xEE47, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xEE49
+  static const IconData undefined0xEE49 = IconData(0xEE49, fontFamily: _fontFamily);
+
   /// Angle converter
   static const IconData angle = IconData(0xF515, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF2D2
+  static const IconData undefined0xF2D2 = IconData(0xF2D2, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF6AC
+  static const IconData undefined0xF6AC = IconData(0xF6AC, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF736
+  static const IconData undefined0xF736 = IconData(0xF736, fontFamily: _fontFamily);
 
   /// Memory recall (MR)
   static const IconData memoryRecall = IconData(0xF753, fontFamily: _fontFamily);
@@ -121,6 +181,12 @@ class CalculatorIcons {
 
   /// Memory subtract (M-)
   static const IconData memorySubtract = IconData(0xF758, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF755
+  static const IconData undefined0xF755 = IconData(0xF755, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF770
+  static const IconData undefined0xF770 = IconData(0xF770, fontFamily: _fontFamily);
 
   /// Square (x²)
   static const IconData square = IconData(0xF7C8, fontFamily: _fontFamily);
@@ -184,6 +250,9 @@ class CalculatorIcons {
 
   /// Func button icon
   static const IconData funcButton = IconData(0xF893, fontFamily: _fontFamily);
+
+  /// Undefined icon 0xF894
+  static const IconData undefined0xF894 = IconData(0xF894, fontFamily: _fontFamily);
 
   /// Bitwise operations button icon
   static const IconData bitwiseButton = IconData(0xF895, fontFamily: _fontFamily);
