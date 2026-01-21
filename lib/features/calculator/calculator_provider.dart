@@ -499,6 +499,13 @@ class CalculatorNotifier extends Notifier<CalculatorState> {
     final command = _service.getBitPositionCommand(bitNumber);
     sendCommand(command);
   }
+
+  // ============================================================================
+
+  /// Expose the CalculatorService for external access
+  /// This allows other components (like ScientificNotifier, ProgrammerNotifier)
+  /// to read engine state (angle type, word size, etc.)
+  CalculatorService get service => _service;
 }
 
 /// Calculator provider

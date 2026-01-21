@@ -3,6 +3,7 @@ import '../../core/domain/entities/angle_type.dart';
 import '../../core/domain/entities/trig_mode.dart';
 import '../../core/services/scientific/angle_service.dart';
 import '../../core/services/scientific/trig_mode_service.dart';
+import '../calculator/calculator_provider.dart';
 
 /// Unified scientific calculator state
 /// Combines all scientific mode settings into a single state object
@@ -61,7 +62,27 @@ class ScientificState {
 /// Refactored to use domain entities and services
 class ScientificNotifier extends Notifier<ScientificState> {
   @override
-  ScientificState build() => const ScientificState();
+  ScientificState build() {
+    // Read initial angle type from engine to ensure sync
+    try {
+      final calculatorNotifier = ref.read(calculatorProvider.notifier);
+      final engineAngleType = calculatorNotifier.service.getAngleType();
+
+      // Map engine value to AngleType enum
+      final initialAngleType = AngleType.fromValue(engineAngleType);
+
+      return ScientificState(
+        angleType: initialAngleType,
+        isFEChecked: false,
+        isShifted: false,
+        trigMode: TrigMode.normal,
+        isTrigShifted: false,
+      );
+    } catch (e) {
+      // Fallback to default if engine is not ready
+      return const ScientificState();
+    }
+  }
 
   /// Toggle angle type (DEG -> RAD -> GRAD -> DEG)
   /// Uses AngleService to handle the cycling logic

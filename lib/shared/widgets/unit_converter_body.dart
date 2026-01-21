@@ -4,9 +4,11 @@ import 'package:logging/logging.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/services/unit_converter_service.dart';
 import '../../core/services/persistence/preferences_service.dart';
+import '../../core/services/input/keyboard_handler.dart';
 import '../../core/utils/unit_localization.dart';
 import '../../l10n/app_localizations.dart';
 import '../../extensions/extensions.dart';
+import '../../shared/keyboard_handler_provider.dart';
 import '../widgets/converter_keypad.dart';
 import '../widgets/converter_display_panel.dart';
 
@@ -57,7 +59,8 @@ class UnitConverterBody extends ConsumerStatefulWidget {
   ConsumerState<UnitConverterBody> createState() => _UnitConverterBodyState();
 }
 
-class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
+class _UnitConverterBodyState extends ConsumerState<UnitConverterBody>
+    implements ConverterKeyboardCallback {
   static final _log = Logger('UnitConverterBody');
 
   // ===== Core State =====
@@ -102,9 +105,33 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Register keyboard callback (needs to be after context is available)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _registerKeyboardCallback();
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _converter.dispose();
+    _unregisterKeyboardCallback();
     super.dispose();
+  }
+
+  /// Register keyboard callback for converter input
+  void _registerKeyboardCallback() {
+    _log.fine('Registering keyboard callback for ${widget.converterType}');
+    registerConverterKeyboardCallback(ref, this);
+  }
+
+  /// Unregister keyboard callback
+  void _unregisterKeyboardCallback() {
+    _log.fine('Unregistering keyboard callback for ${widget.converterType}');
+    registerConverterKeyboardCallback(ref, null);
   }
 
   /// Initialize the converter service
@@ -569,5 +596,52 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody> {
         whimsicalSuggestion: whimsicalObjects.isNotEmpty ? whimsicalObjects.first : null,
       ),
     );
+  }
+
+  // ===== ConverterKeyboardCallback Implementation =====
+
+  @override
+  void onNumber(String number) {
+    if (!_isInitialized) {
+      _log.fine('Ignoring number input: converter not initialized');
+      return;
+    }
+    _log.fine('Keyboard number input: $number');
+    _onNumberPressed(number);
+  }
+
+  @override
+  void onBackspace() {
+    if (!_isInitialized) {
+      _log.fine('Ignoring backspace: converter not initialized');
+      return;
+    }
+    _log.fine('Keyboard backspace');
+    _onBackPressed();
+  }
+
+  @override
+  void onClear() {
+    if (!_isInitialized) {
+      _log.fine('Ignoring clear: converter not initialized');
+      return;
+    }
+    _log.fine('Keyboard clear');
+    _onClearPressed();
+  }
+
+  @override
+  void onNegate() {
+    if (!_isInitialized) {
+      _log.fine('Ignoring negate: converter not initialized');
+      return;
+    }
+    // Only support negate if the converter config allows it
+    if (widget.config.showSignToggle) {
+      _log.fine('Keyboard negate (F9)');
+      _onNegatePressed();
+    } else {
+      _log.fine('Negate not supported for this converter');
+    }
   }
 }

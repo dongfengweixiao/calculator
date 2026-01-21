@@ -25,6 +25,14 @@ enum ProgrammerBase {
   final String label;
 
   const ProgrammerBase(this.value, this.label);
+
+  /// Create ProgrammerBase from engine radix value
+  static ProgrammerBase fromValue(int value) {
+    return ProgrammerBase.values.firstWhere(
+      (base) => base.value == value,
+      orElse: () => ProgrammerBase.dec,
+    );
+  }
 }
 
 /// Programmer word size type
@@ -38,6 +46,14 @@ enum WordSize {
   final String label;
 
   const WordSize(this.bits, this.label);
+
+  /// Create WordSize from engine value (bits)
+  static WordSize fromValue(int value) {
+    return WordSize.values.firstWhere(
+      (size) => size.bits == value,
+      orElse: () => WordSize.qword,
+    );
+  }
 }
 
 /// Programmer input mode
@@ -114,13 +130,26 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
 
   @override
   ProgrammerState build() {
+    // Read initial word size from engine to ensure sync
+    WordSize initialWordSize = WordSize.qword; // Default
+    try {
+      final calculatorNotifier = ref.read(calculatorProvider.notifier);
+      final engineWordSize = calculatorNotifier.service.getWordSize();
+
+      // Map engine value to WordSize enum
+      initialWordSize = WordSize.fromValue(engineWordSize);
+    } catch (e) {
+      // Fallback to default if engine is not ready
+      initialWordSize = WordSize.qword;
+    }
+
     return ProgrammerState(
       currentBase: ProgrammerBase.dec,
       hexValue: '0',
       decValue: '0',
       octValue: '0',
       binValue: '0',
-      wordSize: WordSize.qword,
+      wordSize: initialWordSize,
       inputMode: ProgrammerInputMode.fullKeypad,
       shiftMode: ShiftMode.logical,
       bitValues: List.generate(64, (index) => false),
@@ -286,6 +315,42 @@ class ProgrammerNotifier extends Notifier<ProgrammerState> {
         calculator.setByte();
         break;
     }
+  }
+
+  /// Set word size directly (only updates local state, does not call engine)
+  /// This should be used in combination with calculator engine commands
+  /// to ensure state stays in sync (similar to how setAngleType works in scientific mode)
+  void setWordSize(WordSize newWordSize) {
+    final oldWordSize = state.wordSize;
+
+    // Create new bit values based on word size change
+    List<bool> newBitValues;
+    if (newWordSize.bits > oldWordSize.bits) {
+      // Word size increased: initialize new bits to 1
+      newBitValues = List<bool>.generate(64, (index) {
+        final bitNumber = 63 - index;
+        if (bitNumber >= newWordSize.bits) {
+          return false;
+        } else if (bitNumber >= oldWordSize.bits) {
+          return true;
+        } else {
+          return state.bitValues[index];
+        }
+      });
+    } else {
+      // Word size decreased: clear bits beyond new word size
+      newBitValues = List<bool>.generate(64, (index) {
+        final bitNumber = 63 - index;
+        if (bitNumber >= newWordSize.bits) {
+          return false;
+        } else {
+          return state.bitValues[index];
+        }
+      });
+    }
+
+    // Update local state only (caller is responsible for syncing with engine)
+    state = state.copyWith(wordSize: newWordSize, bitValues: newBitValues);
   }
 
   /// Toggle input mode

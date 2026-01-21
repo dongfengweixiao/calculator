@@ -67,6 +67,20 @@ class CalculatorService {
     return calculator_get_radix(_calculator!);
   }
 
+  /// Get the current angle type from engine
+  /// Returns: 0 = Degree, 1 = Radian, 2 = Gradian
+  int getAngleType() {
+    if (!_isInitialized) return 0; // Default to Degree
+    return calculator_get_angle_type(_calculator!);
+  }
+
+  /// Get the current word size from engine
+  /// Returns: 8 = BYTE, 16 = WORD, 32 = DWORD, 64 = QWORD
+  int getWordSize() {
+    if (!_isInitialized) return 64; // Default to QWORD
+    return calculator_get_word_width(_calculator!);
+  }
+
   /// Send a command to the calculator
   void sendCommand(int command) {
     if (!_isInitialized) return;

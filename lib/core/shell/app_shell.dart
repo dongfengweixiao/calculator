@@ -4,10 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:logging/logging.dart';
 import '../router/nav_config.dart';
 import '../widgets/custom_title_bar.dart';
 import '../theme/app_theme.dart';
 import '../services/calculator_service.dart';
+import '../services/input/keyboard_handler.dart';
 import 'app_header.dart';
 import 'app_sidebar.dart';
 import 'responsive_side_panel.dart';
@@ -15,6 +18,7 @@ import '../../features/calculator/calculator_provider.dart';
 import '../../features/calculator/panel_state.dart';
 import '../../shared/navigation/panel_provider.dart';
 import '../../shared/theme/theme_provider.dart';
+import '../../shared/keyboard_handler_provider.dart';
 import '../../extensions/extensions.dart';
 
 /// Breakpoint for side panel visibility
@@ -27,6 +31,11 @@ const List<String> _calculatorRoutes = [
   '/standard',
   '/scientific',
   '/programmer',
+];
+
+/// Routes that support keyboard input (unit converters)
+const List<String> _converterRoutes = [
+  '/converter/',
 ];
 
 /// Application shell widget
@@ -57,6 +66,8 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
+  static final _log = Logger('AppShell');
+
   /// Global key for controlling the drawer
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -71,6 +82,86 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   /// Track previous route to detect route changes
   String? _previousRoute;
+
+  /// Registered hotkeys
+  final List<HotKey> _registeredHotKeys = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _log.info('AppShell initState');
+    // Initialize KeyboardHandler after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Guard against using context after widget disposal
+      if (!mounted) return;
+
+      _log.info('Initializing keyboard handler...');
+      // Unregister any existing hotkeys
+      await hotKeyManager.unregisterAll();
+      _log.fine('Unregistered all existing hotkeys');
+
+      // Check mounted again after async gap
+      if (!mounted) return;
+
+      // Create and set the global KeyboardHandler
+      final keyboardHandler = KeyboardHandler(ref, context);
+      setGlobalKeyboardHandler(ref, keyboardHandler);
+      _log.info('Global KeyboardHandler set');
+
+      // Register hotkeys
+      _registerHotKeys(keyboardHandler);
+    });
+  }
+
+  @override
+  void dispose() {
+    _log.info('AppShell dispose');
+    // Clean up all hotkeys
+    for (final hotKey in _registeredHotKeys) {
+      hotKeyManager.unregister(hotKey);
+    }
+    _log.fine('Unregistered ${_registeredHotKeys.length} hotkeys');
+    _registeredHotKeys.clear();
+    // Clear the global KeyboardHandler
+    ref.read(keyboardHandlerProvider.notifier).clearHandler();
+    _log.fine('Cleared global KeyboardHandler');
+    super.dispose();
+  }
+
+  /// Register hotkeys for current route
+  void _registerHotKeys(KeyboardHandler keyboardHandler) {
+    // Unregister existing hotkeys
+    for (final hotKey in _registeredHotKeys) {
+      hotKeyManager.unregister(hotKey);
+    }
+    if (_registeredHotKeys.isNotEmpty) {
+      _log.fine('Unregistered ${_registeredHotKeys.length} existing hotkeys');
+    }
+    _registeredHotKeys.clear();
+
+    // Get current route
+    final routerState = GoRouterState.of(context);
+    final currentPath = routerState.uri.path;
+
+    // Check if we should handle keyboard for this route
+    if (!_shouldHandleKeyboard(currentPath)) {
+      _log.fine('Skipping keyboard registration for route: $currentPath');
+      return;
+    }
+
+    _log.info('Registering hotkeys for route: $currentPath');
+
+    // Register all hotkey bindings
+    for (final entry in keyboardHandler.hotKeyBindings.entries) {
+      hotKeyManager.register(
+        entry.key,
+        keyDownHandler: (_) => entry.value(),
+      );
+      _registeredHotKeys.add(entry.key);
+    }
+
+    _log.info('Registered ${_registeredHotKeys.length} hotkeys for $currentPath');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -236,22 +327,42 @@ class _AppShellState extends ConsumerState<AppShell> {
 
   /// Update calculator mode based on current route
   void _updateCalculatorModeForRoute(String route) {
+    _log.fine('Route changed to: $route');
     final calculator = ref.read(calculatorProvider.notifier);
 
     // Map routes to calculator modes
     switch (route) {
       case '/standard':
+        _log.fine('Setting calculator mode to STANDARD');
         calculator.setMode(CalculatorMode.standard);
         break;
       case '/scientific':
+        _log.fine('Setting calculator mode to SCIENTIFIC');
         calculator.setMode(CalculatorMode.scientific);
         break;
       case '/programmer':
+        _log.fine('Setting calculator mode to PROGRAMMER');
         calculator.setMode(CalculatorMode.programmer);
         break;
       default:
         // For non-calculator routes, keep current mode
+        _log.fine('Non-calculator route, keeping current mode');
         break;
     }
+
+    // Re-register hotkeys for the new route
+    final keyboardHandler = ref.read(keyboardHandlerProvider);
+    if (keyboardHandler != null) {
+      _log.fine('Re-registering hotkeys for new route');
+      _registerHotKeys(keyboardHandler);
+    } else {
+      _log.warning('KeyboardHandler is null, cannot re-register hotkeys');
+    }
+  }
+
+  /// Check if current route should handle keyboard input
+  bool _shouldHandleKeyboard(String currentPath) {
+    return _calculatorRoutes.contains(currentPath) ||
+        _converterRoutes.any((route) => currentPath.startsWith(route));
   }
 }
