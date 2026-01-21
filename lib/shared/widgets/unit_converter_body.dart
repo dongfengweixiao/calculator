@@ -118,7 +118,11 @@ class _UnitConverterBodyState extends ConsumerState<UnitConverterBody>
   @override
   void dispose() {
     _converter.dispose();
-    _unregisterKeyboardCallback();
+    // Only unregister keyboard callback if widget is still mounted
+    // Using ref in dispose() is unsafe, so we check mounted first
+    if (mounted) {
+      _unregisterKeyboardCallback();
+    }
     super.dispose();
   }
 
