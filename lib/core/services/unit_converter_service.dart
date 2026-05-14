@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:wincalc_engine/wincalc_engine.dart';
+import 'package:wincalc_engine/src/l10n_switch.dart';
 import 'package:logging/logging.dart';
 
 /// Unit data model from the native converter
@@ -10,12 +11,19 @@ class ConverterUnit {
   final String abbreviation;
   final bool isWhimsical;
 
-  const ConverterUnit({
+  /// 本地化后的单位名称，由 [UnitConverterService.setLocale] 填充
+  String localizedName;
+
+  /// 本地化后的单位缩写，由 [UnitConverterService.setLocale] 填充
+  String localizedAbbreviation;
+
+  ConverterUnit({
     required this.id,
     required this.name,
     required this.abbreviation,
     this.isWhimsical = false,
-  });
+  })  : localizedName = name,
+        localizedAbbreviation = abbreviation;
 
   @override
   String toString() => '$name ($abbreviation)';
@@ -52,6 +60,15 @@ class UnitConverterService {
   /// Display values
   String _currentDisplay = '0';
   String _returnDisplay = '0';
+
+  /// 当前本地化实例
+  WincalcLocalizations? _l10n;
+
+  /// 设置本地化实例，并刷新当前类别的单位本地化名称
+  void setLocale(WincalcLocalizations l10n) {
+    _l10n = l10n;
+    _localizeUnits();
+  }
 
   /// Whether the converter is initialized
   bool get isInitialized => _isInitialized;
@@ -122,11 +139,7 @@ class UnitConverterService {
           unit_converter_set_category(_converter!, currentCat);
         }
 
-        categories.add(ConverterCategory(
-          id: id,
-          name: name,
-          units: units,
-        ));
+        categories.add(ConverterCategory(id: id, name: name, units: units));
       } finally {
         calloc.free(nameBuffer);
       }
@@ -157,6 +170,8 @@ class UnitConverterService {
 
       unit_converter_set_from_unit(_converter!, _fromType!.id);
       unit_converter_set_to_unit(_converter!, _toType!.id);
+
+      _readCurrentValues();
     }
   }
 
@@ -220,19 +235,23 @@ class UnitConverterService {
         final abbr = abbrBuffer.cast<Utf8>().toDartString(length: abbrLength);
 
         // Debug print
-        log.fine('  Unit ID: $id, Name: "$name", Abbr: "$abbr", IsWhimsical: $isWhimsical');
+        log.fine(
+          '  Unit ID: $id, Name: "$name", Abbr: "$abbr", IsWhimsical: $isWhimsical',
+        );
 
         // Skip whimsical units - they shouldn't appear in dropdown menus
         if (isWhimsical) {
           continue;
         }
 
-        units.add(ConverterUnit(
-          id: id,
-          name: name,
-          abbreviation: abbr,
-          isWhimsical: isWhimsical,
-        ));
+        units.add(
+          ConverterUnit(
+            id: id,
+            name: name,
+            abbreviation: abbr,
+            isWhimsical: isWhimsical,
+          ),
+        );
       } finally {
         calloc.free(nameBuffer);
         calloc.free(abbrBuffer);
@@ -307,8 +326,16 @@ class UnitConverterService {
       final fromBuffer = calloc<Char>(256);
       final toBuffer = calloc<Char>(256);
       try {
-        final fromLength = unit_converter_get_from_value(_converter!, fromBuffer, 256);
-        final toLength = unit_converter_get_to_value(_converter!, toBuffer, 256);
+        final fromLength = unit_converter_get_from_value(
+          _converter!,
+          fromBuffer,
+          256,
+        );
+        final toLength = unit_converter_get_to_value(
+          _converter!,
+          toBuffer,
+          256,
+        );
 
         _currentDisplay = fromLength > 0
             ? fromBuffer.cast<Utf8>().toDartString(length: fromLength)
@@ -369,7 +396,11 @@ class UnitConverterService {
     final fromBuffer = calloc<Char>(256);
     final toBuffer = calloc<Char>(256);
     try {
-      final fromLength = unit_converter_get_from_value(_converter!, fromBuffer, 256);
+      final fromLength = unit_converter_get_from_value(
+        _converter!,
+        fromBuffer,
+        256,
+      );
       final toLength = unit_converter_get_to_value(_converter!, toBuffer, 256);
 
       _currentDisplay = fromLength > 0
@@ -441,13 +472,19 @@ class UnitConverterService {
         // Parse the value as double to check if it's zero
         final valueNum = double.tryParse(value) ?? 0.0;
 
+        // 跳过值为 0 的建议
+        if (valueNum == 0) continue;
+
         // Check if this unit is whimsical using UnitIcons
         final isWhimsical = _isUnitWhimsical(unitId);
+
+        // 将资源键转换为本地化字符串
+        final localizedUnit = _l10n?.getByKey(unit) ?? unit;
 
         suggestions.add({
           'value': value,
           'valueNum': valueNum,
-          'unit': unit,
+          'unit': localizedUnit,
           'unitId': unitId,
           'isWhimsical': isWhimsical,
         });
@@ -506,5 +543,17 @@ class UnitConverterService {
       1222, // SwimmingPool
     };
     return whimsicalUnitIds.contains(unitId);
+  }
+
+  /// 根据 l10n 实例刷新当前类别中所有单位的本地化名称
+  ///
+  /// C++ 引擎返回的是 ARB 资源键（如 "unitNameLiter"），
+  /// 通过 [WincalcLocalizationsByKey.getByKey] 转换为本地化字符串。
+  void _localizeUnits() {
+    if (_l10n == null || _currentCategory == null) return;
+    for (final unit in _currentCategory!.units) {
+      unit.localizedName = _l10n!.getByKey(unit.name);
+      unit.localizedAbbreviation = _l10n!.getByKey(unit.abbreviation);
+    }
   }
 }

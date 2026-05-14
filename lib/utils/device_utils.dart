@@ -16,7 +16,9 @@ class DeviceUtils {
     // Calculate logical size
     final logicalWidth = physicalSize.width / devicePixelRatio;
     final logicalHeight = physicalSize.height / devicePixelRatio;
-    final shortestSide = logicalWidth < logicalHeight ? logicalWidth : logicalHeight;
+    final shortestSide = logicalWidth < logicalHeight
+        ? logicalWidth
+        : logicalHeight;
 
     // Android defines a tablet as having at least 600dp on the shortest side
     return shortestSide >= 600;

@@ -46,7 +46,9 @@ extension DoubleX on double {
 
     // Remove trailing zeros
     if (formatted.contains('.')) {
-      return formatted.replaceAll(RegExp(r'0+$'), '').replaceAll(RegExp(r'\.$'), '');
+      return formatted
+          .replaceAll(RegExp(r'0+$'), '')
+          .replaceAll(RegExp(r'\.$'), '');
     }
 
     return formatted;
@@ -63,9 +65,12 @@ extension DoubleX on double {
     for (int i = maxPrecision; i > 0; i--) {
       final rounded = toStringAsFixed(i);
       final parsed = double.tryParse(rounded);
-      if (parsed != null && isCloseTo(parsed, tolerance: math.pow(10, -i - 1).toDouble())) {
+      if (parsed != null &&
+          isCloseTo(parsed, tolerance: math.pow(10, -i - 1).toDouble())) {
         // Remove trailing zeros
-        final cleaned = rounded.replaceAll(RegExp(r'0+$'), '').replaceAll(RegExp(r'\.$'), '');
+        final cleaned = rounded
+            .replaceAll(RegExp(r'0+$'), '')
+            .replaceAll(RegExp(r'\.$'), '');
         return cleaned;
       }
     }

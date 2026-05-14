@@ -7,19 +7,11 @@ class HistoryItem {
   /// The result of the calculation
   final String result;
 
-  const HistoryItem({
-    required this.expression,
-    required this.result,
-  });
+  const HistoryItem({required this.expression, required this.result});
 
   /// Create a HistoryItem from a record
-  factory HistoryItem.fromRecord(
-    ({String expression, String result}) record,
-  ) {
-    return HistoryItem(
-      expression: record.expression,
-      result: record.result,
-    );
+  factory HistoryItem.fromRecord(({String expression, String result}) record) {
+    return HistoryItem(expression: record.expression, result: record.result);
   }
 
   /// Convert to a record
@@ -28,10 +20,7 @@ class HistoryItem {
   }
 
   /// Create a copy with modified fields
-  HistoryItem copyWith({
-    String? expression,
-    String? result,
-  }) {
+  HistoryItem copyWith({String? expression, String? result}) {
     return HistoryItem(
       expression: expression ?? this.expression,
       result: result ?? this.result,

@@ -114,7 +114,8 @@ class _CustomTitleBarState extends State<CustomTitleBar> with WindowListener {
   /// Build title bar for Windows and Linux
   Widget _buildWindowsLinuxTitleBar(BuildContext context) {
     final theme = Theme.of(context);
-    final backgroundColor = widget.backgroundColor ??
+    final backgroundColor =
+        widget.backgroundColor ??
         (theme.brightness == Brightness.dark
             ? const Color(0xFF2B2B2B)
             : const Color(0xFFFFFFFF));
@@ -131,10 +132,7 @@ class _CustomTitleBarState extends State<CustomTitleBar> with WindowListener {
         decoration: BoxDecoration(
           color: backgroundColor,
           border: Border(
-            bottom: BorderSide(
-              color: theme.dividerColor,
-              width: 0.5,
-            ),
+            bottom: BorderSide(color: theme.dividerColor, width: 0.5),
           ),
         ),
         child: Row(
@@ -201,7 +199,9 @@ class _CustomTitleBarState extends State<CustomTitleBar> with WindowListener {
       ),
       child: DragToMoveArea(
         child: Container(
-          padding: const EdgeInsets.only(left: 80), // Space for macOS traffic lights
+          padding: const EdgeInsets.only(
+            left: 80,
+          ), // Space for macOS traffic lights
           alignment: Alignment.centerLeft,
           child: Text(
             widget.title,
@@ -245,7 +245,9 @@ class _WindowControlButtons extends StatelessWidget {
           tooltip: 'Minimize',
         ),
         _WindowControlButton(
-          icon: isMaximized ? Icons.fullscreen_exit : Icons.check_box_outline_blank,
+          icon: isMaximized
+              ? Icons.fullscreen_exit
+              : Icons.check_box_outline_blank,
           iconSize: 24,
           onPressed: onMaximize,
           iconColor: iconColor,
@@ -293,8 +295,8 @@ class _WindowControlButtonState extends State<_WindowControlButton> {
   Widget build(BuildContext context) {
     final backgroundColor = _isHovering
         ? (widget.isCloseButton
-            ? const Color(0xFFE81123) // Windows close red
-            : Colors.black.withValues(alpha: 0.1))
+              ? const Color(0xFFE81123) // Windows close red
+              : Colors.black.withValues(alpha: 0.1))
         : Colors.transparent;
 
     return Tooltip(
@@ -308,9 +310,7 @@ class _WindowControlButtonState extends State<_WindowControlButton> {
           child: Container(
             width: 46,
             height: 32,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-            ),
+            decoration: BoxDecoration(color: backgroundColor),
             child: Icon(
               widget.icon,
               size: widget.iconSize,
@@ -365,9 +365,7 @@ class _TitleBarButtonState extends State<_TitleBarButton> {
           child: Container(
             width: 40,
             height: 32,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-            ),
+            decoration: BoxDecoration(color: backgroundColor),
             child: Icon(
               widget.icon,
               size: widget.iconSize,

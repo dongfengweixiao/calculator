@@ -24,9 +24,7 @@ class ButtonVisibilityService {
     required String display,
     required String expression,
   }) {
-    return shouldShowCE(display: display, expression: expression)
-        ? 'CE'
-        : 'C';
+    return shouldShowCE(display: display, expression: expression) ? 'CE' : 'C';
   }
 
   /// Get clear button command

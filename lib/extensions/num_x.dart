@@ -122,7 +122,8 @@ extension IntX on int {
   /// Calculates factorial
   /// Example: 5.factorial() returns 120
   int factorial() {
-    if (this < 0) throw ArgumentError('Factorial is not defined for negative numbers');
+    if (this < 0)
+      throw ArgumentError('Factorial is not defined for negative numbers');
     if (this <= 1) return 1;
     int result = 1;
     for (int i = 2; i <= this; i++) {

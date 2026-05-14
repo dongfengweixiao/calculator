@@ -23,7 +23,7 @@ void configureLogging() {
   if (!kReleaseMode) {
     log.info(
       'Logging initialized: ${_getBuildMode()} mode, '
-      'level: ${Logger.root.level.name}'
+      'level: ${Logger.root.level.name}',
     );
   }
 }
@@ -57,7 +57,9 @@ void _consoleLogHandler(LogRecord record) {
 
   // Format: [TIME] [LEVEL] [LoggerName] Message
   // ignore: avoid_print
-  print('$color[$time] [$prefix] [${record.loggerName}] ${record.message}\x1B[0m');
+  print(
+    '$color[$time] [$prefix] [${record.loggerName}] ${record.message}\x1B[0m',
+  );
 
   // Print error and stack if present
   if (record.error != null) {

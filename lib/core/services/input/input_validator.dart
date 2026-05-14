@@ -75,10 +75,7 @@ class InputValidator {
   }
 
   /// Check if input would exceed display limit
-  static bool wouldExceedDisplayLimit(
-    String currentDisplay,
-    String input,
-  ) {
+  static bool wouldExceedDisplayLimit(String currentDisplay, String input) {
     final newLength = currentDisplay.length + input.length;
     return newLength > DisplayLimits.maxDisplayLength;
   }

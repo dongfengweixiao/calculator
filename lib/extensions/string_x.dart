@@ -77,7 +77,6 @@ extension StringX on String {
     return '$formattedInteger$decimalPart';
   }
 
-
   String _formatIntegerPart(String integerPart, String separator) {
     if (integerPart == '0') return '0';
 

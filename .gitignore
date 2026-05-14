@@ -1,9 +1,212 @@
-# Miscellaneous
-*.class
-*.log
+# ============================================
+# MoAI-ADK Package Distribution .gitignore
+# ============================================
+# Version: 0.33.0
+# Updated: 2026-01-10
+# Purpose: Essential patterns for user projects
+# ============================================
+
+# ===========================================
+# Go Build Artifacts
+# ===========================================
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+cover.out
+cover.html
+cpu.prof
+mem.prof
+
+# ===========================================
+# Build Artifacts & Distribution
+# ===========================================
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ===========================================
+# Python Cache & Bytecode
+# ===========================================
+__pycache__/
+.pytest_cache/
 *.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+.ruff_cache/
+*.db
+*.sqlite
+*.sqlite3
+*.rdb
+*.dbm
+
+# ===========================================
+# Virtual Environments
+# ===========================================
+venv/
+.venv/
+env/
+.env/
+.uv_cache/
+.uv-cache/
+
+# ===========================================
+# Test Coverage
+# ===========================================
+.coverage
+coverage.json
+htmlcov/
+
+# ===========================================
+# IDE & Editors
+# ===========================================
+.vscode/
+.idea/
 *.swp
+*.swo
+*.sw?
+*~
+.cursor/
+*.sublime-project
+*.sublime-workspace
+*.njsproj
+*.sln
+*.suo
+.#*
+
+# ===========================================
+# OS Files
+# ===========================================
+# Mac
 .DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+ehthumbs.db
+
+# Linux
+.directory
+
+# ===========================================
+# Logs & Temporary Files
+# ===========================================
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# ===========================================
+# Backups
+# ===========================================
+.moai-backups/
+*.backup/
+*-backup/
+*_backup_*/
+
+# ===========================================
+# Secrets and Credentials (CRITICAL)
+# ===========================================
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Certificate files
+*.pem
+*.p12
+*.pfx
+*.jks
+
+# Private keys (specific patterns to avoid false positives)
+# FIXED: Issue #237 - Replaced overly broad *key* and *secret* patterns
+*-key.*
+*_key.*
+*.key.*
+*-secret-key.*
+*-api-key.*
+api-key-*
+secret-key-*
+private-key*
+*-secret.*
+*_secret.*
+*.secret.*
+secret-*.*
+
+# Credential patterns in environment files
+*_secret=*
+*_token=*
+
+# Cloud provider credentials
+.aws/config
+.aws/credentials
+
+# ===========================================
+# Claude Code Configuration
+# ===========================================
+.claude/settings.local.json
+.claude/settings.local.*.json
+.claude/.env.local*
+.claude/local/
+.claude/plans/
+.claude/agent-memory/
+.claude/worktrees/
+
+# Skill-specific credentials
+.claude/skills/*/.env*
+.claude/skills/*/secrets/
+.claude/skills/*/*/*secret*
+.claude/skills/*/*/*key*
+.claude/skills/*/*/*token*
+# Re-include legitimate skill module files containing "token" in their name
+!.claude/skills/*/modules/*token*.md
+
+# ===========================================
+# Local-Only Files (never sync via git pull)
+# ===========================================
+.moai/status_line.sh
+.moai/memory/
+.moai/worktrees/
+
+# ===========================================
+# Node.js (for docs/Nextra)
+# ===========================================
+node_modules/
+*.tsbuildinfo
+.tscache/
+.next/
+out/
+
+# ===========================================
+# Build Tools & Frameworks
+# ===========================================
+.turbo/
+.nuxt/
+dist-ssr/
+
+# ===========================================
+# Deployment & CI/CD
+# ===========================================
+.vercel/
+.netlify/
+.firebase/
+
+# User Custom Patterns (preserved by moai update)
+*.class
 .atom/
 .build/
 .buildlog/
@@ -11,19 +214,9 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-
-# IntelliJ related
 *.iml
 *.ipr
 *.iws
-.idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
@@ -32,21 +225,12 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
-
-# Symbolication related
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
-
-# Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
-
 android/app/src/main/jniLibs/*/libc++_shared.so
-
-# AI Agents / Assistants
 AGENTS.md
 GEMINI.md
 WARP.md
@@ -57,45 +241,17 @@ CRUSH.md
 .codeium/
 .deepseek/
 .amazon-codewhisperer/
-
-# Cursor AI (VS Code fork)
 .cursorrules
-.cursor/
 .cursor.json
 .cursor-settings.yaml
-
-# Tabnine AI - per official docs
 .tabnineignore
 .tabnine/
-
-# Continue.dev (Open source AI assistant)
 .continue/
 .continuerc.json
-
-# Aider AI (Terminal-based)
 .aiderignore
-
-# Qwen Code CLI
 QWEN.md
-
-# Claude code
 .claude/
-
-# (purely optional) Gemini settings folder
 .gemini/
-
-# Cline AI Assistant (trending, user configs similar to Cursor/Continue)
 .cline/
 .clinerules
 cline.json
-
-# GitHub Copilot - does not create repo-local files by default
-# .github/copilot-instructions.md
-
-# Windsurf Editor (Agentic IDE) - usually intentional project configs
-# .windsurfrules
-# .windsurf/
-
-# Replit AI Development - usually intentional project configs
-# .replit
-# replit.nix
