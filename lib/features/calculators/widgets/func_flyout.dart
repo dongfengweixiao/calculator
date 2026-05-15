@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 import '../../../core/theme/app_icons.dart';
+import 'shared_buttons.dart';
 
 /// 函数弹出面板
 ///
@@ -75,15 +76,11 @@ class AbsFlyoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.absoluteValue, size: 20),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.absoluteValue, size: 20),
     );
   }
 }
@@ -96,15 +93,11 @@ class FloorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.floor, size: 20),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.floor, size: 20),
     );
   }
 }
@@ -117,15 +110,11 @@ class CeilButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.ceiling, size: 20),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.ceiling, size: 20),
     );
   }
 }
@@ -138,15 +127,11 @@ class RandButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('Rand', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('Rand', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -159,15 +144,11 @@ class DmsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.dms, size: 20),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.dms, size: 20),
     );
   }
 }
@@ -180,15 +161,11 @@ class DegreesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.degrees, size: 20),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.degrees, size: 20),
     );
   }
 }

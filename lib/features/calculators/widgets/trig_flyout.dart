@@ -3,6 +3,7 @@ import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 
 import '../trig_types.dart';
+import 'shared_buttons.dart';
 
 /// 三角函数弹出面板
 ///
@@ -235,24 +236,20 @@ class SinButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -267,24 +264,20 @@ class CosButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -299,24 +292,20 @@ class TanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -331,24 +320,20 @@ class SecButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -363,24 +348,20 @@ class CscButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
@@ -395,24 +376,20 @@ class CotButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: EasyRichText(
-          label,
-          patternList: [
-            EasyRichTextPattern(
-              targetString: '-1',
-              superScript: true,
-              matchWordBoundaries: false,
-            ),
-          ],
-          defaultStyle: const TextStyle(fontSize: 14),
-        ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: EasyRichText(
+        label,
+        patternList: [
+          EasyRichTextPattern(
+            targetString: '-1',
+            superScript: true,
+            matchWordBoundaries: false,
+          ),
+        ],
+        defaultStyle: const TextStyle(fontSize: 14),
       ),
     );
   }
