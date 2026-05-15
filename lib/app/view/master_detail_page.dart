@@ -30,8 +30,8 @@ class MasterDetailPage extends StatelessWidget {
             right: isMacOS ? null : 5,
             child: IconButton(
               onPressed: isMacOS
-                  ? masterScaffoldKey.currentState?.closeEndDrawer
-                  : masterScaffoldKey.currentState?.closeDrawer,
+                  ? () => masterScaffoldKey.currentState?.closeEndDrawer()
+                  : () => masterScaffoldKey.currentState?.closeDrawer(),
               icon: Icon(Iconz.close),
             ),
           ),
