@@ -102,12 +102,15 @@ class LshButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: Icon(CalculatorIcons.rol, size: 20),
       ),
@@ -123,12 +126,15 @@ class RshButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: Icon(CalculatorIcons.ror, size: 20),
       ),

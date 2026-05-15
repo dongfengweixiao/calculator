@@ -141,12 +141,15 @@ class XPower2Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.square, size: 20),
       ),
@@ -162,12 +165,15 @@ class SquareRootButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.squareRoot, size: 20),
       ),
@@ -183,12 +189,15 @@ class PowerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.power, size: 20),
       ),
@@ -204,12 +213,15 @@ class PowerOf10Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.powerOf10, size: 20),
       ),
@@ -225,12 +237,15 @@ class LogBase10Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Text('log', style: TextStyle(fontSize: 14)),
       ),
@@ -246,12 +261,15 @@ class LogBaseEButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Text('ln', style: TextStyle(fontSize: 14)),
       ),
@@ -267,12 +285,15 @@ class CubeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.cube, size: 20),
       ),
@@ -288,12 +309,15 @@ class CubeRootButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.cubeRoot, size: 20),
       ),
@@ -309,12 +333,15 @@ class YSquareRootButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.yRoot, size: 20),
       ),
@@ -330,12 +357,15 @@ class TwoPowerXButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.powerOf2, size: 20),
       ),
@@ -351,12 +381,15 @@ class LogBaseYButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.logBaseY, size: 20),
       ),
@@ -372,12 +405,15 @@ class PowerOfEButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox.expand(
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           padding: EdgeInsets.zero,
+          backgroundColor: colorScheme.surfaceContainerHigh,
+          foregroundColor: colorScheme.onSurface,
         ),
         child: const Icon(CalculatorIcons.powerOfE, size: 20),
       ),

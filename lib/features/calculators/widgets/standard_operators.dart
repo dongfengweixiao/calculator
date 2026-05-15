@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 import '../../../core/theme/app_icons.dart';
+import 'shared_buttons.dart';
 
 /// 标准计算器运算符按钮列
 ///
@@ -70,15 +71,9 @@ class DivideButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.divide, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.divide, size: 20),
     );
   }
 }
@@ -91,15 +86,9 @@ class MultiplyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.multiply, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.multiply, size: 20),
     );
   }
 }
@@ -112,15 +101,9 @@ class MinusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.minus, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.minus, size: 20),
     );
   }
 }
@@ -133,15 +116,9 @@ class PlusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.plus, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.plus, size: 20),
     );
   }
 }

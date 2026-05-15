@@ -62,15 +62,9 @@ class ClearEntryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('CE', style: TextStyle(fontSize: 16)),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Text('CE', style: TextStyle(fontSize: 16)),
     );
   }
 }
@@ -83,15 +77,9 @@ class ClearButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('C', style: TextStyle(fontSize: 16)),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Text('C', style: TextStyle(fontSize: 16)),
     );
   }
 }
@@ -104,15 +92,9 @@ class BackSpaceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: Icon(CalculatorIcons.backspace, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: Icon(CalculatorIcons.backspace, size: 20),
     );
   }
 }

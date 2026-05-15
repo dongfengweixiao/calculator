@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 import '../../../core/theme/app_icons.dart';
+import 'shared_buttons.dart';
 
 /// 数字键盘组件
 ///
@@ -121,17 +122,10 @@ class NumXButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed != null ? () => onPressed!(digit) : null,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-          backgroundColor: colorScheme.surfaceContainerLow,
-          foregroundColor: colorScheme.onSurface,
-        ),
-        child: Text('$digit', style: const TextStyle(fontSize: 20)),
-      ),
+    return CalcButton(
+      onPressed: onPressed != null ? () => onPressed!(digit) : null,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: Text('$digit', style: const TextStyle(fontSize: 20)),
     );
   }
 }
@@ -145,17 +139,10 @@ class DecimalSeparatorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-          backgroundColor: colorScheme.surfaceContainerLow,
-          foregroundColor: colorScheme.onSurface,
-        ),
-        child: const Icon(CalculatorIcons.dot, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.dot, size: 20),
     );
   }
 }
@@ -169,17 +156,10 @@ class NegateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-          backgroundColor: colorScheme.surfaceContainerLow,
-          foregroundColor: colorScheme.onSurface,
-        ),
-        child: const Icon(CalculatorIcons.negate, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Icon(CalculatorIcons.negate, size: 20),
     );
   }
 }

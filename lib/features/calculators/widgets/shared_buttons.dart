@@ -7,6 +7,42 @@ import '../../../core/theme/app_icons.dart';
 ///
 /// 包含在多个计算器页面中重复使用的按钮组件
 
+/// 计算器通用按钮
+///
+/// 默认使用 [ColorScheme.surfaceContainerHigh] 作为背景色（函数/运算符按钮）。
+/// 数字键盘按钮可通过 [backgroundColor] 覆盖为 [ColorScheme.surfaceContainerLow]。
+class CalcButton extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final Widget child;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+
+  const CalcButton({
+    super.key,
+    this.onPressed,
+    this.backgroundColor,
+    this.foregroundColor,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return SizedBox.expand(
+      child: FilledButton(
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          padding: EdgeInsets.zero,
+          backgroundColor: backgroundColor ?? colorScheme.surfaceContainerHigh,
+          foregroundColor: foregroundColor ?? colorScheme.onSurface,
+        ),
+        child: child,
+      ),
+    );
+  }
+}
+
 /// 百分比按钮
 class PercentButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -15,15 +51,9 @@ class PercentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.percent, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.percent, size: 20),
     );
   }
 }
@@ -37,23 +67,17 @@ class OpenParenthesisButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: count == 0
-            ? const Text('(', style: TextStyle(fontSize: 18))
-            : EasyRichText(
-                '($count',
-                defaultStyle: const TextStyle(fontSize: 18),
-                patternList: [
-                  EasyRichTextPattern(targetString: '$count', subScript: true),
-                ],
-              ),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: count == 0
+          ? const Text('(', style: TextStyle(fontSize: 18))
+          : EasyRichText(
+              '($count',
+              defaultStyle: const TextStyle(fontSize: 18),
+              patternList: [
+                EasyRichTextPattern(targetString: '$count', subScript: true),
+              ],
+            ),
     );
   }
 }
@@ -66,15 +90,9 @@ class CloseParenthesisButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text(')', style: TextStyle(fontSize: 18)),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Text(')', style: TextStyle(fontSize: 18)),
     );
   }
 }
@@ -131,15 +149,9 @@ class InvertButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.reciprocal, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.reciprocal, size: 20),
     );
   }
 }
@@ -152,15 +164,9 @@ class XPower2Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.square, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.square, size: 20),
     );
   }
 }
@@ -173,15 +179,9 @@ class SquareRootButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Icon(CalculatorIcons.squareRoot, size: 20),
-      ),
+    return CalcButton(
+      onPressed: onPressed,
+      child: const Icon(CalculatorIcons.squareRoot, size: 20),
     );
   }
 }
