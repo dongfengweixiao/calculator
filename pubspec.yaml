@@ -58,7 +58,7 @@ dependencies:
   shared_preferences: ^2.5.4
   system_theme: ^3.2.0
   url_launcher: ^6.3.2
-  wincalc_engine: ^0.0.12
+  wincalc_engine: ^0.0.13
   window_manager: ^0.5.1
   xdg_directories: ^1.1.0
   yaru: ^10.0.0
