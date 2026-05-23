@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_it/flutter_it.dart';
+import 'package:github/github.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
@@ -67,7 +68,10 @@ void registerDependencies() {
     )
     ..registerSingletonAsync<AppModel>(
       () async {
-        final appModel = AppModel(packageInfo: di<PackageInfo>());
+        final appModel = AppModel(
+          packageInfo: di<PackageInfo>(),
+          gitHub: GitHub(),
+        );
         return appModel;
       },
       dependsOn: [PackageInfo],

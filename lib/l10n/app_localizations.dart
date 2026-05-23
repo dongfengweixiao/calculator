@@ -229,6 +229,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dependencies'**
   String get dependencies;
+
+  /// No description provided for @acknowledgementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledgements'**
+  String get acknowledgementsTitle;
+
+  /// No description provided for @copyrightNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright by Dee HY - all rights reserved.'**
+  String get copyrightNotice;
 }
 
 class _AppLocalizationsDelegate

@@ -76,4 +76,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dependencies => 'Dependencies';
+
+  @override
+  String get acknowledgementsTitle => 'Acknowledgements';
+
+  @override
+  String get copyrightNotice => 'Copyright by Dee HY - all rights reserved.';
 }

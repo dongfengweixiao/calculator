@@ -73,4 +73,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dependencies => '依赖';
+
+  @override
+  String get acknowledgementsTitle => '致谢';
+
+  @override
+  String get copyrightNotice => '版权所有 Dee HY - 保留所有权利。';
 }
