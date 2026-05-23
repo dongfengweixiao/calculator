@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
+import 'shared_buttons.dart';
+
 /// 位运算弹出面板
 ///
 /// 使用 flutter_layout_grid 实现 2行×3列:
@@ -73,15 +75,11 @@ class AndButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('AND', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('AND', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -94,15 +92,11 @@ class OrButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('OR', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('OR', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -115,15 +109,11 @@ class NotButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('NOT', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('NOT', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -136,15 +126,11 @@ class NandButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('NAND', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('NAND', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -157,15 +143,11 @@ class NorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('NOR', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('NOR', style: TextStyle(fontSize: 14)),
     );
   }
 }
@@ -178,15 +160,11 @@ class XorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: FilledButton(
-        onPressed: onPressed,
-        style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-          padding: EdgeInsets.zero,
-        ),
-        child: const Text('XOR', style: TextStyle(fontSize: 14)),
-      ),
+    final colorScheme = Theme.of(context).colorScheme;
+    return CalcButton(
+      onPressed: onPressed,
+      backgroundColor: colorScheme.surfaceContainerLow,
+      child: const Text('XOR', style: TextStyle(fontSize: 14)),
     );
   }
 }
